@@ -1,0 +1,210 @@
+.section {
+  position: relative;
+  display: grid;
+  min-height: max(calc(200svh - var(--header-height)), 760px);
+  place-items: center;
+  overflow: hidden;
+  background: var(--color-blue);
+  isolation: isolate;
+  // border: 1px solid yellow;
+}
+
+.title {
+  // border: 1px solid yellow;
+  position: absolute;
+  z-index: 2;
+  top: 3rem;
+  left:10rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: end;
+  margin: 0;
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: 7rem;
+  font-weight: 400;
+  line-height: 0.92;
+  line-height: 7rem;
+}
+.block{
+  position: absolute;
+  top: 10rem;
+}
+.where {
+  color: var(--color-yellow);
+}
+
+.design {
+  margin-left: 0.18em;
+  color: var(--color-red);
+}
+
+.meets {
+  color: var(--color-teal);
+}
+
+.code {
+  grid-row: 2 / 4;
+  margin-left: 0.12em;
+  color: var(--color-yellow);
+  font-size: 1.65em;
+  line-height: 0.8;
+}
+
+.flower {
+  position: relative;
+  width:62rem;
+  aspect-ratio: 1;
+  background-image: url("/section01_background05.webp");
+  background-position: center;
+  background-size: cover;
+  -webkit-mask-image: url("/pt_img/flower_nomal.svg");
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-image: url("/pt_img/flower_nomal.svg");
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  transform: translateY(20%);
+}
+
+.modelStage {
+  position: absolute;
+  // 위치: top은 낮출수록 아래로, left는 높일수록 오른쪽으로 이동합니다.
+  top: 58%;
+  left: 50%;
+  // 박스 크기: 마지막 값(330px/420px)을 키우면 3D 캔버스가 더 커집니다.
+  width: clamp(300px, 25vw, 400px);
+  height: clamp(300px, 38vw, 480px);
+  // translate 값은 박스의 중심을 top/left 좌표에 맞춥니다.
+  transform: translate(-50%, -50%) scale(0.75) ;
+  //  border: 1px solid red;
+}
+
+.modelStage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+ 
+}
+
+@media (min-width: 701px) and (max-width: 768px) {
+  .section {
+    min-height: calc(100svh - var(--header-height));
+  }
+
+  .title {
+    top: 3rem;
+    left: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: clamp(3.8rem, 9vw, 4.25rem);
+    line-height: 0.9;
+  }
+
+  .title > div {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .block {
+    position: static;
+  }
+
+  .code {
+    font-size: 1.35em;
+  }
+
+  .flower {
+    width: min(78vw, 600px);
+    transform: translateY(12%);
+  }
+
+  .modelStage {
+    width: min(42vw, 320px);
+    height: min(50vw, 380px);
+  }
+}
+
+
+@media (max-width: 700px) {
+  .section {
+    min-height: 760px;
+  }
+
+  .title {
+    top: 44px;
+    left: 8%;
+    font-size: clamp(2.4rem, 10vw, 4.4rem);
+  }
+
+  .flower {
+    width: min(94vw, 610px);
+    transform: translateY(10%);
+  }
+}
+
+@media (max-width: 430px) {
+  .section {
+    min-height: 680px;
+  }
+
+  .title {
+    font-size: 2.35rem;
+  }
+
+  .flower {
+    width: 112vw;
+  }
+
+  .modelStage {
+    width: min(64vw, 260px);
+    height: min(60vw, 320px);
+  }
+}
+
+@media (max-width: 375px) {
+  .section {
+    min-height: max(122svh, 800px);
+  }
+
+  .title {
+    top: 13%;
+    right: 8%;
+    left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 2.1rem;
+    line-height: 0.9;
+  }
+
+  .title > div {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .block {
+    position: static;
+  }
+
+  .design,
+  .code {
+    font-size: 1.5em;
+  }
+
+  .flower {
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    width: 88vw;
+    transform: translateX(-50%);
+  }
+
+  .modelStage {
+    top: 58%;
+    width: 52vw;
+    height: 60vw;
+  }
+}

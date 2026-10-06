@@ -1,0 +1,403 @@
+.section {
+  position: relative;
+  min-height: max(calc(290svh - var(--header-height)), 820px);
+  overflow: hidden;
+  scroll-margin-top: var(--header-height);
+  background: var(--color-blue);
+  isolation: isolate;
+  // border: 1px solid rgb(255, 0, 234);
+}
+
+.wave {
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  aspect-ratio: 7289.53 / 3931.49;
+  overflow: hidden;
+  background: #ffaa00;
+}
+
+.waveImage {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+}
+
+.title {
+  position: absolute;
+  z-index: 2;
+  top: clamp(34px, 6vh, 68px);
+  left: 10rem;
+  margin: 0;
+  color: var(--color-yellow);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size:9.3rem;
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.artwork {
+  position: absolute;
+  z-index: 2;
+  top: 12%;
+  right: clamp(44px, 9vw, 150px);
+  width: 25rem;
+  height: auto;
+}
+
+.projectCard,
+.nextProject {
+  position: absolute;
+  border: clamp(20px, 1.4vw, 30px) dashed var(--color-red);
+  border-radius: 50%;
+  background: var(--color-yellow);
+
+}
+
+.projectCard {
+  top: 16%;
+  left: clamp(-84px, -4vw, -20px);
+  display: flex;
+  width: 80rem;
+  aspect-ratio: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 7% 9% 8%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.imagePlaceholder {
+  width: 90%;
+  height: 90%;
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background-image: url(/reactShoppingmall-cotti.png);
+  background-position: center;
+  background-size: contain;
+}
+
+.projectCard h3 {
+  margin: 3% 0 0;
+  color: var(--color-blue);
+  font-family: var(--font-oleo-script), cursive;
+  font-size: clamp(2.2rem, 4.5vw, 5rem);
+  font-weight: 700;
+  line-height: 0.88;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.nextProject {
+  right: clamp(-190px, -10vw, -80px);
+  bottom: clamp(-120px, -6vw, -60px);
+  display: grid;
+  width: clamp(230px, 27vw, 420px);
+  aspect-ratio: 1;
+  place-items: center;
+}
+
+.nextPlaceholder {
+  width: 72%;
+  height: 72%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgb(252 246 235 / 0.24);
+}
+
+.projectSwapTrigger {
+  top: calc(30% + 30rem);
+  left: calc(clamp(-84px, -4vw, -20px) + 80rem + clamp(16px, 2vw, 32px));
+  position: absolute;
+  z-index: 3;
+  width: 35rem;
+  aspect-ratio: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.projectCard02 {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  width: 100%;
+  aspect-ratio: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 7% 9% 8%;
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.projectCardBackground02 {
+  z-index: 0;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.imagePlaceholder02 {
+  z-index: 1;
+  width: 74%;
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--color-cream) url("/hamstercareImg.png") center / cover no-repeat;
+}
+
+.projectCard02 h3 {
+  z-index: 1;
+  margin: 3% 0 0;
+  color: var(--color-blue);
+  font-family: var(--font-oleo-script), cursive;
+  font-size: clamp(1.25rem, 1.8vw, 2rem);
+  font-weight: 700;
+  line-height: 0.88;
+  text-align: center;
+}
+
+.mobilePreview {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .section {
+    min-height: 860px;
+  }
+
+  .title {
+    font-size: clamp(3.3rem, 11vw, 5.8rem);
+  }
+
+  .artwork {
+    top: 18%;
+    right: 4%;
+    width: min(34vw, 260px);
+  }
+
+  .projectCard {
+    top: 24%;
+    left: -10%;
+    width: min(72vw, 570px);
+  }
+
+  .projectSwapTrigger {
+    top: calc(16% + min(21vw, 175px));
+    left: calc(-10% + min(72vw, 570px) + 12px);
+    width: min(30vw, 220px);
+  }
+
+  .nextProject {
+    right: -16%;
+    width: min(38vw, 310px);
+  }
+}
+
+@media (max-width: 520px) {
+  .section {
+    min-height: 760px;
+  }
+
+  .title {
+    top: 38px;
+    left: 7%;
+    font-size: 3.45rem;
+  }
+
+  .artwork {
+    top: 19%;
+    right: 5%;
+    width: 150px;
+  }
+
+  .projectCard {
+    top: 27%;
+    left: -19%;
+    width: 88vw;
+  }
+
+  .projectSwapTrigger {
+    top: calc(16% + 28vw);
+    left: calc(-19% + 88vw + 10px);
+    width: 32vw;
+  }
+
+  .projectCard02 h3 {
+    font-size: clamp(0.8rem, 3.5vw, 1.15rem);
+  }
+
+  .projectCard h3 {
+    font-size: 2.25rem;
+  }
+
+  .nextProject {
+    right: -28%;
+    bottom: -8%;
+    width: 52vw;
+  }
+}
+
+@media (max-width: 800px) {
+  .section {
+    min-height: 1250px;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 768px) {
+  .section {
+    background: transparent;
+  }
+
+  .title {
+    top: 4rem;
+    left: 7%;
+  }
+
+  .artwork {
+    top: 14%;
+    right: 5%;
+  }
+
+  .projectCard {
+    top: 16%;
+    left: -8%;
+    width: 72vw;
+  }
+
+  .projectSwapTrigger {
+    top: 52%;
+    left: 60%;
+    width: 34vw;
+  }
+}
+
+@media (max-width: 520px) {
+  .section {
+    min-height: 1380px;
+  }
+
+  .artwork {
+    top: 13%;
+  }
+
+  .projectCard {
+    top: 25%;
+    left: 50%;
+    width: min(92vw, 420px);
+    padding: 8% 7% 9%;
+    transform: translateX(-50%);
+  }
+
+  .projectSwapTrigger {
+    top: 63%;
+    left: 50%;
+    width: min(68vw, 300px);
+    transform: translateX(-50%);
+  }
+
+  .imagePlaceholder02 {
+    width: 100%;
+  }
+
+  .nextProject {
+    right: -18%;
+    bottom: -5%;
+    width: min(48vw, 230px);
+  }
+}
+
+@media (max-width: 375px) {
+  .section {
+    min-height: 100svh;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .wave {
+    display: none;
+  }
+
+  .title {
+    top: 4%;
+    left: 50%;
+    width: max-content;
+    font-size: 2.1rem;
+    transform: translateX(-50%);
+  }
+
+  .artwork {
+    top: 14%;
+    right: 4%;
+    width: 24vw;
+  }
+
+  .projectCard {
+    top: 19%;
+    left: -7%;
+    width: 84vw;
+    padding: 7% 6% 8%;
+    border-width: 10px;
+    transform: none;
+  }
+
+  .projectCard h3 {
+    margin-top: 4%;
+    font-size: 1rem;
+  }
+
+  .projectSwapTrigger {
+    top: 52%;
+    right: -4%;
+    left: auto;
+    width: 29vw;
+    padding: 7% 9% 8%;
+    transform: none;
+  }
+
+  .imagePlaceholder02 {
+    width: 100%;
+  }
+
+  .projectCard02 h3 {
+    margin-top: 3%;
+    font-size: 0.62rem;
+    line-height: 0.9;
+  }
+
+  .mobilePreview {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .mobilePreview img {
+    object-fit: cover;
+  }
+
+  .shoppingPreview {
+    top: 7%;
+    left: 14%;
+    width: 72%;
+    aspect-ratio: 1;
+  }
+
+  .hamsterPreview {
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    aspect-ratio: 1;
+  }
+
+  .nextProject {
+    display: grid;
+  }
+}

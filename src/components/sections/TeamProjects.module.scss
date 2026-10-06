@@ -1,0 +1,408 @@
+.section {
+  position: relative;
+  min-height: max(calc(120svh - var(--header-height)), 660px);
+  overflow: visible;
+  scroll-margin-top: var(--header-height);
+  background: var(--color-blue);
+  color: var(--color-cream);
+}
+
+.section:has(.project:hover) {
+  z-index: 20;
+}
+
+.stage {
+  position: relative;
+  width: min(1200px, calc(100% - (var(--page-gutter) * 2)));
+  min-height: max(calc(100svh - var(--header-height)), 660px);
+  margin-inline: auto;
+}
+
+.title {
+  position: absolute;
+  top: 7%;
+  left: 36%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-left: clamp(14px, 1.5vw, 22px);
+  border-left: 3px solid var(--color-yellow);
+  color: var(--color-yellow);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(3.4rem, 6vw, 6rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.project {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project:hover {
+  z-index: 10;
+}
+
+.projectVisual {
+  transform-origin: center;
+  will-change: transform;
+}
+
+.project1 {
+  top: 10%;
+  left: -13%;
+}
+
+.project2 {
+  bottom: 4%;
+  left: 36%;
+}
+
+.project3 {
+  top: 7%;
+  right: -12%;
+}
+
+.placeholder {
+  position: relative;
+  width: clamp(230px, 24vw, 480px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  // border: 3px solid rgb(252 246 235 / 0.42);
+  background-image: url(/forlog.jpg);
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  // background: var(--color-cream);
+  box-shadow: 0 12px 34px rgb(0 0 0 / 0.18);
+  transform-origin: center;
+  transition: transform 850ms cubic-bezier(0.2, 0.75, 0.2, 1);
+  will-change: transform;
+}
+
+.sitePreview {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 900ms cubic-bezier(0.2, 0.75, 0.2, 1);
+}
+
+.sitePreview iframe {
+  width: 250%;
+  height: 250%;
+  border: 0;
+  pointer-events: none;
+  transform: scale(0.4);
+  transform-origin: top left;
+}
+
+.previewLink {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.placeholder:focus-within {
+  transform: scale(1.08);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .placeholder:hover {
+    transform: scale(1.6);
+  }
+}
+
+.placeholder:hover .sitePreview,
+.placeholder:focus-within .sitePreview {
+  clip-path: circle(72% at 50% 50%);
+}
+
+.project2 .placeholder {
+   background-image: url(/midnightcord.webp);
+  background-size: cover;
+  background-position: center;
+  width: clamp(190px, 20vw, 285px);
+  // background: var(--color-cream);
+}
+
+.project3 .placeholder {
+  width: clamp(240px, 25vw, 800px);
+   background-image: url(/LCODE.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.actions a,
+.actions button {
+  display: grid;
+  place-items: center;
+  min-width: clamp(94px, 8vw, 120px);
+  min-height: 30px;
+  padding: 0.8rem 1.8rem;
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(2rem, 2vw, 3.5rem);
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.actions a {
+  cursor: pointer;
+}
+
+.actions button {
+  cursor: default;
+}
+
+.liveButton {
+  background: var(--color-yellow);
+  color: var(--color-red);
+}
+
+.githubButton {
+  background: var(--color-red);
+  color: var(--color-cream);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .placeholder,
+  .sitePreview {
+    transition: none;
+  }
+}
+
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--color-yellow);
+}
+
+.dotLarge {
+  bottom: 20%;
+  left: 26%;
+  width: clamp(52px, 6vw, 84px);
+  aspect-ratio: 1;
+}
+
+.dotMedium {
+  right: 31%;
+  bottom: 25%;
+  width: clamp(30px, 3.5vw, 48px);
+  aspect-ratio: 1;
+}
+
+.dotSmall {
+  right: 25%;
+  bottom: 11%;
+  width: clamp(14px, 1.6vw, 23px);
+  aspect-ratio: 1;
+}
+
+@media (max-width: 900px) {
+  .section,
+  .stage {
+    min-height: 1240px;
+  }
+
+  .title {
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .project1 {
+    top: 20%;
+    left: 5%;
+  }
+
+  .project2 {
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .project3 {
+    top: 47%;
+    right: 5%;
+  }
+
+  .placeholder,
+  .project2 .placeholder,
+  .project3 .placeholder {
+    width: min(38vw, 300px);
+  }
+
+  .dotLarge {
+    top: 35%;
+    right: 8%;
+    bottom: auto;
+    left: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .section,
+  .stage {
+    min-height: 1540px;
+  }
+
+  .title {
+    width: max-content;
+    font-size: 3.8rem;
+  }
+
+  .project1,
+  .project2,
+  .project3 {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .project1 {
+    top: 18%;
+  }
+
+  .project2 {
+    top: 47%;
+    bottom: auto;
+  }
+
+  .project3 {
+    top: 74%;
+  }
+
+  .placeholder,
+  .project2 .placeholder,
+  .project3 .placeholder {
+    width: min(72vw, 300px);
+  }
+
+  .dot {
+    display: none;
+  }
+}
+
+@media (max-width: 375px) {
+  .section,
+  .stage {
+    min-height: max(190svh, 1200px);
+  }
+
+  .stage {
+    width: 100%;
+  }
+
+  .title {
+    top: 8%;
+    left: 14%;
+    width: max-content;
+    padding-left: 10px;
+    font-size: 3.2rem;
+    transform: none;
+  }
+
+  .project1,
+  .project2,
+  .project3 {
+    right: auto;
+    bottom: auto;
+    transform: none;
+  }
+
+  .project1 {
+    top: 20%;
+    left: 5%;
+  }
+
+  .project2 {
+    top: 44%;
+    right: 8%;
+    left: auto;
+  }
+
+  .project3 {
+    top: 66%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .project1 .placeholder {
+    width: 58vw;
+  }
+
+  .project2 .placeholder {
+    width: 44vw;
+  }
+
+  .project3 .placeholder {
+    width: 72vw;
+  }
+
+  .actions {
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .actions a,
+  .actions button {
+    min-width: 110px;
+    min-height: 40px;
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  .dot {
+    display: block;
+  }
+
+  .dotLarge {
+    top: 56%;
+    bottom: auto;
+    left: 7%;
+    width: 64px;
+  }
+
+  .dotMedium {
+    top: 22%;
+    right: 22%;
+    bottom: auto;
+    width: 46px;
+  }
+
+  .dotSmall {
+    top: 31%;
+    right: 11%;
+    bottom: auto;
+    width: 22px;
+  }
+
+  .stage::after {
+    position: absolute;
+    top: 48%;
+    left: 8%;
+    width: 25px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-yellow);
+    content: "";
+  }
+}

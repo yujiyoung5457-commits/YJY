@@ -1,0 +1,73 @@
+.nav {
+  position: fixed;
+  z-index: 50;
+  right: clamp(14px, 2.4vw, 55px);
+  bottom: clamp(18px, 3vw, 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.button {
+  position: relative;
+  display: grid;
+  width: clamp(72px, 7vw, 104px);
+  aspect-ratio: 1;
+  place-items: center;
+  filter: drop-shadow(0 6px 8px rgb(24 24 24 / 0.2));
+  transition:
+    filter 160ms ease,
+    transform 160ms ease;
+}
+
+.button + .button {
+  margin-top: -14%;
+}
+
+.button:hover,
+.button:focus-visible {
+  z-index: 2;
+  filter: drop-shadow(0 9px 12px rgb(24 24 24 / 0.28));
+  transform: scale(1.08);
+}
+
+.image {
+  object-fit: contain;
+  transition: transform 500ms ease;
+}
+
+.button:hover .image,
+.button:focus-visible .image {
+  transform: rotate(-180deg);
+}
+
+.button span {
+  z-index: 1;
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(1rem, 1.45vw, 1.45rem);
+  text-transform: uppercase;
+}
+
+.top span {
+  color: var(--color-cream);
+}
+
+.about span {
+  color: var(--color-blue);
+}
+
+@media (max-width: 600px) {
+  .nav {
+    right: 10px;
+    bottom: 14px;
+  }
+
+  .button {
+    width: 64px;
+  }
+
+  .button span {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,677 @@
+.section {
+  --art-gallery-height: 560vh;
+  // 곡선의 아래쪽 끝점 X 위치(%). 이 값만 바꾸면 곡선 폭과 제어점도 함께 변형됩니다.
+  --curve-end-x: 58.6;
+
+  position: relative;
+  min-height: var(--art-gallery-height);
+  overflow: hidden;
+  scroll-margin-top: var(--header-height);
+  background: #ffaa00;
+  isolation: isolate;
+  margin-top: -0.9rem;
+}
+
+// .orangePanel {
+//   position: absolute;
+//   z-index: -1;
+//   inset: 0 auto 0 0;
+//   width: 100%;
+//   background: #ffaa00;
+//   clip-path: polygon(
+//     0 0,
+//     65% 0,
+//     65% 23%,
+//     70% 23%,
+//     63% 47%,
+//     66% 70%,
+//     58% 83%,
+//     48% 100%,
+//     0 100%
+//   );
+// }
+.line {
+  position: absolute;
+  z-index: 0;
+  top: -1px;
+  right: -2px;
+  bottom: -1px;
+  left: -1px;
+  display: block;
+  width: calc(100% + 3px);
+  height: calc(100% + 2px);
+}
+.textureShape {
+  position: absolute;
+  z-index: 1;
+  background-image: url("/section01_background04.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+.shape1 {
+  top: 2%;
+  left: 12%;
+  width: 42%;
+  height: 63rem;
+  aspect-ratio: 0.78;
+  border-radius: 500px;
+  // border: 1px solid rgb(255, 0, 242);
+}
+
+.shape2 {
+  top: 40%;
+  left: 19%;
+  width: 63%;
+  height: 38rem;
+  aspect-ratio: 2.25;
+  border-radius: 500px;
+}
+
+.shape3 {
+  top: 60%;
+  left: 51%;
+  width: 30%;
+  height: 52rem;
+  aspect-ratio: 0.72;
+  border-radius: 500px;
+  transform: rotate(8deg);
+}
+
+.shape4 {
+  top: 86%;
+  left: 9%;
+  width: 48%;
+  height: 42rem;
+  aspect-ratio: 2.1;
+ border-radius: 500px;
+}
+
+.frame1,
+.frame2,
+.frame3,
+.frame4 {
+  position: absolute;
+  z-index: 2;
+}
+
+// 액자별 전용 조절 클래스입니다. 여기 값을 바꿔도 다른 액자는 움직이지 않습니다.
+.frame1Buttons {
+  margin-top: -1rem;
+  transform: translate(0, 0);
+}
+
+.frame2Buttons {
+  margin-top: -6rem;
+  transform: translate(0, 0);
+}
+
+.frame3Buttons {
+  margin-top: 1rem;
+  transform:translate(3rem, -1.5rem) rotate(-7.5deg);
+}
+
+.frame4Buttons {
+  margin-top: -1rem;
+  transform: translate(0, 0);
+}
+
+.frame1 {
+  top: -1rem;
+  right: 12%;
+  // border: 1px solid yellowgreen;
+
+  // 액자 1 크기
+  .frame1Frame {
+    width: clamp(500px, 50vw, 700px);
+    aspect-ratio: 1086 / 1448;
+  }
+
+  // 액자 1 안쪽 검정 박스: 위 오른쪽 아래 왼쪽
+  .frame1Window {
+   
+    inset: 5% 7% 5% 7%;
+    --frame-image: url(/bookJS.png);
+    background-position: top;
+    background-size: cover;
+    
+  }
+
+}
+
+.frame2 {
+  top: 21%;
+  left: 20%;
+  // transform: translate(50%,50%);
+  // border: 1px solid rgb(76, 0, 255);
+
+  // 액자 2 크기
+  .frame2Frame {
+    width: 75rem;
+    aspect-ratio: 1448 / 1086;
+    // border: 1px solid rgb(255, 0, 242);
+  }
+
+  // 액자 2 안쪽 검정 박스: 위 오른쪽 아래 왼쪽
+  .frame2Window {
+    inset: 20% 5% 20% 5%;
+    --frame-image: url(/memory-podo.png);
+    background-position: top;
+    background-size: cover;
+  }
+}
+
+.frame3 {
+  top: 56%;
+  left: 13%;
+  // border: 1px solid rgb(44, 230, 255);
+  // 액자 3 크기
+  .frame3Frame {
+    width: clamp(430px, 36vw, 680px);
+    aspect-ratio: 1086 / 1448;
+    transform: rotate(-8deg);
+  }
+
+  // 액자 3 안쪽 검정 박스: 위 오른쪽 아래 왼쪽
+  .frame3Window {
+    inset: 5% 7% 5% 7%;
+    --frame-image: url(/cloud-CRUD.png);
+    background-position: top;
+    background-size: cover;
+  }
+}
+
+.frame4 {
+  top: 80%;
+  left: 55%;
+
+  // 액자 4 크기
+  .frame4Frame {
+    width: clamp(520px, 32vw, 650px);
+    aspect-ratio: 1086 / 1448;
+  }
+
+  // 액자 4 안쪽 검정 박스: 위 오른쪽 아래 왼쪽
+  .frame4Window {
+    inset: 5% 7% 5% 7%;
+    --frame-image: url(/piyoPlush.png);
+    background-position: top;
+    background-size: cover;
+  }
+}
+
+.frame {
+  position: relative;
+  isolation: isolate;
+}
+
+.frameWindow {
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  background: #000;
+}
+
+.frameWindow::before {
+  position: absolute;
+  inset: 0;
+  background-image: var(--frame-image);
+  background-position: inherit;
+  background-size: inherit;
+  background-repeat: no-repeat;
+  content: "";
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+}
+
+.frameWindow:hover::before {
+  transform: scale(1.06);
+}
+
+.frameWindow img {
+  object-fit: cover;
+}
+
+.frameBorder {
+  z-index: 2;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.buttons {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  // 민트색 버튼 묶음의 위치는 margin-top과 transform으로 조절합니다.
+  gap: 12px;
+}
+
+.buttons > a {
+  min-width: 76px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  background: var(--color-teal);
+  color: var(--color-cream);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: 1.6rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 180ms ease;
+}
+
+.buttons > a:hover {
+  background-color: var(--color-red);
+}
+
+.footerTitle {
+  position: absolute;
+  right: 8%;
+  bottom: 3%;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  color: var(--color-yellow);
+  font-family: var(--font-anton), Impact, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.footerTitle > span {
+  font-size: clamp(5rem, 8vw, 8rem);
+}
+
+.footerTitle p {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+  line-height: 1.05;
+}
+
+@media (max-width: 768px) {
+  .section {
+    --art-gallery-height: 1600px;
+  }
+
+  .orangePanel {
+    width: 100%;
+  }
+
+  .frame1 .frame1Frame {
+    width: min(35vw, 260px);
+
+  }
+
+  .frame3 .frame3Frame {
+    width: min(35vw, 260px);
+  }
+
+  .frame4 .frame4Frame {
+    width: min(35vw, 260px);
+  }
+
+  .frame2 .frame2Frame {
+    width: min(65vw, 480px);
+  }
+
+  .frame1 {
+    right: auto;
+    left: 50%;
+  }
+
+  .frame4 {
+    left: 52%;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    --art-gallery-height: 1450px;
+  }
+
+  .shape1 {
+    top: 8%;
+    width: 43%;
+  }
+
+  .shape2,
+  .shape4 {
+    width: 76%;
+  }
+
+  .shape3 {
+    left: 55%;
+    width: 39%;
+  }
+
+  .frame1 .frame1Frame {
+    width: 20rem; // 액자 1 모바일 크기
+  }
+
+  .frame2 .frame2Frame {
+    width: 78vw;
+  }
+
+  .frame3 .frame3Frame {
+    width: 42vw;
+  }
+
+  .frame4 .frame4Frame {
+    width: 42vw;
+  }
+
+  .frame1 {
+    left: 49%;
+  }
+
+  .frame4 {
+    left: 54%;
+  }
+
+  .buttons {
+    gap: 6px;
+  }
+
+  .buttons > a {
+    min-width: 54px;
+    padding: 5px 8px;
+    font-size: 0.6rem;
+  }
+
+  .footerTitle {
+    right: 5%;
+    gap: 12px;
+  }
+}
+
+// Mobile layout: large absolute-positioned blocks are placed down the page in order.
+@media (max-width: 768px) {
+  .section {
+    --art-gallery-height: 2800px;
+    --curve-end-x: 54;
+  }
+
+  .shape1 {
+    top: 4%;
+    left: 4%;
+    width: 72%;
+    height: 31rem;
+  }
+
+  .shape2 {
+    top: 28%;
+    left: 10%;
+    width: 82%;
+    height: 20rem;
+  }
+
+  .shape3 {
+    top: 51%;
+    left: 48%;
+    width: 47%;
+    height: 29rem;
+  }
+
+  .shape4 {
+    top: 76%;
+    left: 4%;
+    width: 86%;
+    height: 18rem;
+  }
+
+  .frame1 {
+    top: 3%;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .frame2 {
+    top: 27%;
+    left: 52%;
+    transform: translateX(-50%);
+  }
+
+  .frame3 {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .frame4 {
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .frame1 .frame1Frame {
+    width: min(72vw, 430px);
+  }
+
+  .frame2 .frame2Frame {
+    width: min(92vw, 650px);
+    left: 5%;
+  }
+
+  .frame3 .frame3Frame {
+    width: min(68vw, 410px);
+  }
+
+  .frame4 .frame4Frame {
+    width: min(70vw, 420px);
+  }
+
+  .buttons > a {
+    min-width: 68px;
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 768px) {
+  .section {
+    --art-gallery-height: clamp(3000px, 430vw, 3300px);
+    --curve-end-x: 46;
+
+    background: transparent;
+  }
+
+  .line {
+    display: none;
+  }
+
+  .shape1 {
+    top: 5%;
+    left: 4%;
+    width: 55%;
+    height: 35rem;
+  }
+
+  .shape2 {
+    top: 36%;
+    left: 10%;
+    width: 80%;
+    height: 22rem;
+  }
+
+  .shape3 {
+    top: 64%;
+    right: 3%;
+    left: auto;
+    width: 72%;
+    height: 22rem;
+    transform: none;
+  }
+
+  .shape4 {
+    top: 89%;
+    left: 7%;
+    width: 75%;
+    height: 22rem;
+  }
+
+  .frame1 {
+    top: 2%;
+    right: 5%;
+    left: auto;
+    transform: none;
+  }
+
+  .frame1 .frame1Frame {
+    width: min(50vw, 360px);
+  }
+
+  .frame2 {
+    top: 28%;
+    left: 10%;
+    transform: none;
+  }
+
+  .frame2 .frame2Frame {
+    width: min(80vw, 580px);
+  }
+
+  .frame3 {
+    top: 56%;
+    left: 6%;
+    transform: none;
+  }
+
+  .frame3 .frame3Frame {
+    width: min(45vw, 350px);
+  }
+
+  .frame4 {
+    top: 82%;
+    right: 6%;
+    left: auto;
+    transform: none;
+  }
+
+  .frame4 .frame4Frame {
+    width: min(42vw, 400px);
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    --art-gallery-height: 2400px;
+    --curve-end-x: 50;
+  }
+
+  .frame1 .frame1Frame {
+    width: 72vw;
+  }
+
+  .frame2 .frame2Frame {
+    width: 94vw;
+  }
+
+  .frame3 .frame3Frame {
+    width: 70vw;
+  }
+
+  .frame4 .frame4Frame {
+    width: 72vw;
+  }
+
+  .buttons > a {
+    min-width: 54px;
+    padding: 0.55rem 0.8rem;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .section {
+    --art-gallery-height: 260svh;
+
+    min-height: 260svh;
+    margin-top: 0;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .line {
+    display: none;
+  }
+
+  .shape1 {
+    top: 4%;
+    left: 5%;
+    width: 50%;
+    height: 36svh;
+  }
+
+  .shape2 {
+    top: 31%;
+    left: 8%;
+    width: 84%;
+    height: 20svh;
+  }
+
+  .shape3 {
+    top: 43%;
+    right: 3%;
+    left: auto;
+    width: 48%;
+    height: 42svh;
+  }
+
+  .shape4 {
+    top: 65%;
+    left: 3%;
+    width: 68%;
+    height: 24svh;
+  }
+
+  .frame1 {
+    top: 0;
+    right: 5%;
+    left: auto;
+    transform: none;
+  }
+
+  .frame2 {
+    top: 22%;
+    left: 7%;
+    transform: none;
+  }
+
+  .frame3 {
+    top: 43%;
+    left: 7%;
+    transform: none;
+  }
+
+  .frame4 {
+    top: 70%;
+    right: 5%;
+    left: auto;
+    transform: none;
+  }
+
+  .frame1 .frame1Frame,
+  .frame4 .frame4Frame {
+    width: 43vw;
+  }
+
+  .frame2 .frame2Frame {
+    width: 84vw;
+  }
+
+  .frame3 .frame3Frame {
+    width: 42vw;
+  }
+
+  .frame1Buttons,
+  .frame2Buttons,
+  .frame3Buttons,
+  .frame4Buttons {
+    margin-top: -0.5rem;
+    transform: none;
+  }
+}

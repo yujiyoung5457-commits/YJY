@@ -1,0 +1,152 @@
+.section {
+  position: relative;
+  background: var(--color-blue);
+}
+
+.stickyStage {
+  position: relative;
+  display: flex;
+  min-height: max(calc(100svh - var(--header-height)), 980px);
+  flex-direction: column;
+  padding: clamp(3rem, 6vw, 6rem) 0 clamp(1.5rem, 3vw, 3rem);
+  background: var(--color-blue);
+}
+
+.heading {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(22px, 4vw, 58px);
+  margin-inline: auto;
+  color: var(--color-yellow);
+  font-family: var(--font-anton), Impact, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.heading > span {
+  font-size: clamp(10rem, 10vw, 15rem);
+  line-height: 1;
+}
+
+.heading h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4.2vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1.02;
+}
+
+.gallery {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: clamp(430px, 36vw, 620px);
+  overflow: hidden;
+}
+
+.cards {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: min(34.5vw, 660px);
+  aspect-ratio: 3 / 2;
+  margin: 0;
+  padding: 0;
+  cursor: grab;
+  touch-action: pan-y;
+  transform: translate(-50%, -50%);
+}
+
+.cards:active {
+  cursor: grabbing;
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  list-style: none;
+  border-radius: 14px;
+  background: transparent;
+  box-shadow: 0 12px 34px rgb(0 0 0 / 0.25);
+  will-change: transform, opacity;
+}
+
+.cardImage {
+  border-radius: inherit;
+  object-fit: contain;
+  object-position: center;
+}
+
+.actions {
+  position: absolute;
+  z-index: 110;
+  bottom: 30px;
+  left: 50%;
+  display: flex;
+  gap: 1rem;
+  transform: translateX(-50%);
+}
+
+.actions button {
+  padding: 0.8rem 1.3rem;
+  border: 0;
+  border-radius: 50px;
+  background: var(--color-red);
+  color: var(--color-cream);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all 0.3s;
+}
+
+.actions button:hover {
+  background: var(--color-yellow);
+  color: var(--color-blue);
+}
+
+.dragProxy {
+  position: absolute;
+  visibility: hidden;
+}
+
+@media (max-width: 700px) {
+  .stickyStage {
+    min-height: max(calc(100svh - var(--header-height)), 760px);
+    padding: 3rem 0 1.5rem;
+  }
+
+  .heading {
+    width: min(92vw, 430px);
+    gap: 12px;
+  }
+
+  .heading > span {
+    font-size: clamp(4rem, 18vw, 6rem);
+  }
+
+  .heading h2 {
+    font-size: clamp(1.6rem, 7vw, 2.3rem);
+  }
+
+  .cards {
+    top: 46%;
+    width: min(74vw, 360px);
+  }
+
+  .actions {
+    bottom: 24px;
+  }
+}
+
+@media (max-width: 375px) {
+  .section,
+  .stickyStage {
+    background: var(--color-blue);
+  }
+}
