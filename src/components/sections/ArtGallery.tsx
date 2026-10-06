@@ -123,7 +123,27 @@ export function ArtGallery() {
       {/* <div className={styles.orangePanel} aria-hidden="true" /> */}
 
       {/* 클리핑 마스크 형태 1: 텍스트가 들어갈 아이보리색 영역 */}
-      <div className={`${styles.textureShape} ${styles.shape1}`} />
+      <div className={`${styles.textureShape} ${styles.shape1}`}>
+        <div className={styles.projectDescription}>
+          <p>
+            React 기반 온라인 출판 서비스 관리자 대시보드를 제작했습니다.
+            <br />
+            방문자·회원·도서·게시판·설정 등 6개 관리 화면을 구성하고 Chart.js를
+            활용한 데이터 시각화와 검색·필터·정렬·모달·슬라이드 기능을
+            구현했습니다.
+            <br />
+            GSAP 인터랙션과 반응형 UI도 적용했습니다.
+          </p>
+          <div className={styles.projectTools} aria-label="사용 기술">
+            <span className={styles.projectTool}>React</span>
+            <span className={styles.projectTool}>React Router</span>
+            <span className={styles.projectTool}>Chart.js</span>
+            <span className={styles.projectTool}>GSAP</span>
+            <span className={styles.projectTool}>SCSS Modules</span>
+            <span className={styles.projectTool}>IntersectionObserver</span>
+          </div>
+        </div>
+      </div>
 
       {/* 액자 + 액자 안쪽 검정 박스 1 */}
       <div className={styles.frame1}>

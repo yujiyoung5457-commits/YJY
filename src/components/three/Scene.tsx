@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 
 const TURN_DURATION_SECONDS = 2.5;
 const MAX_PIXEL_RATIO = 2;
@@ -55,7 +56,9 @@ export function Scene({
     let fitModelToView = () => {};
     let disposed = false;
 
-    new GLTFLoader().load(modelPath, (gltf) => {
+    const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+
+    loader.load(modelPath, (gltf) => {
       if (disposed) {
         gltf.scene.traverse((child) => {
           if (!(child instanceof THREE.Mesh)) return;

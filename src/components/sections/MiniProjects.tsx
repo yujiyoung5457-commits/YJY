@@ -11,7 +11,7 @@ const miniProjectItems = [
 ] as const;
 
 const copySiteItems = [
-  { id: "woodin", label: "Woodin", image: "/woodin.png" },
+  { id: "woodin", label: "Woodin", image: "/woodin.webp" },
   { id: "genstar-mate", label: "GenstarMate", image: "/genstar.png" },
   { id: "fmk", label: "FMK", image: "/FMK.png" },
 ] as const;
