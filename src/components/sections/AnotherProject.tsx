@@ -1,96 +1,48 @@
 "use client";
 
-import { gsap } from "gsap";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import styles from "./AnotherProject.module.scss";
 
+const projectDetails = {
+  flower: {
+    title: "Flower Dance",
+    task:
+      "자체 제작 캐릭터를 활용한 반응형 쇼핑몰을 기획·구현했습니다. React와 Firebase를 연동해 회원·상품·찜·장바구니·주문·관리자 기능을 제작하고, 상품 검색·필터·재고 관리와 포토존·Kakao Maps 등 인터랙티브 기능을 구현했습니다.",
+    tech: [
+      "React",
+      "React Router",
+      "Zustand",
+      "SCSS Modules",
+      "Firebase Auth",
+      "Firestore",
+      "Canvas",
+      "IndexedDB",
+      "Kakao Maps API",
+    ],
+  },
+  hamster: {
+    title: "I love hamster",
+    task:
+      "Next.js·TypeScript 기반으로 햄스터 육성 및 방 꾸미기 웹앱을 구현했습니다. Firebase를 활용해 사용자 인증과 햄스터 이름·호감도·레벨 데이터를 관리하고, PC·모바일 드래그 앤 드롭과 상태별 캐릭터 반응·퀘스트 시스템을 제작했습니다. 캐릭터와 아이템 에셋도 직접 디자인했습니다.",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Firebase Auth",
+      "Firestore",
+      "SCSS Modules",
+      "GSAP",
+      "Pointer Events",
+      "Adobe Illustrator",
+    ],
+  },
+} as const;
+
+type ProjectKey = keyof typeof projectDetails;
+
 export function AnotherProject() {
-  const firstProjectRef = useRef<HTMLAnchorElement>(null);
-  const secondProjectRef = useRef<HTMLElement>(null);
-  const swapTimelineRef = useRef<gsap.core.Timeline | null>(null);
-
-  const createSwapTimeline = () => {
-    const firstProject = firstProjectRef.current;
-    const secondProject = secondProjectRef.current;
-    if (!firstProject || !secondProject) return null;
-
-    swapTimelineRef.current?.kill();
-    gsap.set([firstProject, secondProject], { clearProps: "transform" });
-
-    const firstBounds = firstProject.getBoundingClientRect();
-    const secondBounds = secondProject.getBoundingClientRect();
-    const firstCenter = {
-      x: firstBounds.left + firstBounds.width / 2,
-      y: firstBounds.top + firstBounds.height / 2,
-    };
-    const secondCenter = {
-      x: secondBounds.left + secondBounds.width / 2,
-      y: secondBounds.top + secondBounds.height / 2,
-    };
-
-    const timeline = gsap.timeline({ paused: true });
-    timeline
-      .to(
-        firstProject,
-        {
-          x: secondCenter.x - firstCenter.x,
-          y: secondCenter.y - firstCenter.y,
-          scale: secondBounds.width / firstBounds.width,
-          rotation: 360,
-          duration: 1.05,
-          ease: "power3.inOut",
-        },
-        0,
-      )
-      .to(
-        secondProject,
-        {
-          x: firstCenter.x - secondCenter.x,
-          y: firstCenter.y - secondCenter.y,
-          scale: firstBounds.width / secondBounds.width,
-          rotation: -360,
-          duration: 1.05,
-          ease: "power3.inOut",
-        },
-        0,
-      );
-
-    swapTimelineRef.current = timeline;
-    return timeline;
-  };
-
-  const swapProjects = () => {
-    const canHover = window.matchMedia(
-      "(min-width: 801px) and (hover: hover) and (pointer: fine)",
-    ).matches;
-    if (!canHover) return;
-
-    (swapTimelineRef.current ?? createSwapTimeline())?.play();
-  };
-
-  const restoreProjects = () => {
-    swapTimelineRef.current?.reverse();
-  };
-
-  useEffect(() => {
-    const resetTimeline = () => {
-      const firstProject = firstProjectRef.current;
-      const secondProject = secondProjectRef.current;
-      swapTimelineRef.current?.kill();
-      swapTimelineRef.current = null;
-
-      if (firstProject && secondProject) {
-        gsap.set([firstProject, secondProject], { clearProps: "transform" });
-      }
-    };
-
-    window.addEventListener("resize", resetTimeline);
-    return () => {
-      window.removeEventListener("resize", resetTimeline);
-      resetTimeline();
-    };
-  }, []);
+  const [selectedProject, setSelectedProject] = useState<ProjectKey>("flower");
+  const selectedDetails = projectDetails[selectedProject];
 
   return (
     <section
@@ -120,14 +72,20 @@ export function AnotherProject() {
         height={204}
       />
 
-      <a
-        ref={firstProjectRef}
+      <button
+        type="button"
         className={styles.projectCard}
-        href="https://flower-dance-sigma.vercel.app/"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Shopping Mall 라이브 사이트 새 창에서 열기"
+        onClick={() => setSelectedProject("flower")}
+        aria-label="Flower Dance 쇼핑몰 프로젝트 설명 보기"
+        aria-pressed={selectedProject === "flower"}
       >
+        <Image
+          className={styles.projectCardBackground}
+          src="/AnotherCircle.svg"
+          alt=""
+          fill
+          sizes="80rem"
+        />
         <div className={`${styles.mobilePreview} ${styles.shoppingPreview}`}>
           <Image
             src="/reactShoppingmall-cotti.png"
@@ -136,76 +94,71 @@ export function AnotherProject() {
             sizes="(max-width: 375px) 70vw, 1px"
           />
         </div>
-        <div className={styles.imagePlaceholder} aria-label="프로젝트 이미지 영역" />
+        <div className={styles.imagePlaceholder} aria-hidden="true" />
         <h3>
           Shopping
           <br />
           Mall
         </h3>
-      </a>
+      </button>
 
-      <article className={styles.projectDescription}>
+      <article className={styles.projectDescription} aria-live="polite">
         <Image
           className={styles.projectDescriptionBackground}
-          src="/section01_background06.webp"
+          src="/AnotherCircle.svg"
           alt=""
           fill
           sizes="(max-width: 520px) 78vw, (max-width: 800px) 48vw, 34rem"
         />
 
         <div className={styles.projectDescriptionCopy}>
+          <strong className={styles.projectDescriptionTitle}>
+            {selectedDetails.title}
+          </strong>
           <h3>[주요 업무]</h3>
-          <p>
-            자체 제작 캐릭터를 활용한 반응형 쇼핑몰을 기획·구현했습니다.
-            React와 Firebase를 연동해 회원·상품·찜·장바구니·주문·관리자
-            기능을 제작하고, 상품 검색·필터·재고 관리와 포토존·Kakao Maps
-            등 인터랙티브 기능을 구현했습니다.
-          </p>
+          <p>{selectedDetails.task}</p>
           <h3>[활용 기술]</h3>
-          <p className={styles.techStack}>
-            React · React Router · Zustand · SCSS Modules · Firebase Auth ·
-            Firestore · Canvas · IndexedDB · Kakao Maps API
-          </p>
+          <div className={styles.techStack} aria-label="활용 기술 목록">
+            {selectedDetails.tech.map((technology) => (
+              <span className={styles.techBadge} key={technology}>
+                {technology}
+              </span>
+            ))}
+          </div>
         </div>
       </article>
 
-      <a
+      <button
+        type="button"
         className={styles.projectSwapTrigger}
-        href="https://hamster-olive-mu.vercel.app/"
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Hamster Care 라이브 사이트 새 창에서 열기"
-        onPointerEnter={swapProjects}
-        onPointerLeave={restoreProjects}
+        onClick={() => setSelectedProject("hamster")}
+        aria-label="Hamster Care 프로젝트 설명 보기"
+        aria-pressed={selectedProject === "hamster"}
       >
-        <article ref={secondProjectRef} className={styles.projectCard02}>
-        <div className={`${styles.mobilePreview} ${styles.hamsterPreview}`}>
+        <div className={styles.projectCard02}>
+          <div className={`${styles.mobilePreview} ${styles.hamsterPreview}`}>
+            <Image
+              src="/hamstercareImg.png"
+              alt=""
+              fill
+              sizes="(max-width: 375px) 24vw, 1px"
+            />
+          </div>
           <Image
-            src="/hamstercareImg.png"
+            className={styles.projectCardBackground02}
+            src="/AnotherCircle.svg"
             alt=""
             fill
-            sizes="(max-width: 375px) 24vw, 1px"
+            sizes="(max-width: 520px) 32vw, (max-width: 800px) 30vw, 32rem"
           />
+          <div className={styles.imagePlaceholder02} aria-hidden="true" />
+          <h3>
+            Hamster
+            <br />
+            Care Game
+          </h3>
         </div>
-        <Image
-          className={styles.projectCardBackground02}
-          src="/section01_background06.webp"
-          alt=""
-          fill
-          sizes="(max-width: 520px) 32vw, (max-width: 800px) 30vw, 32rem"
-        />
-        <div className={styles.imagePlaceholder02} aria-label="프로젝트 이미지 영역" />
-        <h3>
-          Hamster
-          <br />
-          Care Game
-        </h3>
-        </article>
-      </a>
-
-      {/* <div className={styles.nextProject} aria-hidden="true">
-        <div className={styles.nextPlaceholder} />
-      </div> */}
+      </button>
     </section>
   );
 }

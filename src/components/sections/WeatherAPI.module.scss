@@ -125,6 +125,14 @@
   animation: weatherFadeIn 450ms ease-out;
 }
 
+.windowDecoration {
+  z-index: 1;
+  padding: 4%;
+  object-fit: cover;
+  object-position: center;
+  animation: weatherFadeIn 600ms ease-out;
+}
+
 @keyframes weatherFadeIn {
   from {
     opacity: 0;
@@ -153,11 +161,15 @@
 .resultContent {
   position: absolute;
   z-index: 1;
-  inset: 17% 9%;
+  inset: 14% 9% 13%;
   display: grid;
-  grid-template-columns: 0.72fr 0.78fr 2.2fr 1.35fr;
+  grid-template-columns: 0.82fr 1fr repeat(4, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-areas:
+    "city heading fortune fortune fortune fortune"
+    "city details details details details details";
   align-items: center;
-  gap: clamp(6px, 0.8vw, 14px);
+  gap: clamp(8px, 0.9vw, 18px) clamp(8px, 1vw, 20px);
   color: var(--color-blue);
 }
 
@@ -173,6 +185,8 @@
   cursor: grab;
   touch-action: none;
   user-select: none;
+  grid-area: city;
+  align-self: center;
 }
 
 .cityViewport:active {
@@ -231,25 +245,52 @@
 }
 
 .weatherHeading p {
-  font-family: var(--font-oleo-script), cursive;
-  font-size: clamp(0.8rem, 1vw, 1.2rem);
+  color: var(--color-red);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(0.78rem, 1.08vw, 1.2rem);
+  text-transform: lowercase;
+}
+
+.weatherHeading {
+  grid-area: heading;
+  align-self: center;
 }
 
 .weatherHeading h3 {
   font-family: var(--font-anton), Impact, sans-serif;
-  font-size: clamp(1.4rem, 2.15vw, 2.65rem);
+  font-size: clamp(1.75rem, 2.45vw, 3rem);
   font-weight: 400;
   line-height: 0.9;
   text-transform: uppercase;
-   border: 1px solid red;
 }
 
 .weatherDetails {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(3px, 0.4vw, 7px);
+  grid-area: details;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(8px, 1.1vw, 22px);
   margin: 0;
-  border: 1px solid red;
+}
+
+.weatherDetails div:nth-child(1) {
+  order: 1;
+}
+
+.weatherDetails div:nth-child(2) {
+  order: 3;
+}
+
+.weatherDetails div:nth-child(3) {
+  display: none;
+}
+
+.weatherDetails div:nth-child(4) {
+  order: 2;
+}
+
+.weatherDetails div:nth-child(5) {
+  order: 4;
 }
 
 .weatherDetails div {
@@ -257,34 +298,37 @@
 }
 
 .weatherDetails dt {
-  color: var(--color-red);
+  color: var(--color-blue);
   font-family: var(--font-anton), Impact, sans-serif;
-  font-size: clamp(0.62rem, 0.75vw, 0.9rem);
-  text-transform: uppercase;
+  font-size: clamp(0.92rem, 1.45vw, 1.75rem);
+  line-height: 1;
 }
 
 .weatherDetails dd {
-  margin: 3px 0 0;
+  margin: clamp(5px, 0.6vw, 10px) 0 0;
+  color: var(--color-red);
   font-family: var(--font-anton), Impact, sans-serif;
-  font-size: clamp(0.74rem, 0.94vw, 1.1rem);
+  font-size: clamp(0.82rem, 1.15vw, 1.35rem);
   overflow-wrap: anywhere;
 }
 
 .fortune {
+  grid-area: fortune;
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  font-family: var(--font-oleo-script), cursive;
-  font-size: clamp(0.7rem, 0.9vw, 1.05rem);
-  line-height: 1.35;
+  align-self: center;
+  gap: clamp(5px, 0.65vw, 10px);
+  color: var(--color-red);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(0.78rem, 1.08vw, 1.25rem);
+  line-height: 1.25;
 }
 
 .fortune strong {
-  color: var(--color-red);
+  color: var(--color-blue);
   font-family: var(--font-anton), Impact, sans-serif;
-  font-size: clamp(0.82rem, 1.05vw, 1.2rem);
+  font-size: clamp(1.25rem, 1.9vw, 2.3rem);
   font-weight: 400;
-  text-transform: uppercase;
 }
 
 .status {
@@ -332,7 +376,7 @@
   .result {
     bottom: 5%;
     width: 94vw;
-    height: clamp(350px, 70vw, 420px);
+    height: clamp(420px, 78vw, 520px);
     aspect-ratio: auto;
   }
 
@@ -345,8 +389,9 @@
     grid-template-columns: 0.9fr 1.1fr;
     grid-template-areas:
       "city heading"
-      "details details"
-      "fortune fortune";
+      "fortune fortune"
+      "details details";
+    grid-template-rows: auto auto auto;
     align-content: center;
     gap: clamp(12px, 3vw, 22px);
   }
@@ -361,7 +406,7 @@
 
   .weatherDetails {
     grid-area: details;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .fortune {
@@ -389,7 +434,7 @@
 
   .result {
     bottom: 4%;
-    height: 390px;
+    height: 430px;
   }
 
   .resultContent {

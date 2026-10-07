@@ -37,6 +37,19 @@ const cloudCrudSlides = [
   "/cloud-CRUD02.png",
 ] as const;
 
+const mergedProjectTools = [
+  "React",
+  "Zustand",
+  "Firebase Auth",
+  "Firestore",
+  "Firestore Security Rules",
+  "React Router",
+  "SCSS Modules",
+  "SVG",
+  "IntersectionObserver",
+  "Pointer Events",
+] as const;
+
 type FrameSliderProps = {
   images: readonly string[];
   alt: string;
@@ -249,10 +262,16 @@ export function ArtGallery() {
             캐릭터·시각 에셋까지 직접 제작했습니다.
           </p>
           <h3>[활용 기술]</h3>
-          <p className={styles.mergedTools}>
-            React · Zustand · Firebase Auth · Firestore · Firestore Security Rules ·
-            React Router · SCSS Modules · SVG · IntersectionObserver · Pointer Events
-          </p>
+          <div
+            className={`${styles.projectTools} ${styles.mergedTools}`}
+            aria-label="활용 기술 목록"
+          >
+            {mergedProjectTools.map((technology) => (
+              <span className={styles.projectTool} key={technology}>
+                {technology}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 

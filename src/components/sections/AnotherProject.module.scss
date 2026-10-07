@@ -1,6 +1,17 @@
 .section {
+  /* 원 위치 조절: +값이면 아래로, -값이면 위로 이동 */
+  --circle-offset-y: 16rem;
+  --flower-circle-top: clamp(280px, 11%, 430px);
+  --flower-circle-left: clamp(-84px, -4vw, -20px);
+  --flower-circle-size: 80rem;
+  --description-circle-top: clamp(260px, 12%, 400px);
+  --description-circle-right: 0%;
+  --description-circle-size: min(38vw, 46rem);
+  --hamster-circle-top: clamp(1150px, 38%, 1250px);
+  --hamster-circle-right: -1%;
+  --hamster-circle-size: min(47vw, 59rem);
   position: relative;
-  min-height: max(calc(290svh - var(--header-height)), 820px);
+  min-height: max(calc(360svh - var(--header-height)), 2400px);
   overflow: hidden;
   scroll-margin-top: var(--header-height);
   background: var(--color-blue);
@@ -45,10 +56,11 @@
 .artwork {
   position: absolute;
   z-index: 2;
-  top: 9%;
+  top: 7%;
   right: clamp(44px, 9vw, 150px);
   width: 20rem;
   height: auto;
+  transform: rotate(8deg);
   animation:wobble-hor-bottom 3s infinite ;
 }
 @-webkit-keyframes wobble-hor-bottom {
@@ -90,19 +102,51 @@
 }
 
 .projectCard {
-  top: 16%;
-  left: clamp(-84px, -4vw, -20px);
+  top: var(--flower-circle-top);
+  left: var(--flower-circle-left);
   display: flex;
-  width: 80rem;
+  width: var(--flower-circle-size);
   aspect-ratio: 1;
   flex-direction: column;
   align-items: center;
   padding: 7% 9% 8%;
   text-decoration: none;
   cursor: pointer;
+  font: inherit;
+  translate: 0 var(--circle-offset-y);
+  border: 0;
+  background: transparent;
+}
+
+.projectCard:focus-visible,
+.projectSwapTrigger:focus-visible {
+  outline: 5px solid var(--color-cream);
+  outline-offset: 6px;
+}
+
+.projectCardBackground,
+.projectDescriptionBackground,
+.projectCardBackground02 {
+  animation: another-circle-spin 48s linear infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.projectCardBackground {
+  z-index: 0;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+@keyframes another-circle-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .imagePlaceholder {
+  position: relative;
+  z-index: 1;
   width: 90%;
   height: 90%;
   aspect-ratio: 1;
@@ -114,6 +158,8 @@
 }
 
 .projectCard h3 {
+  position: relative;
+  z-index: 1;
   margin: 3% 0 0;
   color: var(--color-blue);
   font-family: var(--font-oleo-script), cursive;
@@ -127,13 +173,14 @@
 .projectDescription {
   position: absolute;
   z-index: 4;
-  top: 24%;
-  right: 4%;
+  top: var(--description-circle-top);
+  right: var(--description-circle-right);
   display: grid;
-  width: min(32vw, 34rem);
+  width: var(--description-circle-size);
   aspect-ratio: 1;
   place-items: center;
   pointer-events: none;
+  translate: 0 var(--circle-offset-y);
 }
 
 .projectDescriptionBackground {
@@ -157,6 +204,16 @@
   margin: 0;
 }
 
+.projectDescriptionTitle {
+  display: block;
+  margin-bottom: clamp(0.35rem, 0.8vw, 0.7rem);
+  color: var(--color-blue);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(1.25rem, 1.8vw, 2rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
 .projectDescriptionCopy h3 {
   font-size: clamp(0.95rem, 1.15vw, 1.3rem);
   font-weight: 400;
@@ -167,11 +224,24 @@
   font-size: clamp(0.72rem, 0.9vw, 1rem);
 }
 
-.projectDescriptionCopy .techStack {
-  margin-bottom: 0;
-  color: var(--color-red);
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.25rem, 0.45vw, 0.45rem);
+  margin-top: clamp(0.35rem, 0.7vw, 0.65rem);
+}
+
+.techBadge {
+  padding: clamp(0.25rem, 0.42vw, 0.42rem) clamp(0.45rem, 0.7vw, 0.75rem);
+  border-radius: 999px;
+  background: var(--color-red);
+  color: var(--color-cream);
   font-family: var(--font-anton), Impact, sans-serif;
-  line-height: 1.25;
+  font-size: clamp(0.62rem, 0.78vw, 0.86rem);
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .nextProject {
@@ -192,14 +262,19 @@
 }
 
 .projectSwapTrigger {
-  top: calc(30% + 30rem);
-  left: calc(clamp(-84px, -4vw, -20px) + 80rem + clamp(16px, 2vw, 32px));
+  top: var(--hamster-circle-top);
+  right: var(--hamster-circle-right);
+  left: auto;
   position: absolute;
   z-index: 3;
-  width: 35rem;
+  width: var(--hamster-circle-size);
   aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  background: transparent;
   text-decoration: none;
   cursor: pointer;
+  translate: 0 var(--circle-offset-y);
 }
 
 .projectCard02 {
@@ -220,6 +295,7 @@
   z-index: 0;
   object-fit: contain;
   pointer-events: none;
+  animation-direction: reverse;
 }
 
 .imagePlaceholder02 {
@@ -236,7 +312,7 @@
   margin: 3% 0 0;
   color: var(--color-blue);
   font-family: var(--font-oleo-script), cursive;
-  font-size: clamp(1.25rem, 1.8vw, 2rem);
+  font-size: clamp(4rem, 2vw, 7rem);
   font-weight: 700;
   line-height: 0.88;
   text-align: center;
@@ -244,6 +320,14 @@
 
 .mobilePreview {
   display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projectCardBackground,
+  .projectDescriptionBackground,
+  .projectCardBackground02 {
+    animation: none;
+  }
 }
 
 @media (max-width: 800px) {
@@ -268,9 +352,10 @@
   }
 
   .projectSwapTrigger {
-    top: 76%;
-    left: calc(-10% + min(72vw, 570px) + 12px);
-    width: min(30vw, 220px);
+    top: 72%;
+    right: -3%;
+    left: auto;
+    width: min(55vw, 440px);
   }
 
   .projectDescription {
@@ -327,8 +412,22 @@
     font-size: clamp(0.92rem, 4vw, 1.15rem);
   }
 
+  .projectDescriptionTitle {
+    font-size: clamp(1.15rem, 5vw, 1.55rem);
+  }
+
   .projectDescriptionCopy p {
     font-size: clamp(0.68rem, 3vw, 0.9rem);
+  }
+
+  .techStack {
+    gap: 0.22rem;
+    margin-top: 0.3rem;
+  }
+
+  .techBadge {
+    padding: 0.24rem 0.42rem;
+    font-size: clamp(0.52rem, 2.4vw, 0.72rem);
   }
 
   .projectCard02 h3 {
@@ -374,9 +473,10 @@
   }
 
   .projectSwapTrigger {
-    top: 77%;
-    left: 60%;
-    width: 34vw;
+    top: 72%;
+    right: -3%;
+    left: auto;
+    width: 55vw;
   }
 }
 

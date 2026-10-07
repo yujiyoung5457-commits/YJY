@@ -10,20 +10,20 @@ import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 const TURN_DURATION_SECONDS = 2.5;
 const MAX_PIXEL_RATIO = 2;
 const STUDIO_LIGHTING = {
-  exposure: 0.9,
-  hemisphereSky: 0xffe4c2,
-  hemisphereGround: 0x6a3524,
-  hemisphereIntensity: 0.52,
+  exposure: 1.0,
 
-  keyColor: 0xffa85c,
-  keyIntensity: 1.2,
+  hemisphereSky: 0xfff7ee,
+  hemisphereGround: 0x4a3a34,
+  hemisphereIntensity: 0.58,
 
-  fillColor: 0xffcf9f,
-  fillIntensity: 0.42,
+  keyColor: 0xfff0dc,
+  keyIntensity: 1.25,
 
-  environmentIntensity: 0.34,
+  fillColor: 0xffffff,
+  fillIntensity: 0.5,
+
+  environmentIntensity: 0.42,
 };
-
 type ModelMotion = "none" | "bounce";
 
 type SceneProps = {

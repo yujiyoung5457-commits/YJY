@@ -113,8 +113,9 @@
   line-height: 1.5;
 }
 
-.mergedTools {
-  font-weight: 400;
+.projectTools.mergedTools {
+  gap: clamp(0.3rem, 0.55vw, 0.55rem);
+  margin-top: clamp(0.65rem, 1vw, 1rem);
 }
 
 .finalDescription {

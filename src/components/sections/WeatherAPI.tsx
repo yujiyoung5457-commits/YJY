@@ -35,6 +35,14 @@ const WINDOW_IMAGES = [
   "/window02.svg",
 ];
 
+const WINDOW_DECORATIONS = [
+  "/martryocika.png",
+  "/fortune.png",
+  "/eyes.png",
+  "/daruma.png",
+  "/clover.png",
+] as const;
+
 const VISIBLE_CITY_COUNT = 3;
 const CITY_DRAG_THRESHOLD = 22;
 
@@ -67,6 +75,9 @@ export function WeatherAPI() {
   const cityWasDragged = useRef(false);
   const lastWheelTime = useRef(0);
   const [fortune, setFortune] = useState(taro[0]);
+  const [windowDecorationIndex, setWindowDecorationIndex] = useState<number | null>(
+    null,
+  );
   const [error, setError] = useState("");
   const [flippedCards, setFlippedCards] = useState<[boolean, boolean]>([
     false,
@@ -102,6 +113,26 @@ export function WeatherAPI() {
 
     loadWeather();
     return () => controller.abort();
+  }, []);
+
+  useEffect(() => {
+    const chooseDecoration = window.setTimeout(() => {
+      const storageKey = "weather-window-decoration";
+      const savedValue = window.sessionStorage.getItem(storageKey);
+      const savedIndex = savedValue === null ? Number.NaN : Number(savedValue);
+      const hasSavedIndex =
+        Number.isInteger(savedIndex) &&
+        savedIndex >= 0 &&
+        savedIndex < WINDOW_DECORATIONS.length;
+      const decorationIndex = hasSavedIndex
+        ? savedIndex
+        : Math.floor(Math.random() * WINDOW_DECORATIONS.length);
+
+      window.sessionStorage.setItem(storageKey, String(decorationIndex));
+      setWindowDecorationIndex(decorationIndex);
+    }, 0);
+
+    return () => window.clearTimeout(chooseDecoration);
   }, []);
 
   const selectedWeather = weather[selectedIndex];
@@ -265,6 +296,16 @@ export function WeatherAPI() {
                 key={selectedWeatherImage}
                 className={styles.windowWeather}
                 src={selectedWeatherImage}
+                alt=""
+                fill
+                sizes="14vw"
+              />
+            )}
+            {index === 2 && windowDecorationIndex !== null && (
+              <Image
+                key={WINDOW_DECORATIONS[windowDecorationIndex]}
+                className={styles.windowDecoration}
+                src={WINDOW_DECORATIONS[windowDecorationIndex]}
                 alt=""
                 fill
                 sizes="14vw"
