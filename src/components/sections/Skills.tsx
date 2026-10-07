@@ -20,76 +20,76 @@ const skillSlides = [
     {
       name: "React",
       image: "/pt_img/reactcolor.webp",
-      paint: { color: "#22efc4", length: 680, thickness: 38, wave: 24 },
+      paint: { color: "#6cf5ff", length: 680, thickness: 38, wave: 24 },
     },
     {
       name: "TypeScript",
       image: "/pt_img/ts.webp",
-      paint: { color: "#22efc4", length: 620, thickness: 36, wave: 20 },
+      paint: { color: "#33beff", length: 530, thickness: 36, wave: 20 },
     },
     {
       name: "HTML5",
       image: "/pt_img/htmll.webp",
-      paint: { color: "#22efc4", length: 700, thickness: 40, wave: 26 },
+      paint: { color: "#ff9f32", length: 800, thickness: 40, wave: 26 },
     },
     {
       name: "CSS3",
       image: "/pt_img/csscolor.webp",
-      paint: { color: "#22efc4", length: 650, thickness: 36, wave: 22 },
+      paint: { color: "#6f96ff", length: 780, thickness: 36, wave: 22 },
     },
     {
       name: "JavaScript",
       image: "/pt_img/colorjs.webp",
-      paint: { color: "#22efc4", length: 720, thickness: 40, wave: 28 },
+      paint: { color: "#ffeb3b", length: 700, thickness: 40, wave: 28 },
     },
   ],
   [
     {
       name: "Illustrator",
       image: "/pt_img/illust.webp",
-      paint: { color: "#ffaa00", length: 680, thickness: 38, wave: 24 },
+      paint: { color: "#ffa600", length: 900, thickness: 38, wave: 24 },
     },
     {
       name: "InDesign",
       image: "/pt_img/indesign.webp",
-      paint: { color: "#ffaa00", length: 620, thickness: 36, wave: 20 },
+      paint: { color: "#ff0055", length: 810, thickness: 36, wave: 20 },
     },
     {
       name: "Figma",
       image: "/pt_img/figma.webp",
-      paint: { color: "#ffaa00", length: 700, thickness: 40, wave: 26 },
+      paint: { color: "#b340ff", length: 800, thickness: 40, wave: 26 },
     },
     {
       name: "Premiere",
       image: "/pt_img/premire.webp",
-      paint: { color: "#ffaa00", length: 650, thickness: 36, wave: 22 },
+      paint: { color: "#c2b7ff", length: 790, thickness: 36, wave: 22 },
     },
     {
       name: "React Native",
       image: "/pt_img/rn.webp",
-      paint: { color: "#ffaa00", length: 720, thickness: 40, wave: 28 },
+      paint: { color: "#ccc", length: 750, thickness: 40, wave: 28 },
     },
   ],
   [
     {
       name: "Photoshop",
       image: "/pt_img/photoshop.webp",
-      paint: { color: "#ffffff", length: 680, thickness: 38, wave: 24 },
+      paint: { color: "#9bb3f5", length: 860, thickness: 38, wave: 24 },
     },
     {
       name: "Codex",
       image: "/pt_img/codex.webp",
-      paint: { color: "#ffffff", length: 620, thickness: 36, wave: 20 },
+      paint: { color: "#ffffff", length: 830, thickness: 36, wave: 20 },
     },
     {
       name: "GPT",
       image: "/pt_img/gpt.webp",
-      paint: { color: "#ffffff", length: 700, thickness: 40, wave: 26 },
+      paint: { color: "#b9b9b9", length: 850, thickness: 40, wave: 26 },
     },
     {
       name: "DaVinci Resolve",
       image: "/pt_img/davinch.webp",
-      paint: { color: "#ffffff", length: 650, thickness: 36, wave: 22 },
+      paint: { color: "#64e675", length: 760, thickness: 36, wave: 22 },
     },
   ],
 ] as const;
@@ -126,7 +126,6 @@ const getCubicPoint = (
 
 export function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
-  const paintCanvasRef = useRef<HTMLCanvasElement>(null);
   const skillListRef = useRef<HTMLDivElement>(null);
   const titleGraphicRef = useRef<HTMLDivElement>(null);
   const [isPainted, setIsPainted] = useState(false);
@@ -157,10 +156,9 @@ export function Skills() {
 
   useEffect(() => {
     const section = sectionRef.current;
-    const canvas = paintCanvasRef.current;
     const skillList = skillListRef.current;
 
-    if (!section || !canvas || !skillList) return;
+    if (!section || !skillList) return;
 
     const rows = Array.from(
       skillList.querySelectorAll<HTMLElement>(`.${styles.skillRow}`),
@@ -170,35 +168,38 @@ export function Skills() {
     let paintTween: gsap.core.Tween | null = null;
 
     const drawPaint = (progress = paintProgress.value) => {
-      const sectionBounds = section.getBoundingClientRect();
-      const width = sectionBounds.width;
-      const height = sectionBounds.height;
       const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
-
-      canvas.width = Math.round(width * pixelRatio);
-      canvas.height = Math.round(height * pixelRatio);
-
-      const context = canvas.getContext("2d");
-
-      if (!context) return;
-
-      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-      context.clearRect(0, 0, width, height);
-      context.lineCap = "round";
-      context.lineJoin = "round";
 
       rows.forEach((row, index) => {
         const rowBounds = row.getBoundingClientRect();
+        const canvas = row.querySelector<HTMLCanvasElement>(`.${styles.paintCanvas}`);
         const skill = activeSkills[index];
 
-        if (!skill) return;
+        if (!canvas) return;
 
+        const width = rowBounds.width;
+        const height = rowBounds.height;
+        canvas.width = Math.round(width * pixelRatio);
+        canvas.height = Math.round(height * pixelRatio);
+
+        const context = canvas.getContext("2d");
+        if (!context) return;
+
+        context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        context.clearRect(0, 0, width, height);
+        context.lineCap = "round";
+        context.lineJoin = "round";
+
+        const tube = row.querySelector<HTMLElement>(`.${styles.skillTube}`);
+        if (!skill || !tube) return;
+
+        const tubeBounds = tube.getBoundingClientRect();
         const paint = skill.paint;
-        const startX = rowBounds.right - sectionBounds.left - 10;
-        const startY = rowBounds.top - sectionBounds.top + rowBounds.height / 2;
-        const availableLength = Math.max(0, width - startX - 32);
-        const responsiveScale = Math.min(1, width / 1200);
-        const length = Math.min(paint.length * responsiveScale, availableLength);
+        const responsiveScale = Math.min(1, tubeBounds.width / 400);
+        const startX = tubeBounds.right - rowBounds.left - 10 * responsiveScale;
+        const startY = tubeBounds.top - rowBounds.top + tubeBounds.height / 2+16;
+        const availableLength = Math.max(0, width - startX - 12);
+        const length = Math.min(paint.length *1.09 * responsiveScale, availableLength);
         const endX = startX + length;
         const wave = paint.wave * responsiveScale;
 
@@ -269,7 +270,6 @@ export function Skills() {
     );
 
     const resizeObserver = new ResizeObserver(() => drawPaint());
-    resizeObserver.observe(section);
     resizeObserver.observe(skillList);
     rows.forEach((row) => resizeObserver.observe(row));
     drawPaint(0);
@@ -289,8 +289,6 @@ export function Skills() {
       id="skills"
       aria-labelledby="skills-title"
     >
-      <canvas ref={paintCanvasRef} className={styles.paintCanvas} aria-hidden="true" />
-
       <div
         ref={titleGraphicRef}
         className={`${styles.titleGraphic} ${isPainted ? styles.isPainted : ""}`}
@@ -324,19 +322,26 @@ export function Skills() {
 
           return (
             <div className={styles.skillRow} key={index}>
+              <canvas className={styles.paintCanvas} aria-hidden="true" />
               {skill ? (
-                <Image
-                  key={`${activeSlide}-${skill.name}`}
-                  className={styles.skillImage}
-                  src={skill.image}
-                  alt={skill.name}
-                  fill
-                  sizes="(max-width: 520px) 30vw, 18vw"
-                />
+                <div className={styles.skillTube}>
+                  <Image
+                    key={`${activeSlide}-${skill.name}`}
+                    className={styles.skillImage}
+                    src={skill.image}
+                    alt={skill.name}
+                    fill
+                    sizes="(max-width: 520px) 48vw, 25vw"
+                  />
+                </div>
               ) : null}
             </div>
           );
         })}
+
+        <div className={styles.skillScale} aria-hidden="true">
+          <span>100</span>
+        </div>
       </div>
 
       <Image

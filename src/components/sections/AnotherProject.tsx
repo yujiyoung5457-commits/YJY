@@ -144,6 +144,31 @@ export function AnotherProject() {
         </h3>
       </a>
 
+      <article className={styles.projectDescription}>
+        <Image
+          className={styles.projectDescriptionBackground}
+          src="/section01_background06.webp"
+          alt=""
+          fill
+          sizes="(max-width: 520px) 78vw, (max-width: 800px) 48vw, 34rem"
+        />
+
+        <div className={styles.projectDescriptionCopy}>
+          <h3>[주요 업무]</h3>
+          <p>
+            자체 제작 캐릭터를 활용한 반응형 쇼핑몰을 기획·구현했습니다.
+            React와 Firebase를 연동해 회원·상품·찜·장바구니·주문·관리자
+            기능을 제작하고, 상품 검색·필터·재고 관리와 포토존·Kakao Maps
+            등 인터랙티브 기능을 구현했습니다.
+          </p>
+          <h3>[활용 기술]</h3>
+          <p className={styles.techStack}>
+            React · React Router · Zustand · SCSS Modules · Firebase Auth ·
+            Firestore · Canvas · IndexedDB · Kakao Maps API
+          </p>
+        </div>
+      </article>
+
       <a
         className={styles.projectSwapTrigger}
         href="https://hamster-olive-mu.vercel.app/"

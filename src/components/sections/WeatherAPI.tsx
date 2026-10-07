@@ -207,14 +207,14 @@ export function WeatherAPI() {
               src="/card.svg"
               alt=""
               fill
-              sizes="18vw"
+              sizes="14vw"
             />
             <Image
               className={`${styles.cardFace} ${styles.cardBack}`}
               src="/card-back.svg"
               alt=""
               fill
-              sizes="18vw"
+              sizes="14vw"
             />
           </span>
         </button>
@@ -233,14 +233,14 @@ export function WeatherAPI() {
               src="/card.svg"
               alt=""
               fill
-              sizes="18vw"
+              sizes="14vw"
             />
             <Image
               className={`${styles.cardFace} ${styles.cardBack}`}
               src="/card-back.svg"
               alt=""
               fill
-              sizes="18vw"
+              sizes="14vw"
             />
           </span>
         </button>
@@ -267,7 +267,7 @@ export function WeatherAPI() {
                 src={selectedWeatherImage}
                 alt=""
                 fill
-                sizes="11vw"
+                sizes="14vw"
               />
             )}
             <Image
@@ -275,14 +275,14 @@ export function WeatherAPI() {
               src={src}
               alt=""
               fill
-              sizes="11vw"
+              sizes="14vw"
             />
           </div>
         ))}
         </div>
 
         <div className={styles.result} aria-live="polite">
-        <Image className={styles.resultShape} src="/setumei.svg" alt="" fill sizes="84vw" />
+        <Image className={styles.resultShape} src="/setumei.svg" alt="" fill sizes="78vw" />
 
         <div className={styles.resultContent}>
           {error ? (

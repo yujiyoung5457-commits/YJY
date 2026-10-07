@@ -1,0 +1,80 @@
+{
+  "defaultProjectId": "calculator",
+  "groups": [
+    {
+      "id": "mini-projects",
+      "title": "mini projects",
+      "tone": "teal",
+      "projects": [
+        {
+          "id": "gray-wall",
+          "label": "Gray-wall",
+          "image": "/gray.png",
+          "tasks": ["HTML5 Canvas와 JavaScript를 활용해 반응형 벽돌 깨기 게임을 구현했습니다.",
+           "requestAnimationFrame 기반 게임 루프와 공·패들·벽돌의 충돌 판정,",
+            "난이도별 속도·패들 크기·벽돌 구성을 직접 제어하고 마우스·터치 조작을 지원했습니다."],
+          "technologies": ["HTML","CSS","JavaScript","Canvas API","requestAnimationFrame","Pointer Events"],
+          "links": { "liveSite": "https://yujiyoung5457-commits.github.io/gray/", "github": "https://github.com/yujiyoung5457-commits/gray" }
+        },
+        {
+          "id": "fruit-animation",
+          "label": "fruit animation",
+          "image": "/fruit.png",
+          "tasks": ["직접 제작한 과일 그래픽을 Canvas에 파티클 형태로 배치하고",
+                    "GSAP과 삼각함수 기반 좌표 계산을 활용해 소용돌이형 인터랙티브 애니메이션을 구현했습니다.",
+                    "클릭·터치 재생 제어와 반응형 Canvas 및 고해상도 화면 대응을 적용했습니다."
+                  ],
+          "technologies": ["React" ,"JavaScript","GSAP","Canvas API","CSS Animation","Adobe Illustrator"],
+          "links": { "liveSite": "https://fruit-seven-kohl.vercel.app/", "github": "https://github.com/yujiyoung5457-commits/fruit" }
+        },
+        {
+          "id": "calculator",
+          "label": "CALCULATOR",
+          "image": "/culcu.png",
+          "tasks": [
+            "HTML·CSS·JavaScript를 활용해 캐릭터 테마의 반응형 계산기를 제작했습니다.",
+            "사칙연산 입력 초기화 및 삭제 기능을 구현하고 CSS 3D Transform을 활용한 카드 플립 인터랙션과 모바일 레이아웃을 적용했습니다."
+          ],
+          "technologies": ["HTML", "CSS", "JavaScript", "CSS 3D Transform", "Responsive Web"],
+          "links": { "liveSite": "https://yujiyoung5457-commits.github.io/yu/", "github": "https://github.com/yujiyoung5457-commits/yu" }
+        }
+      ]
+    },
+    {
+      "id": "copy-site",
+      "title": "copy-site",
+      "tone": "red",
+      "projects": [
+        {
+          "id": "woodin",
+          "label": "Woodin",
+          "image": "/woodin.webp",
+          "tasks": ["HTML·CSS·JavaScript로 우딘하우스 브랜드 사이트를 분석해", "7개 화면의 멀티페이지 웹사이트를 구현했습니다.", "공통 GNB·서브메뉴·전체 메뉴를 제작하고, IntersectionObserver를 활용한 스크롤 진입 애니메이션과", "hover·페이드·슬라이드 인터랙션을 적용했습니다.", "CSS Grid·Flexbox로 갤러리 및 콘텐츠 레이아웃을 구성하고 Google Maps를 활용해 쇼룸 위치 정보를 구현했습니다."],
+          "technologies": ["HTML","CSS","JavaScript","IntersectionObserver","DOM API","Event Handling","CSS Grid","Flexbox","Google Maps Embed"],
+          "links": { "liveSite": "https://yujiyoung5457-commits.github.io/wo/", "github": "https://github.com/yujiyoung5457-commits/wo" }
+        },
+        {
+          "id": "genstar-mate",
+          "label": "GenstarMate",
+          "image": "/genstar.png",
+          "tasks": ["HTML·CSS·jQuery를 활용해 기업 채용 페이지를 참고한 반응형 웹사이트를 구현했습니다.",
+           "CSS Grid와 Flexbox로 채용 절차 및 콘텐츠 레이아웃을 구성하고,",
+            "Media Query를 적용해 데스크톱·모바일 환경에 대응했습니다.", "jQuery로 모바일 햄버거 메뉴와 FAQ 아코디언 인터랙션을 구현했습니다."],
+          "technologies": ["HTML","CSS","JavaScript","jQuery","CSS Grid", "Flexbox",
+          "Media Query","Git","GitHub"],
+          "links": { "liveSite": "https://yujiyoung5457-commits.github.io/GenstarMate/", "github": "https://github.com/yujiyoung5457-commits/GenstarMate" }
+        },
+        {
+          "id": "fmk",
+          "label": "FMK",
+          "image": "/FMK.png",
+          "tasks": ["HTML·CSS·jQuery를 활용해 화장품 상품 목록 페이지를 반응형으로 구현했습니다.",
+           "카테고리 탭 전환, 스크롤에 따른 헤더 스타일 변경 및 TOP 버튼, 상품 이미지 hover 인터랙션을 제작하고,",
+           "Media Query를 적용해 데스크톱·모바일 환경에 맞춰 상품 카드와 메뉴 레이아웃을 최적화했습니다."],
+          "technologies": ["HTML","CSS","JavaScript","jQuery","Media Query","CSS Flexbox","Git","GitHub"],
+          "links": { "liveSite": "https://yujiyoung5457-commits.github.io/km/", "github": "https://github.com/yujiyoung5457-commits/km" }
+        }
+      ]
+    }
+  ]
+}

@@ -13,12 +13,12 @@ const details = {
   skills: {
     label: "Skills",
     title: "Skills",
-    description: "React · TypeScript · UI/UX",
+    description: "React · TypeScript · UI/UX · Front-End DevelopmentUI Design · Illustration · 3D · Motion",
   },
   focus: {
     label: "Focus",
     title: "Focus",
-    description: "Front-End · Interaction Design",
+    description: "Interactive Web · Visual Storytelling · Creative UI/UX"
   },
 } as const;
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Anton, Oleo_Script } from "next/font/google";
+import { Anton, Noto_Sans_KR, Oleo_Script } from "next/font/google";
 import { ClickToComponentDev } from "@/components/common/ClickToComponentDev";
 import "./globals.css";
 
@@ -15,6 +15,12 @@ const oleoScript = Oleo_Script({
   variable: "--font-oleo-script",
 });
 
+const notoSansKr = Noto_Sans_KR({
+  subsets: ["latin"],
+  variable: "--font-noto-sans-kr",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Portfolio",
   description: "Personal portfolio",
@@ -25,7 +31,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ko" className={`${anton.variable} ${oleoScript.variable}`}>
+    <html
+      lang="ko"
+      className={`${anton.variable} ${notoSansKr.variable} ${oleoScript.variable}`}
+    >
       <body>
         {children}
         <ClickToComponentDev />

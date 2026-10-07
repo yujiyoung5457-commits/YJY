@@ -8,17 +8,8 @@ import styles from "./FeaturedProjects.module.scss";
 export function FeaturedProjects() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const goButtonRef = useRef<HTMLButtonElement>(null);
-  const timelineRef = useRef<gsap.core.Timeline>(null);
   const titleIntroTimelineRef = useRef<gsap.core.Timeline>(null);
   const titleTimelineRef = useRef<gsap.core.Timeline>(null);
-  const isMovingRef = useRef(false);
-
-  useEffect(() => {
-    return () => {
-      timelineRef.current?.kill();
-    };
-  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -115,88 +106,6 @@ export function FeaturedProjects() {
     };
   }, []);
 
-  const handleGoClick = () => {
-    const button = goButtonRef.current;
-    const lastProject = document.getElementById("another-project");
-    const teamProject = document.getElementById("team-projects");
-
-    if (!button || !lastProject || !teamProject || isMovingRef.current) return;
-
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const headerHeight = Number.parseFloat(
-      getComputedStyle(document.documentElement).getPropertyValue("--header-height"),
-    ) || 0;
-    const maxScroll = Math.max(
-      0,
-      document.documentElement.scrollHeight - window.innerHeight,
-    );
-    const lastProjectY = gsap.utils.clamp(
-      0,
-      maxScroll,
-      window.scrollY + lastProject.getBoundingClientRect().top - headerHeight,
-    );
-    const teamProjectY = gsap.utils.clamp(
-      0,
-      maxScroll,
-      window.scrollY + teamProject.getBoundingClientRect().top - headerHeight,
-    );
-    const reboundY = Math.max(
-      0,
-      teamProjectY - Math.min(window.innerHeight * 0.065, 72),
-    );
-
-    button.classList.remove(styles.goLaunched);
-
-    if (reduceMotion) {
-      button.classList.add(styles.goLaunched);
-      window.scrollTo(0, teamProjectY);
-      return;
-    }
-
-    isMovingRef.current = true;
-    const scrollPosition = { y: window.scrollY };
-
-    timelineRef.current = gsap
-      .timeline({
-        onComplete: () => {
-          isMovingRef.current = false;
-          gsap.set(button, { clearProps: "transform" });
-        },
-      })
-      .to(button, { scale: 1.6, duration: 0.38, ease: "back.out(1.8)" })
-      .add(() => button.classList.add(styles.goLaunched))
-      .to(button, { scale: 1, duration: 0.28, ease: "power3.inOut" })
-      .to(
-        scrollPosition,
-        {
-          y: lastProjectY,
-          duration: 1.25,
-          ease: "power2.in",
-          onUpdate: () => window.scrollTo(0, scrollPosition.y),
-        },
-        ">-0.05",
-      )
-      .to(scrollPosition, {
-        y: lastProjectY,
-        duration: 0.8,
-        ease: "none",
-        onUpdate: () => window.scrollTo(0, scrollPosition.y),
-      })
-      .to(scrollPosition, {
-        y: reboundY,
-        duration: 2.15,
-        ease: "sine.inOut",
-        onUpdate: () => window.scrollTo(0, scrollPosition.y),
-      })
-      .to(scrollPosition, {
-        y: teamProjectY,
-        duration: 0.46,
-        ease: "sine.inOut",
-        onUpdate: () => window.scrollTo(0, scrollPosition.y),
-        onComplete: () => window.dispatchEvent(new Event("team-project-reveal")),
-      });
-  };
-
   return (
     <section
       ref={sectionRef}
@@ -217,12 +126,9 @@ export function FeaturedProjects() {
           <span>Selected</span>
           <span>Projects</span>
         </h2>
-        <button
-          ref={goButtonRef}
+        <a
           className={styles.go}
-          type="button"
-          aria-controls="another-project team-projects"
-          onClick={handleGoClick}
+          href="#another-project"
         >
           <Image
             className={styles.goShape}
@@ -232,7 +138,7 @@ export function FeaturedProjects() {
             sizes="20rem"
           />
           <span>Go</span>
-        </button>
+        </a>
       </div>
 
       <span className={styles.dot} aria-hidden="true" />

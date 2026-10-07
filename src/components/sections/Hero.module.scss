@@ -330,6 +330,32 @@
   line-height: 1;
   text-transform: uppercase;
   transform: translateX(-50%);
+  animation: heartbeat 3s infinite;
+}
+
+@keyframes heartbeat {
+  from {
+    /* translateX(-50%)를 앞에 위치시켜 축을 고정한 후 scale 적용 */
+    transform: translateX(-50%) scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: translateX(-50%) scale(0.91);
+    animation-timing-function: ease-in;
+  }
+  17% {
+    transform: translateX(-50%) scale(0.98);
+    animation-timing-function: ease-out;
+  }
+  33% {
+    transform: translateX(-50%) scale(0.87);
+    animation-timing-function: ease-in;
+  }
+  45% {
+    transform: translateX(-50%) scale(1);
+    animation-timing-function: ease-out;
+  }
 }
 
 @media (max-width: 900px) {

@@ -45,12 +45,41 @@
 .artwork {
   position: absolute;
   z-index: 2;
-  top: 12%;
+  top: 9%;
   right: clamp(44px, 9vw, 150px);
-  width: 25rem;
+  width: 20rem;
   height: auto;
+  animation:wobble-hor-bottom 3s infinite ;
 }
-
+@-webkit-keyframes wobble-hor-bottom {
+  0%,
+  100% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+  }
+  15% {
+    -webkit-transform: translateX(-30px) rotate(-6deg);
+            transform: translateX(-30px) rotate(-6deg);
+  }
+  30% {
+    -webkit-transform: translateX(15px) rotate(6deg);
+            transform: translateX(15px) rotate(6deg);
+  }
+  45% {
+    -webkit-transform: translateX(-15px) rotate(-3.6deg);
+            transform: translateX(-15px) rotate(-3.6deg);
+  }
+  60% {
+    -webkit-transform: translateX(9px) rotate(2.4deg);
+            transform: translateX(9px) rotate(2.4deg);
+  }
+  75% {
+    -webkit-transform: translateX(-6px) rotate(-1.2deg);
+            transform: translateX(-6px) rotate(-1.2deg);
+  }
+}
 .projectCard,
 .nextProject {
   position: absolute;
@@ -93,6 +122,56 @@
   line-height: 0.88;
   text-align: center;
   text-transform: uppercase;
+}
+
+.projectDescription {
+  position: absolute;
+  z-index: 4;
+  top: 24%;
+  right: 4%;
+  display: grid;
+  width: min(32vw, 34rem);
+  aspect-ratio: 1;
+  place-items: center;
+  pointer-events: none;
+}
+
+.projectDescriptionBackground {
+  z-index: 0;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.projectDescriptionCopy {
+  position: relative;
+  z-index: 1;
+  width: 72%;
+  font-family: var(--font-anton), var(--font-noto-sans-kr), sans-serif;
+  line-height: 1.35;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.projectDescriptionCopy h3,
+.projectDescriptionCopy p {
+  margin: 0;
+}
+
+.projectDescriptionCopy h3 {
+  font-size: clamp(0.95rem, 1.15vw, 1.3rem);
+  font-weight: 400;
+}
+
+.projectDescriptionCopy p {
+  margin: 0.25rem 0 0.7rem;
+  font-size: clamp(0.72rem, 0.9vw, 1rem);
+}
+
+.projectDescriptionCopy .techStack {
+  margin-bottom: 0;
+  color: var(--color-red);
+  font-family: var(--font-anton), Impact, sans-serif;
+  line-height: 1.25;
 }
 
 .nextProject {
@@ -189,9 +268,15 @@
   }
 
   .projectSwapTrigger {
-    top: calc(16% + min(21vw, 175px));
+    top: 76%;
     left: calc(-10% + min(72vw, 570px) + 12px);
     width: min(30vw, 220px);
+  }
+
+  .projectDescription {
+    top: 48%;
+    right: 5%;
+    width: min(48vw, 390px);
   }
 
   .nextProject {
@@ -224,9 +309,26 @@
   }
 
   .projectSwapTrigger {
-    top: calc(16% + 28vw);
-    left: calc(-19% + 88vw + 10px);
+    top: 80%;
+    left: 50%;
     width: 32vw;
+    transform: translateX(-50%);
+  }
+
+  .projectDescription {
+    top: 54%;
+    right: auto;
+    left: 50%;
+    width: min(78vw, 350px);
+    transform: translateX(-50%);
+  }
+
+  .projectDescriptionCopy h3 {
+    font-size: clamp(0.92rem, 4vw, 1.15rem);
+  }
+
+  .projectDescriptionCopy p {
+    font-size: clamp(0.68rem, 3vw, 0.9rem);
   }
 
   .projectCard02 h3 {
@@ -272,7 +374,7 @@
   }
 
   .projectSwapTrigger {
-    top: 52%;
+    top: 77%;
     left: 60%;
     width: 34vw;
   }
@@ -280,7 +382,7 @@
 
 @media (max-width: 520px) {
   .section {
-    min-height: 1380px;
+    min-height: 1700px;
   }
 
   .artwork {
@@ -296,7 +398,7 @@
   }
 
   .projectSwapTrigger {
-    top: 63%;
+    top: 81%;
     left: 50%;
     width: min(68vw, 300px);
     transform: translateX(-50%);
@@ -315,8 +417,8 @@
 
 @media (max-width: 375px) {
   .section {
-    min-height: 100svh;
-    overflow: visible;
+    min-height: 1380px;
+    overflow: hidden;
     background: transparent;
   }
 
@@ -353,12 +455,17 @@
   }
 
   .projectSwapTrigger {
-    top: 52%;
+    top: 82%;
     right: -4%;
     left: auto;
     width: 29vw;
     padding: 7% 9% 8%;
     transform: none;
+  }
+
+  .projectDescription {
+    top: 51%;
+    width: 88vw;
   }
 
   .imagePlaceholder02 {

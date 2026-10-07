@@ -2,6 +2,7 @@ import { Footer } from "@/components/common/Footer";
 import { FloatingNav } from "@/components/common/FloatingNav";
 import { Header } from "@/components/common/Header";
 import { AboutMe } from "@/components/sections/AboutMe";
+import { AboutTo } from "@/components/sections/AboutTo";
 import { AnotherProject } from "@/components/sections/AnotherProject";
 import { ArtGallery } from "@/components/sections/ArtGallery";
 import { ArtGalleryHeading } from "@/components/sections/ArtGalleryHeading";
@@ -22,6 +23,7 @@ export default function Home() {
     <div className={styles.page}>
       <Hero />
       <AboutMe />
+      <AboutTo />
       <CreativeStatement />
       <Header />
       <main>

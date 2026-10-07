@@ -1,15 +1,28 @@
 .section {
-  --art-gallery-height: 560vh;
   // 곡선의 아래쪽 끝점 X 위치(%). 이 값만 바꾸면 곡선 폭과 제어점도 함께 변형됩니다.
   --curve-end-x: 58.6;
 
   position: relative;
-  min-height: var(--art-gallery-height);
   overflow: hidden;
   scroll-margin-top: var(--header-height);
   background: #ffaa00;
+  font-family: var(--font-anton), var(--font-noto-sans-kr), sans-serif;
   isolation: isolate;
   margin-top: -0.9rem;
+}
+
+.galleryGroup {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.firstProject {
+  min-height: clamp(1050px, 95vw, 1450px);
+}
+
+.lastProject {
+  min-height: clamp(850px, 75vw, 1150px);
 }
 
 // .orangePanel {
@@ -75,6 +88,43 @@
   line-height: 1.35;
 }
 
+.mergedProject {
+  min-height: clamp(1150px, 90vw, 1550px);
+}
+
+.mergedDescription {
+  width: min(86%, 52rem);
+}
+
+.mergedDescription h3 {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.2rem, 1.7vw, 1.8rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.mergedDescription h3:not(:first-child) {
+  margin-top: 1.7rem;
+}
+
+.mergedDescription p {
+  font-size: clamp(0.95rem, 1.25vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.mergedTools {
+  font-weight: 400;
+}
+
+.finalDescription {
+  width: min(84%, 48rem);
+}
+
+.finalProjectTools {
+  margin-top: 0.9rem;
+}
+
 .projectTools {
   display: flex;
   flex-wrap: wrap;
@@ -96,29 +146,23 @@
 }
 
 .shape2 {
-  top: 40%;
-  left: 19%;
-  width: 63%;
-  height: 38rem;
+  top: clamp(600px, 47vw, 850px);
+  left: 42%;
+  display: grid;
+  width: 48%;
+  height: clamp(30rem, 34vw, 40rem);
+  place-items: center;
   aspect-ratio: 2.25;
   border-radius: 500px;
 }
 
-.shape3 {
-  top: 60%;
-  left: 51%;
-  width: 30%;
-  height: 52rem;
-  aspect-ratio: 0.72;
-  border-radius: 500px;
-  transform: rotate(8deg);
-}
-
 .shape4 {
-  top: 86%;
+  top: 15%;
   left: 9%;
+  display: grid;
   width: 48%;
   height: 42rem;
+  place-items: center;
   aspect-ratio: 2.1;
  border-radius: 500px;
 }
@@ -138,13 +182,13 @@
 }
 
 .frame2Buttons {
-  margin-top: -6rem;
-  transform: translate(0, 0);
+  margin-top: 1rem;
+  transform: translate(0, -7rem);
 }
 
 .frame3Buttons {
   margin-top: 1rem;
-  transform:translate(3rem, -1.5rem) rotate(-7.5deg);
+  transform: translate(3rem, -2rem)rotate(-8deg);
 }
 
 .frame4Buttons {
@@ -175,15 +219,97 @@
 
 }
 
+.frameSlider {
+  position: absolute;
+  z-index: 1;
+  inset: 5% 7%;
+  overflow: hidden;
+  background: #000;
+}
+
+.frameSliderTrack {
+  display: flex;
+  height: 100%;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.frameSlide {
+  position: relative;
+  height: 100%;
+}
+
+.threeSlideTrack {
+  width: 400%;
+  animation: three-frame-slider 10s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.threeSlideTrack .frameSlide {
+  flex: 0 0 25%;
+}
+
+.twoSlideTrack {
+  width: 300%;
+  animation: two-frame-slider 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.twoSlideTrack .frameSlide {
+  flex: 0 0 calc(100% / 3);
+}
+
+.frameSlide img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+@keyframes three-frame-slider {
+  0%,
+  20% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  30%,
+  45% {
+    transform: translate3d(-25%, 0, 0);
+  }
+
+  55%,
+  70% {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  80%,
+  100% {
+    transform: translate3d(-75%, 0, 0);
+  }
+}
+
+@keyframes two-frame-slider {
+  0%,
+  34% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50%,
+  84% {
+    transform: translate3d(-33.333%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-66.666%, 0, 0);
+  }
+}
+
 .frame2 {
-  top: 21%;
-  left: 20%;
+  top: 0;
+  right: 5%;
+  left: auto;
   // transform: translate(50%,50%);
   // border: 1px solid rgb(76, 0, 255);
 
   // 액자 2 크기
   .frame2Frame {
-    width: 75rem;
+    width: clamp(520px, 54vw, 1000px);
     aspect-ratio: 1448 / 1086;
     // border: 1px solid rgb(255, 0, 242);
   }
@@ -197,13 +323,17 @@
   }
 }
 
+.frame2Frame .frameSlider {
+  inset: 20% 5%;
+}
+
 .frame3 {
-  top: 56%;
-  left: 13%;
+  top: clamp(60px, 7vw, 130px);
+  left: 4%;
   // border: 1px solid rgb(44, 230, 255);
   // 액자 3 크기
   .frame3Frame {
-    width: clamp(430px, 36vw, 680px);
+    width: clamp(300px, 31vw, 560px);
     aspect-ratio: 1086 / 1448;
     transform: rotate(-8deg);
   }
@@ -218,7 +348,7 @@
 }
 
 .frame4 {
-  top: 80%;
+  top: 3%;
   left: 55%;
 
   // 액자 4 크기
@@ -328,10 +458,6 @@
 }
 
 @media (max-width: 768px) {
-  .section {
-    --art-gallery-height: 1600px;
-  }
-
   .orangePanel {
     width: 100%;
   }
@@ -364,10 +490,6 @@
 }
 
 @media (max-width: 480px) {
-  .section {
-    --art-gallery-height: 1450px;
-  }
-
   .shape1 {
     top: 8%;
     width: 43%;
@@ -376,11 +498,6 @@
   .shape2,
   .shape4 {
     width: 76%;
-  }
-
-  .shape3 {
-    left: 55%;
-    width: 39%;
   }
 
   .frame1 .frame1Frame {
@@ -426,8 +543,11 @@
 // Mobile layout: large absolute-positioned blocks are placed down the page in order.
 @media (max-width: 768px) {
   .section {
-    --art-gallery-height: 2800px;
     --curve-end-x: 54;
+  }
+
+  .firstProject {
+    min-height: 800px;
   }
 
   .shape1 {
@@ -437,25 +557,26 @@
     height: 31rem;
   }
 
-  .shape2 {
-    top: 28%;
-    left: 10%;
-    width: 82%;
-    height: 20rem;
+  .mergedProject {
+    min-height: 1450px;
   }
 
-  .shape3 {
-    top: 51%;
-    left: 48%;
-    width: 47%;
-    height: 29rem;
+  .lastProject {
+    min-height: 750px;
+  }
+
+  .shape2 {
+    top: 850px;
+    left: 10%;
+    width: 82%;
+    height: 25rem;
   }
 
   .shape4 {
-    top: 76%;
+    top: 15%;
     left: 4%;
     width: 86%;
-    height: 18rem;
+    height: 30rem;
   }
 
   .frame1 {
@@ -466,19 +587,19 @@
   }
 
   .frame2 {
-    top: 27%;
+    top: 0;
     left: 52%;
     transform: translateX(-50%);
   }
 
   .frame3 {
-    top: 50%;
+    top: 390px;
     left: 50%;
     transform: translateX(-50%);
   }
 
   .frame4 {
-    top: 75%;
+    top: 5%;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -509,10 +630,13 @@
 
 @media (min-width: 701px) and (max-width: 768px) {
   .section {
-    --art-gallery-height: clamp(3000px, 430vw, 3300px);
     --curve-end-x: 46;
 
     background: transparent;
+  }
+
+  .firstProject {
+    min-height: 1000px;
   }
 
   .line {
@@ -545,27 +669,26 @@
     font-size: clamp(0.95rem, 2.55vw, 1.2rem);
   }
 
-  .shape2 {
-    top: 36%;
-    left: 10%;
-    width: 80%;
-    height: 22rem;
+  .mergedProject {
+    min-height: 1500px;
   }
 
-  .shape3 {
-    top: 64%;
-    right: 3%;
-    left: auto;
-    width: 72%;
-    height: 22rem;
-    transform: none;
+  .lastProject {
+    min-height: 900px;
+  }
+
+  .shape2 {
+    top: 900px;
+    left: 10%;
+    width: 80%;
+    height: 25rem;
   }
 
   .shape4 {
-    top: 89%;
+    top: 18%;
     left: 7%;
     width: 75%;
-    height: 22rem;
+    height: 30rem;
   }
 
   .frame1 {
@@ -580,7 +703,7 @@
   }
 
   .frame2 {
-    top: 28%;
+    top: 0;
     left: 10%;
     transform: none;
   }
@@ -590,7 +713,7 @@
   }
 
   .frame3 {
-    top: 56%;
+    top: 410px;
     left: 6%;
     transform: none;
   }
@@ -600,7 +723,7 @@
   }
 
   .frame4 {
-    top: 82%;
+    top: 5%;
     right: 6%;
     left: auto;
     transform: none;
@@ -613,8 +736,19 @@
 
 @media (max-width: 480px) {
   .section {
-    --art-gallery-height: 2400px;
     --curve-end-x: 50;
+  }
+
+  .firstProject {
+    min-height: 650px;
+  }
+
+  .mergedProject {
+    min-height: 1300px;
+  }
+
+  .lastProject {
+    min-height: 650px;
   }
 
   .frame1 .frame1Frame {
@@ -661,12 +795,13 @@
 
 @media (max-width: 375px) {
   .section {
-    --art-gallery-height: 260svh;
-
-    min-height: 260svh;
     margin-top: 0;
     overflow: visible;
     background: transparent;
+  }
+
+  .firstProject {
+    min-height: 65svh;
   }
 
   .line {
@@ -698,26 +833,26 @@
     font-size: clamp(0.55rem, 2.75vw, 0.72rem);
   }
 
-  .shape2 {
-    top: 31%;
-    left: 8%;
-    width: 84%;
-    height: 20svh;
+  .mergedProject {
+    min-height: 120svh;
   }
 
-  .shape3 {
-    top: 43%;
-    right: 3%;
-    left: auto;
-    width: 48%;
-    height: 42svh;
+  .lastProject {
+    min-height: 65svh;
+  }
+
+  .shape2 {
+    top: 70svh;
+    left: 8%;
+    width: 84%;
+    height: 36svh;
   }
 
   .shape4 {
-    top: 65%;
+    top: 12%;
     left: 3%;
     width: 68%;
-    height: 24svh;
+    height: 48svh;
   }
 
   .frame1 {
@@ -728,19 +863,19 @@
   }
 
   .frame2 {
-    top: 22%;
+    top: 0;
     left: 7%;
     transform: none;
   }
 
   .frame3 {
-    top: 43%;
+    top: 32svh;
     left: 7%;
     transform: none;
   }
 
   .frame4 {
-    top: 70%;
+    top: 5%;
     right: 5%;
     left: auto;
     transform: none;
@@ -765,5 +900,11 @@
   .frame4Buttons {
     margin-top: -0.5rem;
     transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frameSliderTrack {
+    animation: none;
   }
 }
