@@ -1,5 +1,6 @@
 import { Scene } from "@/components/three/Scene";
 import styles from "./AboutTo.module.scss";
+import Image from "next/image";
 
 export function AboutTo() {
   return (
@@ -44,6 +45,11 @@ export function AboutTo() {
           studioLighting
         />
       </div>
+
+      <Image src="/before.svg"
+              alt="전"
+              fill
+              sizes=""></Image>
     </section>
   );
 }

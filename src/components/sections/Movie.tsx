@@ -17,6 +17,7 @@ const MOVIE_SLIDES = [
     characterAlt: "Simu Simu Hae characters",
     characterWidth: 1448,
     characterHeight: 1086,
+    characterClassName: styles.simuCharacter,
     video: "https://www.youtube.com/embed/ZYUeJoK_saQ?feature=oembed",
   },
   {
@@ -29,6 +30,7 @@ const MOVIE_SLIDES = [
     characterAlt: "ULSD character",
     characterWidth: 1024,
     characterHeight: 1110,
+    characterClassName: styles.ulsdCharacter,
     video: "https://www.youtube.com/embed/PEjg0JYX6GM?feature=oembed",
   },
   {
@@ -41,6 +43,7 @@ const MOVIE_SLIDES = [
     characterAlt: "Birthday character",
     characterWidth: 1086,
     characterHeight: 1448,
+    characterClassName: styles.birthdayCharacter,
     video: "https://www.youtube.com/embed/Cjx-TYS8KYY?feature=oembed",
   },
 ] as const;
@@ -130,7 +133,7 @@ export function Movie() {
         />
         <Image
           key={activeSlide.character}
-          className={styles.heroCats}
+          className={`${styles.heroCats} ${activeSlide.characterClassName}`}
           src={activeSlide.character}
           alt={activeSlide.characterAlt}
           width={activeSlide.characterWidth}

@@ -1,7 +1,7 @@
 .section {
   /* 마지막 Movie 섹션의 전체 세로 길이 */
   --movie-section-height: max(300svh, 980px);
-  --movie-intro-height: max(114svh, 372px);
+  --movie-intro-height: max(100svh, 372px);
   --movie-frame-height: max(102svh, 333px);
   --weather-section-height: clamp(560px, 47vw, 820px);
   /* Weather 결과와 아래 연락처 원 사이의 파란 여백 */
@@ -85,11 +85,30 @@
 
 .heroCats {
   position: absolute;
-  right: 5%;
-  bottom: 2%;
-  width: min(25vw, 550px);
+  right: var(--character-right);
+  bottom: var(--character-bottom);
+  width: var(--character-width);
   height: auto;
   animation: slideFadeIn 0.5s ease-out;
+}
+
+/* 슬라이드별 캐릭터 크기와 위치 */
+.simuCharacter {
+  --character-right: 5%;
+  --character-bottom: 2%;
+  --character-width: min(25vw, 550px);
+}
+
+.ulsdCharacter {
+  --character-right: 5%;
+  --character-bottom: 0%;
+  --character-width: min(22vw, 450px);
+}
+
+.birthdayCharacter {
+  --character-right: 5%;
+  --character-bottom: -5%;
+  --character-width: min(25vw, 400px);
 }
 
 .nextSlide {
@@ -238,11 +257,6 @@
     width: 65vw;
   }
 
-  .heroCats {
-    right: 5%;
-    width: 25vw;
-  }
-
   .nextSlide {
     bottom: 20%;
     left: 55%;
@@ -300,10 +314,22 @@
     width: 68vw;
   }
 
-  .heroCats {
-    right: 2%;
-    bottom: 4%;
-    width: 29vw;
+  .simuCharacter {
+    --character-right: 2%;
+    --character-bottom: 4%;
+    --character-width: 29vw;
+  }
+
+  .ulsdCharacter {
+    --character-right: 2%;
+    --character-bottom: 4%;
+    --character-width: 29vw;
+  }
+
+  .birthdayCharacter {
+    --character-right: 2%;
+    --character-bottom: 4%;
+    --character-width: 29vw;
   }
 
   .nextSlide {
