@@ -420,8 +420,9 @@
 
 @media (max-width: 700px) {
   .section {
-    display: none;
+    // display: none;
   }
+  
 }
 
 @media (prefers-reduced-motion: reduce) {
