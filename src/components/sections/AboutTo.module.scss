@@ -90,7 +90,7 @@
 .likes p {
   margin: 0;
   font-weight: 400;
-  line-height: 1.12;
+  line-height: 1.5;
 }
 
 .likes h3 {
@@ -101,6 +101,7 @@
 
 .likes p {
   font-size: clamp(1.55rem, 2.25vw, 2.8rem);
+  text-align: end;
 }
 
 @media (max-width: 900px) {
@@ -186,5 +187,114 @@
 
   .likes {
     margin-top: 2.75rem;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 768px) {
+  .section {
+    display: block;
+    width: 100%;
+    height: clamp(650px, 90vw, 692px);
+    min-height: 0;
+    padding: 0;
+  }
+
+  .copy {
+    position: static;
+    display: block;
+  }
+
+  .modelStage {
+    position: absolute;
+    min-height: 0;
+  }
+
+  .leftModel {
+    left: 2.5%;
+    bottom: -2%;
+    width: 34%;
+    height: 60%;
+  }
+
+  .rightModel {
+    top: 2%;
+    right: 2.5%;
+    width: 29%;
+    height: 59%;
+  }
+
+  .badge {
+    position: absolute;
+    top: 6.5%;
+    left: 6%;
+    display: grid;
+    width: 36%;
+    min-height: 88px;
+    place-items: center;
+    margin: 0;
+    padding: 0.85rem 1.5rem;
+    font-size: clamp(2.5rem, 6vw, 3rem);
+  }
+
+  .title {
+    position: absolute;
+    top: 24%;
+    left: 6%;
+    width: 61%;
+    align-items: flex-start;
+    gap: 0.8rem;
+    text-align: left;
+  }
+
+  .title span {
+    font-size: clamp(2.25rem, 5vw, 2.6rem);
+  }
+
+  .title small {
+    font-size: 0.75rem;
+    line-height: 0.1;
+  }
+
+  .title strong {
+    font-size: clamp(3.4rem, 7.5vw, 3.8rem);
+  }
+
+  .likes {
+    position: absolute;
+    right: 3%;
+    bottom: 4%;
+    width: 63%;
+    height: 36%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .likes h3 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: clamp(2.8rem, 6.5vw, 3.3rem);
+    text-align: right;
+  }
+
+  .likes p {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+  }
+
+  .likes p:first-of-type {
+    bottom: 3.8rem;
+    text-align: right;
+  }
+
+  .likes p:last-of-type {
+    bottom: 0;
+  }
+
+  .section > img:last-child {
+    display: none;
   }
 }

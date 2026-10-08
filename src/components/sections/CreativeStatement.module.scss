@@ -347,12 +347,16 @@
     min-height: 820px;
   }
 
+  .mainTitle {
+    width: min(calc(70vw - 1rem), 400px);
+  }
+
   .anton {
-    font-size: clamp(3.2rem,8.2vw, 3.6rem);
+    font-size: clamp(2.2rem, 6vw, 2.6rem);
   }
 
   .script {
-    font-size: clamp(3.2rem,8.2vw, 3.6rem);
+    font-size: clamp(2.2rem, 6vw, 2.6rem);
   }
   .title {
   z-index: 2;

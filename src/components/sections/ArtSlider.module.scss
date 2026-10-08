@@ -143,7 +143,23 @@
     bottom: 24px;
   }
 }
-
+@media (max-width: 768px) {
+  .heading h2 {
+    font-size: clamp(1.6rem, 9vw, 5rem);
+  }
+  .cards {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: min(50vw, 700px);
+  aspect-ratio: 3 / 2;
+  margin: 0;
+  padding: 0;
+  cursor: grab;
+  touch-action: pan-y;
+  transform: translate(-50%, -50%);
+}
+}
 @media (max-width: 375px) {
   .section,
   .stickyStage {

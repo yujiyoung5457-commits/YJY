@@ -175,6 +175,41 @@
   right: var(--palette-right);
   width: 32rem;
   height: auto;
+  animation: shake-bottom 4s infinite;
+}
+
+@-webkit-keyframes shake-bottom {
+  0%,
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+  }
+  10% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: rotate(-4deg);
+            transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: rotate(4deg);
+            transform: rotate(4deg);
+  }
+  80% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+  }
+  90% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
 }
 
 @media (max-width: 800px) {
@@ -240,7 +275,7 @@
     top: -45%;
     right: auto;
     grid-area: decoration;
-    width: min(35vw, 300px);
+    width: min(42vw, 350px);
     justify-self: end;
   }
 
@@ -266,6 +301,36 @@
     grid-area: palette;
     width: min(48vw, 360px);
     justify-self: end;
+  }
+
+  /*
+ * 튜브에서 흘러나오는 물감 전용 canvas입니다.
+ * z-index는 1이고, 아래의 .skillList는 2이므로 튜브 PNG가 항상 물감 위에 보입니다.
+ */
+.paintCanvas {
+  position: absolute;
+  z-index: 1;
+  inset:-5;
+  display: block;
+  width: 85%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.skillScale span {
+  position: absolute;
+  top: 50%;
+  right: 100px;
+  left: clamp(12px, 1.5vw, 26px);
+  color: #ffad00;
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(3rem, 5vw, 6rem);
+  line-height: 1;
+  // transform: translate(-30px, -50%);
+}
+.skillScale {
+    right: 8%;
+    top: 5%;
   }
 }
 @media (max-width: 520px) {

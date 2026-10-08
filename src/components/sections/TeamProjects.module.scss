@@ -20,8 +20,8 @@
 
 .title {
   position: absolute;
-  top: 7%;
-  left: 36%;
+  top: 3%;
+  left: 30%;
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -29,7 +29,7 @@
   border-left: 3px solid var(--color-yellow);
   color: var(--color-yellow);
   font-family: var(--font-anton), Impact, sans-serif;
-  font-size: clamp(3.4rem, 6vw, 6rem);
+  font-size: clamp(5rem, 12vw, 8rem);
   font-weight: 400;
   line-height: 1;
   text-transform: uppercase;
@@ -404,5 +404,96 @@
     border-radius: 50%;
     background: var(--color-yellow);
     content: "";
+  }
+}
+
+@media (min-width: 701px) and (max-width: 768px) {
+  .section {
+    min-height: 0;
+    padding-block: clamp(72px, 10vw, 96px) clamp(104px, 14vw, 132px);
+  }
+
+  .stage {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: clamp(96px, 14vw, 120px);
+  }
+
+  .title {
+    position: relative;
+    top: auto;
+    left: auto;
+    align-self: center;
+    margin: 0;
+    font-size: clamp(4.75rem, 12vw, 5.75rem);
+    transform: none;
+  }
+
+  .project,
+  .project1,
+  .project2,
+  .project3 {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    transform: none;
+  }
+
+  .project1 {
+    align-self: flex-start;
+    margin-left: 4%;
+  }
+
+  .project2 {
+    align-self: flex-end;
+    margin-right: 5%;
+  }
+
+  .project3 {
+    align-self: center;
+  }
+
+  .project1 .placeholder {
+    width: min(54vw, 416px);
+  }
+
+  .project2 .placeholder {
+    width: min(36vw, 276px);
+  }
+
+  .project3 .placeholder {
+    width: min(70vw, 540px);
+  }
+
+  .project1 .actions a,
+  .project1 .actions button {
+    min-width: 220px;
+    padding: 1rem 1.6rem;
+    font-size: 2.4rem;
+  }
+
+  .project2 .actions a,
+  .project2 .actions button {
+    min-width: 180px;
+    padding: 0.9rem 1.4rem;
+    font-size: 2.2rem;
+  }
+
+  .project3 .actions a,
+  .project3 .actions button {
+    min-width: 230px;
+    padding: 1rem 1.8rem;
+    font-size: 2.5rem;
+  }
+
+  .project1 .actions,
+  .project2 .actions,
+  .project3 .actions {
+    gap: 12px;
+    margin-top: 24px;
   }
 }

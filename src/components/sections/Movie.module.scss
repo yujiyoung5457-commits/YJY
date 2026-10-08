@@ -342,3 +342,61 @@
     width: 145vw;
   }
 }
+
+
+/* 태블릿 세로 반응형 */
+@media (min-width: 701px) and (max-width: 768px) {
+  .section {
+    --movie-section-height: 1700px;
+    --weather-section-height: 0px;
+    --contact-top-gap: 0px;
+
+    min-height: 0;
+    padding-bottom: 0;
+  }
+
+  .intro {
+    height: 500px;
+    min-height: 0;
+  }
+
+  .movieFrame {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+   .contactDisc {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: 50%;
+
+    width: 110vw;
+    margin-top: 60px;
+    margin-bottom: -62vw;
+
+    transform: translateX(-50%);
+  }
+
+  .contactText {
+    top: 15%;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+  }
+
+  .contactText {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  display: flex;
+  width: 84%;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 1.3vw, 22px);
+  color: var(--color-blue);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(1.8rem, 5vw, 5rem);
+  text-align: center;
+  transform: translateX(-50%)translateY(25%);
+}
+}
