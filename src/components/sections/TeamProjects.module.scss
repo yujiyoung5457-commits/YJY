@@ -7,9 +7,7 @@
   color: var(--color-cream);
 }
 
-.section:has(.project:hover) {
-  z-index: 20;
-}
+.section:has(.project:hover) { z-index: 20; }
 
 .stage {
   position: relative;
@@ -43,41 +41,19 @@
   align-items: center;
 }
 
-.project:hover {
-  z-index: 10;
-}
-
-.projectVisual {
-  transform-origin: center;
-  will-change: transform;
-}
-
-.project1 {
-  top: 10%;
-  left: -13%;
-}
-
-.project2 {
-  bottom: 4%;
-  left: 36%;
-}
-
-.project3 {
-  top: 7%;
-  right: -12%;
-}
+.project:hover { z-index: 10; }
+.projectVisual { transform-origin: center; will-change: transform; }
+.project1 { top: 10%; left: -13%; }
+.project2 { bottom: 4%; left: 36%; }
+.project3 { top: 7%; right: -12%; }
 
 .placeholder {
   position: relative;
   width: clamp(230px, 24vw, 480px);
   aspect-ratio: 1;
   overflow: hidden;
-  // border: 3px solid rgb(252 246 235 / 0.42);
-  background-image: url(/forlog.jpg);
-  background-size: cover;
-  background-position: center;
+  background: url(/forlog.jpg) center / cover;
   border-radius: 50%;
-  // background: var(--color-cream);
   box-shadow: 0 12px 34px rgb(0 0 0 / 0.18);
   transform-origin: center;
   transition: transform 850ms cubic-bezier(0.2, 0.75, 0.2, 1);
@@ -103,41 +79,24 @@
   transform-origin: top left;
 }
 
-.previewLink {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
-  border-radius: 50%;
-}
-
-.placeholder:focus-within {
-  transform: scale(1.08);
-}
+.previewLink { position: absolute; z-index: 2; inset: 0; border-radius: 50%; }
+.placeholder:focus-within { transform: scale(1.08); }
 
 @media (hover: hover) and (pointer: fine) {
-  .placeholder:hover {
-    transform: scale(1.6);
-  }
+  .placeholder:hover { transform: scale(1.6); }
 }
 
 .placeholder:hover .sitePreview,
-.placeholder:focus-within .sitePreview {
-  clip-path: circle(72% at 50% 50%);
-}
+.placeholder:focus-within .sitePreview { clip-path: circle(72% at 50% 50%); }
 
 .project2 .placeholder {
-   background-image: url(/midnightcord.webp);
-  background-size: cover;
-  background-position: center;
   width: clamp(190px, 20vw, 285px);
-  // background: var(--color-cream);
+  background-image: url(/midnightcord.webp);
 }
 
 .project3 .placeholder {
   width: clamp(240px, 25vw, 800px);
-   background-image: url(/LCODE.webp);
-  background-size: cover;
-  background-position: center;
+  background-image: url(/LCODE.webp);
 }
 
 .actions {
@@ -151,9 +110,9 @@
 .actions a,
 .actions button {
   display: grid;
-  place-items: center;
   min-width: clamp(94px, 8vw, 120px);
   min-height: 30px;
+  place-items: center;
   padding: 0.8rem 1.8rem;
   border: 0;
   border-radius: 999px;
@@ -164,336 +123,114 @@
   text-transform: uppercase;
 }
 
-.actions a {
-  cursor: pointer;
-}
+.actions a { cursor: pointer; }
+.actions button { cursor: default; }
+.liveButton { background: var(--color-yellow); color: var(--color-red); }
+.githubButton { background: var(--color-red); color: var(--color-cream); }
 
-.actions button {
-  cursor: default;
-}
-
-.liveButton {
-  background: var(--color-yellow);
-  color: var(--color-red);
-}
-
-.githubButton {
-  background: var(--color-red);
-  color: var(--color-cream);
-}
+.dot { position: absolute; border-radius: 50%; background: var(--color-yellow); }
+.dotLarge { bottom: 20%; left: 26%; width: clamp(52px, 6vw, 84px); aspect-ratio: 1; }
+.dotMedium { right: 31%; bottom: 25%; width: clamp(30px, 3.5vw, 48px); aspect-ratio: 1; }
+.dotSmall { right: 25%; bottom: 11%; width: clamp(14px, 1.6vw, 23px); aspect-ratio: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   .placeholder,
-  .sitePreview {
-    transition: none;
-  }
+  .sitePreview { transition: none; }
 }
 
-.dot {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--color-yellow);
-}
-
-.dotLarge {
-  bottom: 20%;
-  left: 26%;
-  width: clamp(52px, 6vw, 84px);
-  aspect-ratio: 1;
-}
-
-.dotMedium {
-  right: 31%;
-  bottom: 25%;
-  width: clamp(30px, 3.5vw, 48px);
-  aspect-ratio: 1;
-}
-
-.dotSmall {
-  right: 25%;
-  bottom: 11%;
-  width: clamp(14px, 1.6vw, 23px);
-  aspect-ratio: 1;
+/* Wider windows retain the approved 1440px desktop composition. */
+@media (min-width: 1441px) {
+  .section { width: 1440px; max-width: 100%; margin-inline: auto; }
 }
 
 @media (max-width: 900px) {
-  .section,
-  .stage {
-    min-height: 1240px;
-  }
-
-  .title {
-    top: 4%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .project1 {
-    top: 20%;
-    left: 5%;
-  }
-
-  .project2 {
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .project3 {
-    top: 47%;
-    right: 5%;
-  }
-
-  .placeholder,
-  .project2 .placeholder,
-  .project3 .placeholder {
-    width: min(38vw, 300px);
-  }
-
-  .dotLarge {
-    top: 35%;
-    right: 8%;
-    bottom: auto;
-    left: auto;
-  }
-}
-
-@media (max-width: 600px) {
-  .section,
-  .stage {
-    min-height: 1540px;
-  }
-
-  .title {
-    width: max-content;
-    font-size: 3.8rem;
-  }
-
-  .project1,
-  .project2,
-  .project3 {
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .project1 {
-    top: 18%;
-  }
-
-  .project2 {
-    top: 47%;
-    bottom: auto;
-  }
-
-  .project3 {
-    top: 74%;
-  }
-
-  .placeholder,
-  .project2 .placeholder,
-  .project3 .placeholder {
-    width: min(72vw, 300px);
-  }
-
-  .dot {
-    display: none;
-  }
-}
-
-@media (max-width: 375px) {
-  .section,
-  .stage {
-    min-height: max(190svh, 1200px);
-  }
-
-  .stage {
-    width: 100%;
-  }
-
-  .title {
-    top: 8%;
-    left: 14%;
-    width: max-content;
-    padding-left: 10px;
-    font-size: 3.2rem;
-    transform: none;
-  }
-
-  .project1,
-  .project2,
-  .project3 {
-    right: auto;
-    bottom: auto;
-    transform: none;
-  }
-
-  .project1 {
-    top: 20%;
-    left: 5%;
-  }
-
-  .project2 {
-    top: 44%;
-    right: 8%;
-    left: auto;
-  }
-
-  .project3 {
-    top: 66%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .project1 .placeholder {
-    width: 58vw;
-  }
-
-  .project2 .placeholder {
-    width: 44vw;
-  }
-
-  .project3 .placeholder {
-    width: 72vw;
-  }
-
-  .actions {
-    gap: 8px;
-    margin-top: 12px;
-  }
-
-  .actions a,
-  .actions button {
-    min-width: 110px;
-    min-height: 40px;
-    padding: 0.6rem 1rem;
-    font-size: 1.1rem;
-  }
-
-  .dot {
-    display: block;
-  }
-
-  .dotLarge {
-    top: 56%;
-    bottom: auto;
-    left: 7%;
-    width: 64px;
-  }
-
-  .dotMedium {
-    top: 22%;
-    right: 22%;
-    bottom: auto;
-    width: 46px;
-  }
-
-  .dotSmall {
-    top: 31%;
-    right: 11%;
-    bottom: auto;
-    width: 22px;
-  }
-
-  .stage::after {
-    position: absolute;
-    top: 48%;
-    left: 8%;
-    width: 25px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: var(--color-yellow);
-    content: "";
-  }
-}
-
-@media (min-width: 701px) and (max-width: 768px) {
   .section {
     min-height: 0;
-    padding-block: clamp(72px, 10vw, 96px) clamp(104px, 14vw, 132px);
+    padding-block: clamp(4rem, 9vw, 6rem);
   }
 
   .stage {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "project1 title"
+      "project1 project3"
+      "project2 project3";
+    align-items: start;
+    gap: clamp(3rem, 8vw, 6rem) clamp(2rem, 7vw, 5rem);
     min-height: 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: clamp(96px, 14vw, 120px);
   }
 
-  .title {
-    position: relative;
-    top: auto;
-    left: auto;
-    align-self: center;
-    margin: 0;
-    font-size: clamp(4.75rem, 12vw, 5.75rem);
-    transform: none;
-  }
-
+  .title,
   .project,
   .project1,
   .project2,
   .project3 {
     position: relative;
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
+    inset: auto;
     transform: none;
   }
 
-  .project1 {
-    align-self: flex-start;
-    margin-left: 4%;
-  }
-
-  .project2 {
-    align-self: flex-end;
-    margin-right: 5%;
-  }
-
-  .project3 {
+  .title {
+    grid-area: title;
+    justify-self: start;
     align-self: center;
+    font-size: clamp(4rem, 9vw, 6rem);
   }
 
-  .project1 .placeholder {
-    width: min(54vw, 416px);
+  .project1 { grid-area: project1; justify-self: start; }
+  .project2 { grid-area: project2; justify-self: center; }
+  .project3 { grid-area: project3; justify-self: end; align-self: center; }
+
+  .placeholder,
+  .project2 .placeholder,
+  .project3 .placeholder { width: min(100%, 18rem); }
+
+  .project1 .placeholder { width: min(100%, 20rem); }
+  .project3 .placeholder { width: min(100%, 19rem); }
+  .dot { display: none; }
+}
+
+@media (max-width: 600px) {
+  .section { padding-block: clamp(3.5rem, 12vw, 5rem) clamp(5rem, 16vw, 7rem); }
+
+  .stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "title"
+      "project1"
+      "project2"
+      "project3";
+    justify-items: center;
+    gap: clamp(3.5rem, 14vw, 5.5rem);
+    width: min(100% - (var(--page-gutter) * 2), 34rem);
   }
 
-  .project2 .placeholder {
-    width: min(36vw, 276px);
+  .title {
+    justify-self: start;
+    font-size: clamp(3rem, 13vw, 4.5rem);
   }
 
-  .project3 .placeholder {
-    width: min(70vw, 540px);
+  .project1,
+  .project2,
+  .project3 {
+    justify-self: center;
+    width: 100%;
   }
 
-  .project1 .actions a,
-  .project1 .actions button {
-    min-width: 220px;
-    padding: 1rem 1.6rem;
-    font-size: 2.4rem;
-  }
+  .placeholder,
+  .project1 .placeholder,
+  .project2 .placeholder,
+  .project3 .placeholder { width: min(72vw, 20rem); }
 
-  .project2 .actions a,
-  .project2 .actions button {
-    min-width: 180px;
-    padding: 0.9rem 1.4rem;
-    font-size: 2.2rem;
-  }
+  .actions { margin-top: 0.85rem; }
 
-  .project3 .actions a,
-  .project3 .actions button {
-    min-width: 230px;
-    padding: 1rem 1.8rem;
-    font-size: 2.5rem;
-  }
-
-  .project1 .actions,
-  .project2 .actions,
-  .project3 .actions {
-    gap: 12px;
-    margin-top: 24px;
+  .actions a,
+  .actions button {
+    min-width: 7rem;
+    min-height: 2.5rem;
+    padding: 0.6rem 1rem;
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
   }
 }

@@ -651,3 +651,122 @@
     display: grid;
   }
 }
+
+/* Tablet and phone layouts use document flow so the circular cards never overlap. */
+@media (max-width: 800px) {
+  .section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "title title"
+      "card artwork"
+      "card description"
+      "swap description";
+    align-items: center;
+    align-content: start;
+    grid-auto-rows: max-content;
+    gap: clamp(2.5rem, 7vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
+    height: auto;
+    min-height: 0;
+    padding: clamp(3.5rem, 8vw, 5.5rem) var(--page-gutter)
+      clamp(5rem, 12vw, 8rem);
+  }
+
+  .title,
+  .artwork,
+  .projectCard,
+  .projectDescription,
+  .projectSwapTrigger {
+    position: relative;
+    inset: auto;
+    margin: 0;
+    translate: none;
+    transform: none;
+  }
+
+  .title {
+    grid-area: title;
+    justify-self: start;
+    font-size: clamp(3.4rem, 8vw, 5.8rem);
+  }
+
+  .artwork {
+    grid-area: artwork;
+    width: min(100%, 15rem);
+    justify-self: end;
+  }
+
+  .projectCard {
+    grid-area: card;
+    width: min(100%, 26rem);
+    justify-self: start;
+  }
+
+  .projectDescription {
+    grid-area: description;
+    width: min(100%, 23rem);
+    justify-self: end;
+    pointer-events: auto;
+  }
+
+  .projectSwapTrigger {
+    grid-area: swap;
+    width: min(100%, 22rem);
+    justify-self: start;
+  }
+
+  .wave { pointer-events: none; }
+  .nextProject { display: none; }
+}
+
+@media (max-width: 520px) {
+  .section {
+    --circle-offset-y: 0px;
+
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp(1rem, 5vw, 1.5rem);
+    height: auto;
+    padding: clamp(1rem, 5vw, 1.5rem) var(--page-gutter)
+      clamp(4.5rem, 15vw, 6.5rem);
+  }
+
+  .title {
+    position: relative;
+    top: auto;
+    left: auto;
+    align-self: flex-start;
+    width: auto;
+    margin: 0;
+    font-size: clamp(2.25rem, 10vw, 3.45rem);
+    transform: none;
+  }
+
+  .artwork { display: none; }
+
+  .projectCard,
+  .projectDescription,
+  .projectSwapTrigger {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    align-self: center;
+    width: min(82vw, 25rem);
+    margin: 0;
+    translate: 0 0 !important;
+    transform: none !important;
+  }
+
+  .projectDescriptionCopy h3 { font-size: clamp(0.92rem, 4vw, 1.15rem); }
+  .projectDescriptionTitle { font-size: clamp(1.15rem, 5vw, 1.55rem); }
+  .projectDescriptionCopy p { font-size: clamp(0.68rem, 3vw, 0.9rem); }
+  .techStack { gap: 0.22rem; margin-top: 0.3rem; }
+  .techBadge { padding: 0.24rem 0.42rem; font-size: clamp(0.52rem, 2.4vw, 0.72rem); }
+  .projectCard h3 { font-size: clamp(1.6rem, 7vw, 2.25rem); }
+  .projectCard02 h3 { font-size: clamp(1rem, 4.5vw, 1.4rem); }
+}

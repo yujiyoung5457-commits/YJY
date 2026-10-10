@@ -909,3 +909,115 @@
     animation: none;
   }
 }
+
+/* Tablet and phone gallery layout: each visual occupies its own grid cell. */
+@media (max-width: 768px) {
+  .section {
+    display: grid;
+    gap: clamp(4rem, 10vw, 7rem);
+    padding: 0 var(--page-gutter) clamp(5rem, 12vw, 8rem);
+    overflow: hidden;
+    background: #ffaa00;
+  }
+
+  .line { display: block; }
+
+  .galleryGroup,
+  .firstProject,
+  .mergedProject,
+  .lastProject {
+    position: relative;
+    display: grid;
+    min-height: 0;
+    width: 100%;
+  }
+
+  .firstProject {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    grid-template-areas: "shape frame";
+    align-items: start;
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+  }
+
+  .mergedProject {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "frame2 shape2"
+      "frame3 shape2";
+    align-items: center;
+    gap: clamp(2rem, 7vw, 4rem);
+  }
+
+  .lastProject {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: "shape4 frame4";
+    align-items: center;
+    gap: clamp(1.5rem, 5vw, 3.5rem);
+  }
+
+  .textureShape,
+  .frame1,
+  .frame2,
+  .frame3,
+  .frame4 {
+    position: relative;
+    inset: auto;
+    margin: 0;
+    transform: none;
+  }
+
+  .shape1 { grid-area: shape; align-self: end; width: min(100%, 22rem); height: auto; aspect-ratio: 0.78; }
+  .frame1 { grid-area: frame; justify-self: end; }
+  .frame2 { grid-area: frame2; justify-self: start; }
+  .shape2 { grid-area: shape2; justify-self: end; width: min(100%, 25rem); height: auto; aspect-ratio: 1; }
+  .frame3 { grid-area: frame3; justify-self: center; }
+  .shape4 { grid-area: shape4; width: min(100%, 25rem); height: auto; aspect-ratio: 1; }
+  .frame4 { grid-area: frame4; justify-self: end; }
+
+  .frame1 .frame1Frame,
+  .frame3 .frame3Frame,
+  .frame4 .frame4Frame { width: min(100%, 20rem); }
+  .frame2 .frame2Frame { width: min(100%, 32rem); }
+
+  .frame3 .frame3Frame { transform: none; }
+  .frame1Buttons,
+  .frame2Buttons,
+  .frame3Buttons,
+  .frame4Buttons { margin-top: 0.75rem; transform: none; }
+}
+
+@media (max-width: 480px) {
+  .section {
+    gap: clamp(3rem, 12vw, 4.5rem);
+    overflow: visible;
+    padding-bottom: clamp(4rem, 15vw, 6rem);
+    background: transparent;
+  }
+
+  .firstProject,
+  .mergedProject,
+  .lastProject {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+
+  .firstProject { grid-template-areas: "frame" "shape"; }
+  .mergedProject { grid-template-areas: "frame2" "shape2" "frame3"; }
+  .lastProject { grid-template-areas: "frame4" "shape4"; }
+
+  .shape1,
+  .shape2,
+  .shape4,
+  .frame1,
+  .frame2,
+  .frame3,
+  .frame4 { justify-self: center; align-self: start; }
+
+  .shape1 { width: min(72vw, 19rem); }
+  .shape2,
+  .shape4 { width: min(80vw, 22rem); }
+  .frame1 .frame1Frame,
+  .frame3 .frame3Frame,
+  .frame4 .frame4Frame { width: min(62vw, 17rem); }
+  .frame2 .frame2Frame { width: min(88vw, 25rem); }
+}

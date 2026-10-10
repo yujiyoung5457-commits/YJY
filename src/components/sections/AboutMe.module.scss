@@ -1,16 +1,11 @@
 .section {
-  --about-section-height: max(130svh, 720px);
-
   position: relative;
-  height: var(--about-section-height);
-  overflow: hidden;
+  isolation: isolate;
+  overflow: clip;
   scroll-margin-top: var(--header-height);
   color: var(--color-ink);
-  isolation: isolate;
 }
-.description{
-   white-space: pre-line;
-}
+
 .background {
   z-index: -3;
   object-fit: cover;
@@ -18,71 +13,78 @@
 
 .redShape {
   position: absolute;
-  z-index: -1;
+  z-index: -2;
   top: 0;
-  left: -3rem;
-  width: clamp(220px, 22.5vw, 433px);
+  bottom: 0;
+  left: clamp(-6rem, -5vw, -2rem);
+  width: clamp(13rem, 25vw, 27rem);
   height: 100%;
   max-width: none;
   object-fit: fill;
+  pointer-events: none;
 }
 
-.aboutGroups,
-.groupAbout02 {
-  display: contents;
+.aboutGroups {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.72fr) minmax(0, 1.28fr);
+  align-items: center;
+  column-gap: clamp(2rem, 6vw, 8rem);
+  width: min(100% - (var(--page-gutter) * 2), 82rem);
+  margin-inline: auto;
+  padding-block: clamp(4rem, 9vw, 9rem);
 }
 
 .portrait {
+  position: relative;
+  width: min(100%, 23rem);
+  aspect-ratio: 0.62;
+  justify-self: center;
+  align-self: center;
+}
+
+.face,
+.leftLeg,
+.rightLeg {
   position: absolute;
-  z-index: 1;
-  top: 17%;
-  left: clamp(42px, 7.8vw, 120px);
-  width: clamp(210px, 23vw, 350px);
-  height: 79%;
+  height: auto;
+  pointer-events: none;
 }
 
 .face {
-  position: absolute;
   z-index: 2;
   top: 0;
-  left: 90%;
+  left: 50%;
   width: 100%;
-  height: auto;
   transform: translateX(-50%);
 }
 
 .leftLeg,
 .rightLeg {
-  position: absolute;
   z-index: 1;
-  top: 48%;
-  height: 53%;
 }
 
 .leftLeg {
-  left: 50%;
+  top: 48%;
+  left: 23%;
   width: 35%;
 }
 
 .rightLeg {
-  left: 100%;
-  width: 30%;
   top: 40%;
+  left: 73%;
+  width: 30%;
 }
 
 .content {
-  position: relative;
-  z-index: 2;
-  width: min(60%, 900px);
-  height: 100%;
-  margin-left: clamp(320px, 35vw, 680px);
-  padding: clamp(52px, 7.5vh, 78px) var(--page-gutter) 90px 0;
-  // border: 2px solid rgb(0, 225, 255);
-  display: flex;
-  align-items:  start;
-  justify-content: start;
-  flex-direction: column;
-  padding: 8rem 0;
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  min-width: 0;
+}
+
+.groupAbout02 {
+  min-width: 0;
 }
 
 .heading,
@@ -95,14 +97,12 @@
 }
 
 .heading {
-  margin: 0 0 clamp(30px, 4.6vh, 48px);
+  margin: 0 0 clamp(1.5rem, 3vw, 2.75rem);
   color: var(--color-blue);
-  font-size: clamp(3rem, 5.4vw, 8rem);
+  font-size: clamp(3.5rem, 7.6vw, 8rem);
   font-weight: 400;
-  line-height: 0.9;
+  line-height: 0.88;
   text-transform: uppercase;
-  padding-bottom: 1.5rem;
-  padding-left: 8rem;
 }
 
 .intro {
@@ -114,63 +114,56 @@
   margin: 0;
   font-weight: 400;
   line-height: 1.08;
-  padding-bottom: 1.5rem;
 }
 
 .name {
-  font-size: clamp(2rem, 3.4vw, 3.5rem);
-  padding-left: 8rem;
-  
+  font-size: clamp(1.85rem, 3.5vw, 3.5rem);
 }
 
 .role {
-  font-size: clamp(1.3rem, 2.2vw, 2.2rem);
-  padding-left: 8rem;
+  margin-top: 0.35rem;
+  font-size: clamp(1.1rem, 1.8vw, 2rem);
 }
 
 .statement {
-  margin: clamp(30px, 4.4vh, 46px) 0;
+  max-width: 18ch;
+  margin: clamp(1.75rem, 4vw, 3rem) 0 0;
   color: var(--color-red);
-  font-size: clamp(1.85rem, 3vw, 4rem);
+  font-size: clamp(2rem, 4.1vw, 4rem);
   font-weight: 400;
-  line-height: 1.08;
-  text-align: center;
-  padding: 3rem 0;
-  padding-left: 8rem;
+  line-height: 1.02;
 }
 
 .details {
   display: grid;
-  grid-template-columns: clamp(124px, 14vw, 190px) minmax(0, 1fr);
+  grid-template-columns: minmax(7.25rem, 10rem) minmax(0, 1fr);
   align-items: start;
-  gap: clamp(26px, 4vw, 54px);
-  padding-left: 8rem;
+  gap: clamp(1rem, 3vw, 3rem);
+  min-width: 0;
 }
 
 .tabs {
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
+  display: grid;
+  gap: clamp(0.65rem, 1.5vw, 1.25rem);
 }
 
 .tab {
-  min-height: 65px;
-  padding: 1.2rem 2rem;
+  min-height: clamp(2.75rem, 4vw, 4rem);
+  padding: 0.55em 0.85em;
   border: 0;
   border-radius: 999px;
   background: var(--color-blue);
   color: var(--color-cream);
   cursor: pointer;
-  font-size: clamp(2.2rem, 1.6vw, 3rem);
+  font-size: clamp(1.15rem, 1.8vw, 2.25rem);
+  line-height: 1;
   text-transform: uppercase;
-  transition:
-    background 160ms ease,
-    transform 160ms ease;
+  transition: background 160ms ease, transform 160ms ease;
 }
 
 .tab:hover,
 .tab:focus-visible {
-  transform: translateX(5px);
+  transform: translateX(0.25rem);
 }
 
 .activeTab {
@@ -178,128 +171,202 @@
 }
 
 .detailCopy {
-  display: flex;
-  min-height: 130px;
-  flex-direction: column;
-  padding-top: 4px;
+  display: grid;
+  align-content: start;
+  min-width: 0;
+  padding-top: 0.2rem;
   line-height: 1.05;
 }
 
 .detailCopy strong {
-  font-size: clamp(3rem, 3.5vw, 5rem);
+  font-size: clamp(2.25rem, 4vw, 4.75rem);
   font-weight: 400;
   text-transform: uppercase;
 }
 
-.detailCopy span {
-  font-size: clamp(1.35rem, 2.1vw, 2.2rem);
+.description {
+  margin-top: 0.25rem;
+  font-size: clamp(1.1rem, 1.8vw, 2rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
 }
 
-@media (max-width: 980px) {
+/* Restore the established desktop composition without affecting the new
+   tablet and mobile rules below. */
+@media (min-width: 981px) {
   .section {
-    --about-section-height: 900px;
-  }
-
-  .portrait {
-    top: 23%;
-    left: 4vw;
-    width: min(32vw, 300px);
-  }
-
-  .content {
-    width: 60%;
-    margin-left: 36%;
-  }
-
-  .details {
-    grid-template-columns: 130px 1fr;
-  }
-}
-
-@media (min-width: 701px) and (max-width: 768px) {
-  .section {
-    --about-section-height: 1020px;
-  }
-  .leftLeg,
-.rightLeg {
-  position: absolute;
-  z-index: 1;
-  top: 30%;
-  height: 53%;
-}
-
-.leftLeg {
-  left: 50%;
-  width: 35%;
-}
-
-.rightLeg {
-  left: 100%;
-  width: 30%;
-  top: 28%;
-}
-.redShape {
-    width: 38%;
-    height: 100%;
-    left: -7.5rem;
-  }
-.tabs {
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-  margin-left: -1rem;
-}
-.tab {
-  min-height: 65px;
-  padding: 1.2rem 2.2rem;
-  border: 0;
-  border-radius: 999px;
-  background: var(--color-blue);
-  color: var(--color-cream);
-  cursor: pointer;
-  font-size: clamp(1.4rem, 1vw, 2.2rem);
-  text-transform: uppercase;
-  transition:
-    background 160ms ease,
-    transform 160ms ease;
-}
-
-.tab:hover,
-.tab:focus-visible {
-  transform: translateX(5px);
-}
-
-.activeTab {
-  background: var(--color-red);
-}
-
-}
-
-@media (max-width: 700px) {
-  .section {
-    --about-section-height: 1120px;
+    --about-section-height: max(130svh, 720px);
+    height: var(--about-section-height);
+    overflow: hidden;
   }
 
   .redShape {
-    width: 38%;
-    height: 100%;
+    z-index: -1;
+    top: 0;
+    bottom: auto;
+    left: -3rem;
+    width: clamp(220px, 22.5vw, 433px);
+  }
+
+  .aboutGroups,
+  .groupAbout02 {
+    display: contents;
   }
 
   .portrait {
-    top: 15%;
-    left: 7%;
-    width: min(52vw, 280px);
-    height: 54%;
+    position: absolute;
+    z-index: 1;
+    top: 17%;
+    left: clamp(42px, 7.8vw, 120px);
+    width: clamp(210px, 23vw, 350px);
+    height: 79%;
+    aspect-ratio: auto;
+  }
+
+  .face {
+    left: 90%;
+  }
+
+  .leftLeg,
+  .rightLeg {
+    top: 48%;
+    height: 53%;
+  }
+
+  .leftLeg {
+    left: 50%;
+    width: 35%;
+  }
+
+  .rightLeg {
+    top: 40%;
+    left: 100%;
+    width: 30%;
   }
 
   .content {
-    width: auto;
-    margin-left: 0;
-    padding: 48px var(--page-gutter) 100px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: min(60%, 900px);
+    height: 100%;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 0;
+    margin-left: clamp(320px, 35vw, 680px);
+    padding: 8rem 0;
   }
 
   .heading {
-    margin-bottom: 440px;
+    margin: 0 0 clamp(30px, 4.6vh, 48px);
+    padding-bottom: 1.5rem;
+    padding-left: 8rem;
+    font-size: clamp(3rem, 5.4vw, 8rem);
+    line-height: 0.9;
+  }
+
+  .name,
+  .role {
+    padding-bottom: 1.5rem;
+    padding-left: 8rem;
+  }
+
+  .name { font-size: clamp(2rem, 3.4vw, 3.5rem); }
+  .role { margin-top: 0; font-size: clamp(1.3rem, 2.2vw, 2.2rem); }
+
+  .statement {
+    max-width: none;
+    margin: clamp(30px, 4.4vh, 46px) 0;
+    padding: 3rem 0 3rem 8rem;
+    font-size: clamp(1.85rem, 3vw, 4rem);
+    line-height: 1.08;
+    text-align: center;
+  }
+
+  .details {
+    grid-template-columns: clamp(124px, 14vw, 190px) minmax(0, 1fr);
+    gap: clamp(26px, 4vw, 54px);
+    padding-left: 8rem;
+  }
+
+  .tabs { display: flex; flex-direction: column; gap: 26px; }
+  .tab { min-height: 65px; padding: 1.2rem 2rem; font-size: clamp(2.2rem, 1.6vw, 3rem); }
+  .tab:hover, .tab:focus-visible { transform: translateX(5px); }
+  .detailCopy { display: flex; min-height: 130px; flex-direction: column; padding-top: 4px; }
+  .detailCopy strong { font-size: clamp(3rem, 3.5vw, 5rem); }
+  .description { margin-top: 0; font-size: clamp(1.35rem, 2.1vw, 2.2rem); line-height: 1.05; }
+}
+
+@media (max-width: 900px) {
+  .aboutGroups {
+    grid-template-columns: minmax(11rem, 0.8fr) minmax(0, 1.2fr);
+    column-gap: clamp(1.5rem, 4vw, 3.5rem);
+  }
+
+  .portrait {
+    width: min(100%, 18rem);
+  }
+
+  .details {
+    grid-template-columns: minmax(6.5rem, 8.5rem) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .redShape {
+    left: clamp(-5.5rem, -16vw, -3.5rem);
+    width: clamp(11rem, 54vw, 17rem);
+  }
+
+  .aboutGroups {
+    display: grid;
+    grid-template-columns: minmax(6.5rem, 0.82fr) minmax(0, 1.18fr);
+    align-items: start;
+    column-gap: clamp(1rem, 4vw, 1.75rem);
+    row-gap: clamp(2.5rem, 9vw, 4.5rem);
+    width: min(100% - (var(--page-gutter) * 2), 36rem);
+    padding-block: clamp(3rem, 11vw, 5rem) clamp(4.5rem, 13vw, 7rem);
+  }
+
+  .portrait {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+    align-self: stretch;
+  }
+
+  .content {
+    display: contents;
+  }
+
+  .groupAbout02 {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    text-align: right;
+  }
+
+  .heading {
+    margin-bottom: clamp(1.25rem, 5vw, 2rem);
+    font-size: clamp(3rem, 13vw, 4.75rem);
+  }
+
+  .name {
+    font-size: clamp(1.65rem, 7vw, 2.5rem);
+  }
+
+  .role {
+    margin-top: 0.3rem;
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
+  }
+
+  .statement {
+    max-width: none;
+    margin-top: clamp(1.5rem, 7vw, 2.5rem);
+    font-size: clamp(1.7rem, 7.3vw, 2.65rem);
     text-align: right;
   }
 
@@ -308,410 +375,24 @@
   }
 
   .details {
-    grid-template-columns: 118px minmax(0, 1fr);
-    gap: 20px;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    grid-template-columns: minmax(5.75rem, 7.5rem) minmax(0, 1fr);
+    gap: clamp(0.85rem, 4vw, 1.5rem);
+    width: 100%;
   }
 
   .tab {
-    min-height: 50px;
-    padding-inline: 12px;
-  }
-
-}
-
-@media (max-width: 430px) {
-  .section {
-    --about-section-height: 1060px;
-  }
-
-  .heading {
-    margin-bottom: 360px;
-    font-size: 3.2rem;
-  }
-
-  .details {
-    grid-template-columns: 104px minmax(0, 1fr);
+    min-height: 2.5rem;
+    padding-inline: 0.65rem;
+    font-size: clamp(1rem, 4vw, 1.35rem);
   }
 
   .detailCopy strong {
-    font-size: 1.65rem;
+    font-size: clamp(2rem, 8vw, 3rem);
   }
 
-  .detailCopy span {
-    font-size: 1.15rem;
-  }
-}
-
-@media (max-width: 375px) {
-  .section {
-    --about-section-height: max(112svh, 740px);
-  }
-
-  .redShape {
-    top: 0;
-    left: -3.25rem;
-    width: 54%;
-    height: 63%;
-  }
-
-  .portrait {
-    top: 20%;
-    left: 0;
-    width: 36vw;
-    height: 48%;
-  }
-
-  .content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    display: block;
-  }
-
-  .heading {
-    position: absolute;
-    top: 7%;
-    right: 7%;
-    margin: 0;
-    padding: 0;
-    font-size: clamp(3rem, 14vw, 3.35rem);
-    line-height: 0.9;
-    text-align: right;
-  }
-
-  .intro {
-    position: absolute;
-    top: 23%;
-    right: 5%;
-    width: 43%;
-  }
-
-  .name,
-  .role {
-    padding: 0;
-  }
-
-  .name {
-    font-size: 2rem;
-    line-height: 0.95;
-  }
-
-  .role {
-    margin-top: 0.35rem;
-    font-size: 1rem;
-    line-height: 1.05;
-  }
-
-  .statement {
-    position: absolute;
-    top: 39%;
-    right: 5%;
-    width: 43%;
-    margin: 0;
-    padding: 0;
-    font-size: 1.6rem;
-    line-height: 1.08;
-    text-align: center;
-  }
-
-  .statement br {
-    display: initial;
-  }
-
-  .details {
-    position: absolute;
-    right: 7%;
-    bottom: 7%;
-    left: 8%;
-    display: grid;
-    grid-template-columns: 104px minmax(0, 1fr);
-    padding: 0;
-    align-items: start;
-    gap: 20px;
-  }
-
-  .tabs {
-    gap: 10px;
-  }
-
-  .tab {
-    min-height: 42px;
-    padding: 0.55rem 0.7rem;
-    font-size: 1rem;
-  }
-
-  .detailCopy {
-    min-height: 0;
-    padding-top: 4px;
-  }
-
-  .detailCopy strong {
-    font-size: 1.9rem;
-  }
-
-  .detailCopy span {
-    margin-top: 0.25rem;
-    font-size: 1.05rem;
-    line-height: 1.15;
-  }
-}
-
-@media (max-width: 768px) {
-  .section {
-    height: auto;
-    min-height: 0;
-  }
-
-  .aboutGroups {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    gap: clamp(42px, 8vw, 72px);
-    padding: clamp(48px, 8vw, 72px) var(--page-gutter)
-      clamp(96px, 16vw, 140px);
-  }
-
-  .portrait,
-  .groupAbout01 {
-    position: relative;
-    top: 10rem;
-    left: -28%;
-    width: min(72vw, 360px);
-    height: auto;
-    aspect-ratio: 0.54;
-    flex: 0 0 auto;
-  }
-
-  .groupAbout01 .face {
-    top: 0;
-    left: 50%;
-    width: 72%;
-  }
-
-  .groupAbout01 .leftLeg,
-  .groupAbout01 .rightLeg {
-    top: 51%;
-    height: auto;
-  }
-
-  .groupAbout01 .leftLeg {
-    left: 15%;
-    width: 28%;
-  }
-
-  .groupAbout01 .rightLeg {
-    top: 49%;
-    left: 55%;
-    width: 24%;
-  }
-
-  .content {
-    position: relative;
-    display: flex;
-    width: min(100%, 600px);
-    height: auto;
-    flex-direction: column;
-    gap: clamp(44px, 8vw, 68px);
-    margin: 0;
-    padding: 0;
-  }
-
-  .groupAbout02 {
-    position: relative;
-    top:30%;
-    left: 0;
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: end;
-    gap: clamp(35px, 20vw, 100px);
-    text-align: end;
-    // border: 1px solid rgb(0, 255, 42);
-  }
-
-  .heading,
-  .intro,
-  .name,
-  .role,
-  .statement {
-    position: static;
-    inset: auto;
-    margin: 0;
-    padding: 0;
-  }
-
-  .heading {
-    font-size: clamp(3rem, 9vw, 4.5rem);
-    text-align: end;
-    font-size: 8rem;
-  }
-
-  .intro {
-    text-align: end;
-    font-size: 5rem;
-  }
-
-  .name {
-    font-size: clamp(3rem, 7vw, 4rem);
-  }
-
-  .role {
-    margin-top: 0.5rem;
-    font-size: clamp(1rem, 3.2vw, 1.65rem);
-  }
-
-  .statement {
-    width: min(100%, 520px);
-    font-size: clamp(2.2rem, 9vw, 4rem);
-    text-align: end;
-  }
-
-  .statement br {
-    display: initial;
-  }
-
-  .details,
-  .groupAbout03 {
-    position: relative;
-    right: auto;
-    bottom: -20rem;
-    left: -10rem;
-    display: grid;
-    width: min(100%, 610px);
-    grid-template-columns: clamp(104px, 28vw, 150px) minmax(0, 1fr);
-    align-self: center;
-    gap: clamp(14px, 4vw, 28px);
-    padding: 0;
-    // border: 1px solid rgb(0, 153, 255);
-  }
-
-  .tabs {
-    gap: clamp(10px, 2.5vw, 18px);
-    margin: 0;
-  }
-
-  .tab {
-    min-height: 48px;
-    padding: 0.8rem 0.8rem;
-    font-size: clamp(2rem, 3vw, 2rem);
-  }
-
-  .detailCopy {
-    min-height: 0;
-    padding-top: 4px;
-  }
-
-  .detailCopy strong {
-    font-size: clamp(1.9rem, 6vw, 3.25rem);
-  }
-
-  .detailCopy span {
-    margin-top: 0.3rem;
-    font-size: clamp(1.2rem, 3.6vw, 1.8rem);
-    line-height: 1.15;
-    overflow-wrap: anywhere;
-  }
-}
-
-@media (min-width: 701px) and (max-width: 768px) {
-  .aboutGroups {
-    --group-about-01-top: 6.25rem;
-    --group-about-01-left: clamp(24px, 4vw, 34px);
-    --group-about-01-width: min(45vw, 340px);
-    --group-about-02-top: 5rem;
-    --group-about-02-right: clamp(32px, 5.8vw, 60px);
-    --group-about-02-width: 58%;
-    --group-about-03-right: clamp(28px, 5vw, 40px);
-    --group-about-03-bottom: 3rem;
-    --group-about-03-left: clamp(120px, 25vw, 170px);
-    --about-heading-size: clamp(4.75rem, 11vw, 7rem);
-    --about-name-size: clamp(2.5rem, 7.5vw, 4rem);
-    --about-role-size: clamp(1.35rem, 3.7vw, 2rem);
-    --about-statement-size: clamp(2rem,6vw, 3.5rem);
-    --about-detail-title-size: clamp(3.25rem, 6vw, 4.25rem);
-    --about-detail-body-size: clamp(1.5rem, 3vw, 1.9rem);
-
-    position: relative;
-    display: block;
-    width: 100%;
-    min-height: 1024px;
-    padding: 0;
-  }
-
-  .portrait,
-  .groupAbout01 {
-    position: absolute;
-    top: var(--group-about-01-top);
-    left: var(--group-about-01-left);
-    width: var(--group-about-01-width);
-  }
-
-  .content {
-    position: absolute;
-    inset: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .groupAbout02 {
-    position: absolute;
-    top: var(--group-about-02-top);
-    right: var(--group-about-02-right);
-    left: auto;
-    width: var(--group-about-02-width);
-    margin: 0;
-  }
-
-  .heading {
-    font-size: var(--about-heading-size);
-    line-height: 0.9;
-    text-align: center;
-  }
-
-  .name {
-    font-size: var(--about-name-size);
-  }
-
-  .role {
-    font-size: var(--about-role-size);
-  }
-
-  .statement {
-    font-size: var(--about-statement-size);
-  }
-
-  .details,
-  .groupAbout03 {
-    position: absolute;
-    right: var(--group-about-03-right);
-    bottom: var(--group-about-03-bottom);
-    left: var(--group-about-03-left);
-    width: auto;
-    grid-template-columns: clamp(168px, 25vw, 192px) minmax(0, 1fr);
-    gap: clamp(22px, 3.5vw, 34px);
-  }
-
-  .tabs {
-    gap: clamp(18px, 2.8vw, 24px);
-  }
-
-  .tab {
-    min-height: 72px;
-    padding: 1rem 1.25rem;
-    font-size: clamp(1.65rem, 3.2vw, 2rem);
-  }
-
-  .detailCopy strong {
-    font-size: var(--about-detail-title-size);
-  }
-
-  .detailCopy span {
-    font-size: var(--about-detail-body-size);
+  .description {
+    font-size: clamp(1rem, 3.8vw, 1.35rem);
   }
 }

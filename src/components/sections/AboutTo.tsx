@@ -1,6 +1,5 @@
 import { Scene } from "@/components/three/Scene";
 import styles from "./AboutTo.module.scss";
-import Image from "next/image";
 
 export function AboutTo() {
   return (
@@ -46,10 +45,13 @@ export function AboutTo() {
         />
       </div>
 
-      <Image src="/before.svg"
-              alt="전"
-              fill
-              sizes=""></Image>
+      {/* <Image
+        className={styles.backgroundMark}
+        src="/assets/before.svg"
+        alt=""
+        fill
+        sizes="100vw"
+      /> */}
     </section>
   );
 }

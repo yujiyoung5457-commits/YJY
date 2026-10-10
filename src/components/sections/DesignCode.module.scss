@@ -208,3 +208,44 @@
     height: 60vw;
   }
 }
+
+/* Mobile: let the section end where its title and artwork end. */
+@media (max-width: 700px) {
+  .section {
+    display: flex;
+    min-height: 0;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1rem, 5vw, 1.75rem);
+    padding: clamp(1rem, 5vw, 1.5rem) var(--page-gutter)
+      clamp(2rem, 8vw, 3rem);
+  }
+
+  .title {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    align-self: flex-start;
+    margin: 0;
+    font-size: clamp(2.1rem, 10vw, 3.4rem);
+    transform: none;
+  }
+
+  .flower {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(94vw, 38rem);
+    transform: none;
+  }
+
+  .modelStage {
+    top: 50%;
+    left: 50%;
+    width: min(52vw, 16rem);
+    height: min(60vw, 20rem);
+    transform: translate(-50%, -50%) scale(0.75);
+  }
+}

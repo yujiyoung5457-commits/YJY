@@ -11,6 +11,10 @@
   background: var(--color-yellow) url("/section01_background03.webp") center / cover;
 }
 
+.backgroundMark {
+  display: none;
+}
+
 .modelStage {
   position: relative;
   z-index: 1;
@@ -106,195 +110,117 @@
 
 @media (max-width: 900px) {
   .section {
-    min-height: 680px;
-    grid-template-columns: minmax(150px, 0.7fr) minmax(340px, 1.5fr) minmax(150px, 0.7fr);
-    padding-inline: 1rem;
-  }
-
-  .modelStage {
-    height: 52vw;
-    min-height: 360px;
-  }
-}
-
-@media (max-width: 700px) {
-  .section {
-    min-height: 860px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
-      "copy copy"
-      "left right";
-    align-content: center;
-    gap: 1rem;
-    padding: 4rem 0.5rem 2rem;
+      "badge right"
+      "title right"
+      "left likes";
+    align-items: start;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    padding-block: clamp(4rem, 9vw, 6rem);
   }
 
   .copy {
-    grid-area: copy;
+    display: contents;
+  }
+
+  .badge {
+    grid-area: badge;
+    align-self: end;
+    justify-self: start;
+    margin: 0;
+  }
+
+  .title {
+    grid-area: title;
+    align-self: start;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .title span {
+    white-space: normal;
   }
 
   .leftModel {
     grid-area: left;
-    width: 140%;
-    height: min(78vw, 520px);
-    min-height: 320px;
+    width: min(100%, 20rem);
     justify-self: start;
   }
 
   .rightModel {
     grid-area: right;
-  }
-
-  .modelStage {
-    height: min(66vw, 430px);
-    min-height: 280px;
-  }
-
-  .badge {
-    margin-bottom: 2.5rem;
-  }
-
-  .title span {
-    font-size: clamp(1.1rem, 5vw, 1.55rem);
+    width: min(86%, 18rem);
+    justify-self: end;
   }
 
   .likes {
-    width: min(88vw, 520px);
-    margin-top: 3.5rem;
-    text-align: center;
-  }
-}
-
-@media (max-width: 430px) {
-  .section {
-    min-height: 900px;
-    padding-top: 3rem;
-  }
-
-  .modelStage {
-    min-height: 220px;
-  }
-
-  .leftModel {
-    width: 145%;
-    min-height: 300px;
-  }
-
-  .badge {
-    margin-bottom: 2rem;
-    padding-inline: 1.5rem;
-  }
-
-  .likes {
-    margin-top: 2.75rem;
-  }
-}
-
-@media (min-width: 701px) and (max-width: 768px) {
-  .section {
-    display: block;
-    width: 100%;
-    height: clamp(650px, 90vw, 692px);
-    min-height: 0;
-    padding: 0;
-  }
-
-  .copy {
-    position: static;
-    display: block;
-  }
-
-  .modelStage {
-    position: absolute;
-    min-height: 0;
-  }
-
-  .leftModel {
-    left: 2.5%;
-    bottom: -2%;
-    width: 34%;
-    height: 60%;
-  }
-
-  .rightModel {
-    top: 2%;
-    right: 2.5%;
-    width: 29%;
-    height: 59%;
-  }
-
-  .badge {
-    position: absolute;
-    top: 6.5%;
-    left: 6%;
-    display: grid;
-    width: 36%;
-    min-height: 88px;
-    place-items: center;
+    grid-area: likes;
+    align-self: end;
     margin: 0;
-    padding: 0.85rem 1.5rem;
-    font-size: clamp(2.5rem, 6vw, 3rem);
+    text-align: right;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    grid-template-areas:
+      "badge badge"
+      "title title"
+      "left right"
+      "likes likes";
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(1.25rem, 6vw, 2.25rem);
+    width: min(100%, 36rem);
+    margin-inline: auto;
+    padding: clamp(3rem, 11vw, 4.5rem) var(--page-gutter)
+      clamp(4rem, 13vw, 6rem);
+  }
+
+  .badge {
+    justify-self: center;
+    padding-inline: clamp(1.25rem, 7vw, 2rem);
+    font-size: clamp(1.1rem, 4.2vw, 1.45rem);
   }
 
   .title {
-    position: absolute;
-    top: 24%;
-    left: 6%;
-    width: 61%;
-    align-items: flex-start;
-    gap: 0.8rem;
-    text-align: left;
+    align-items: center;
+    text-align: center;
   }
 
   .title span {
-    font-size: clamp(2.25rem, 5vw, 2.6rem);
-  }
-
-  .title small {
-    font-size: 0.75rem;
-    line-height: 0.1;
+    font-size: clamp(1.2rem, 5vw, 1.65rem);
   }
 
   .title strong {
-    font-size: clamp(3.4rem, 7.5vw, 3.8rem);
+    font-size: clamp(2.25rem, 10vw, 3.5rem);
+  }
+
+  .leftModel,
+  .rightModel {
+    width: min(100%, 12rem);
+    min-width: 0;
+    aspect-ratio: 0.72;
+  }
+
+  .leftModel {
+    justify-self: start;
+  }
+
+  .rightModel {
+    justify-self: end;
   }
 
   .likes {
-    position: absolute;
-    right: 3%;
-    bottom: 4%;
-    width: 63%;
-    height: 36%;
-    margin: 0;
-    padding: 0;
     text-align: center;
   }
 
   .likes h3 {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: clamp(2.8rem, 6.5vw, 3.3rem);
-    text-align: right;
+    margin-bottom: 0.45rem;
+    font-size: clamp(1.7rem, 7.5vw, 2.4rem);
   }
 
   .likes p {
-    position: absolute;
-    right: 0;
-    width: 100%;
-    font-size: clamp(2rem, 5vw, 2.5rem);
-  }
-
-  .likes p:first-of-type {
-    bottom: 3.8rem;
-    text-align: right;
-  }
-
-  .likes p:last-of-type {
-    bottom: 0;
-  }
-
-  .section > img:last-child {
-    display: none;
+    font-size: clamp(1.05rem, 4vw, 1.35rem);
   }
 }
