@@ -4,9 +4,13 @@ import Image from "next/image";
 import { useState } from "react";
 import styles from "./AnotherProject.module.scss";
 
+const VISIBLE_TECH_COUNT = 5;
+
 const projectDetails = {
   flower: {
     title: "Flower Dance",
+    eyebrow: "Project 01 · Shopping Mall",
+    summary: "캐릭터 기반 반응형 쇼핑몰",
     task:
       "자체 제작 캐릭터를 활용한 반응형 쇼핑몰을 기획·구현했습니다. React와 Firebase를 연동해 회원·상품·찜·장바구니·주문·관리자 기능을 제작하고, 상품 검색·필터·재고 관리와 포토존·Kakao Maps 등 인터랙티브 기능을 구현했습니다.",
     tech: [
@@ -23,6 +27,8 @@ const projectDetails = {
   },
   hamster: {
     title: "I love hamster",
+    eyebrow: "Project 02 · Care Game",
+    summary: "햄스터 육성·방 꾸미기 웹앱",
     task:
       "Next.js·TypeScript 기반으로 햄스터 육성 및 방 꾸미기 웹앱을 구현했습니다. Firebase를 활용해 사용자 인증과 햄스터 이름·호감도·레벨 데이터를 관리하고, PC·모바일 드래그 앤 드롭과 상태별 캐릭터 반응·퀘스트 시스템을 제작했습니다. 캐릭터와 아이템 에셋도 직접 디자인했습니다.",
     tech: [
@@ -43,6 +49,8 @@ type ProjectKey = keyof typeof projectDetails;
 export function AnotherProject() {
   const [selectedProject, setSelectedProject] = useState<ProjectKey>("flower");
   const selectedDetails = projectDetails[selectedProject];
+  const visibleTech = selectedDetails.tech.slice(0, VISIBLE_TECH_COUNT);
+  const remainingTechCount = selectedDetails.tech.length - visibleTech.length;
 
   return (
     <section
@@ -112,18 +120,22 @@ export function AnotherProject() {
         />
 
         <div className={styles.projectDescriptionCopy}>
+          <span className={styles.projectEyebrow}>{selectedDetails.eyebrow}</span>
           <strong className={styles.projectDescriptionTitle}>
             {selectedDetails.title}
           </strong>
-          <h3>[주요 업무]</h3>
-          <p>{selectedDetails.task}</p>
-          <h3>[활용 기술]</h3>
+          <p className={styles.projectSummary}>{selectedDetails.summary}</p>
           <div className={styles.techStack} aria-label="활용 기술 목록">
-            {selectedDetails.tech.map((technology) => (
+            {visibleTech.map((technology) => (
               <span className={styles.techBadge} key={technology}>
                 {technology}
               </span>
             ))}
+            {remainingTechCount > 0 ? (
+              <span className={styles.moreTech} aria-label={`외 ${remainingTechCount}개 기술`}>
+                +{remainingTechCount}
+              </span>
+            ) : null}
           </div>
         </div>
       </article>

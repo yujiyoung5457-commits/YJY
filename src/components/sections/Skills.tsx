@@ -163,6 +163,9 @@ export function Skills() {
     const rows = Array.from(
       skillList.querySelectorAll<HTMLElement>(`.${styles.skillRow}`),
     );
+    const skillScale = skillList.querySelector<HTMLElement>(
+      `.${styles.skillScale}`,
+    );
 
     const paintProgress = { value: 0 };
     let paintTween: gsap.core.Tween | null = null;
@@ -198,7 +201,14 @@ export function Skills() {
         const responsiveScale = Math.min(1, tubeBounds.width / 400);
         const startX = tubeBounds.right - rowBounds.left - 10 * responsiveScale;
         const startY = tubeBounds.top - rowBounds.top + tubeBounds.height / 2+16;
-        const availableLength = Math.max(0, width - startX - 12);
+        // Keep a clear visual gap before the 100-point guide, even when a
+        // skill's configured paint length is longer than the guide.
+        const scaleBounds = skillScale?.getBoundingClientRect();
+        const paintToScaleGap = Math.max(150, Math.min(200, width * 0.07));
+        const paintEnd = scaleBounds
+          ? scaleBounds.left - rowBounds.left - paintToScaleGap
+          : width - 12;
+        const availableLength = Math.max(0, paintEnd - startX);
         const length = Math.min(paint.length *1.09 * responsiveScale, availableLength);
         const endX = startX + length;
         const wave = paint.wave * responsiveScale;
