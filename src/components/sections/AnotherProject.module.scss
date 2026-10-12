@@ -452,5 +452,8 @@
   .hamsterCircle { width: min(80vw, 23rem); }
 
   // PC에서 사용한 파도 전환을 모바일에서도 유지합니다.
-  .wave { display: block; }
+  .wave {
+    display: block;
+    transform: translateY(clamp(4.5rem, 20vw, 6rem));
+  }
 }

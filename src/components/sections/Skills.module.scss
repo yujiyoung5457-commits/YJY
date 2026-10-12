@@ -84,7 +84,7 @@
   width: clamp(360px, 39vw, 600px);
   height: auto;
   transform: rotate(12deg);
-  animation: movingArtwork 2s infinite ;
+  animation: movingArtwork 2s infinite;
 }
 @keyframes movingArtwork{
   0%{

@@ -123,8 +123,8 @@
   place-items: center;
   border: 0;
   border-radius: 50%;
-  color: #fff;
-  background: #d39a24;
+  color: var(--color-red);
+  background: var(--color-yellow);
   box-shadow: 0 3px 0 rgb(0 0 0 / 18%);
   cursor: pointer;
   transform: translateX(-50%);
@@ -330,7 +330,7 @@
 
   .nextSlide {
     bottom: 20%;
-    left: 50%;
+    left: 55%;
   }
 
   .contactDisc {

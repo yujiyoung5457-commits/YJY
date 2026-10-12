@@ -105,7 +105,21 @@ export function GsapAnimation() {
     let whiskTween: gsap.core.Tween | undefined;
     let introTimeline: gsap.core.Timeline | undefined;
     let recipeTimeline: gsap.core.Timeline | undefined;
+    let resultResizeFrame = 0;
     const draggables: Draggable[] = [];
+
+    const getResultPosition = () => {
+      const sectionBounds = section.getBoundingClientRect();
+      const nozzleBounds = filledBagNozzle.getBoundingClientRect();
+
+      return {
+        x: nozzleBounds.left - sectionBounds.left - resultHamster.offsetWidth * 0.72,
+        y:
+          nozzleBounds.bottom -
+          sectionBounds.top -
+          resultHamster.offsetHeight * 0.12,
+      };
+    };
 
     const context = gsap.context(() => {
       gsap.set(pipingBag, { autoAlpha: 0, x: 100 });
@@ -299,20 +313,8 @@ export function GsapAnimation() {
           )
           .to(move02, { autoAlpha: 0, scale: 0.82, duration: 0.35 }, ">+=0.45")
           .set(resultHamster, {
-            x: () => {
-              const sectionBounds = section.getBoundingClientRect();
-              const nozzleBounds = filledBagNozzle.getBoundingClientRect();
-              return nozzleBounds.left - sectionBounds.left - resultHamster.offsetWidth * 0.72;
-            },
-            y: () => {
-              const sectionBounds = section.getBoundingClientRect();
-              const nozzleBounds = filledBagNozzle.getBoundingClientRect();
-              return (
-                nozzleBounds.bottom -
-                sectionBounds.top -
-                resultHamster.offsetHeight * 0.12
-              );
-            },
+            x: () => getResultPosition().x,
+            y: () => getResultPosition().y,
           })
           .fromTo(
             resultHamster,
@@ -401,8 +403,20 @@ export function GsapAnimation() {
       };
     }, section);
 
+    const resultResizeObserver = new ResizeObserver(() => {
+      if (!hasSelected) return;
+
+      window.cancelAnimationFrame(resultResizeFrame);
+      resultResizeFrame = window.requestAnimationFrame(() => {
+        gsap.set(resultHamster, getResultPosition());
+      });
+    });
+    resultResizeObserver.observe(section);
+
     return () => {
       replayActionRef.current = () => undefined;
+      resultResizeObserver.disconnect();
+      window.cancelAnimationFrame(resultResizeFrame);
       draggables.forEach((draggable) => draggable.kill());
       context.revert();
     };

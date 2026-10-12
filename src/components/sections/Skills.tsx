@@ -147,12 +147,14 @@ export function Skills() {
   }, []);
 
   useEffect(() => {
-    const intervalId = window.setInterval(() => {
-      setActiveSlide((current) => (current + 1) % skillSlides.length);
+    if (activeSlide >= skillSlides.length - 1) return;
+
+    const timeoutId = window.setTimeout(() => {
+      setActiveSlide((current) => current + 1);
     }, SLIDE_INTERVAL_MS);
 
-    return () => window.clearInterval(intervalId);
-  }, []);
+    return () => window.clearTimeout(timeoutId);
+  }, [activeSlide]);
 
   useEffect(() => {
     const section = sectionRef.current;

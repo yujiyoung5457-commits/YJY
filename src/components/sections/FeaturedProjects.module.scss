@@ -53,7 +53,7 @@
   text-decoration: none;
   cursor: pointer;
   isolation: isolate;
-  animation: heartbeat 2s infinite ;
+  animation: heartbeat 2s infinite;
 }
 @-webkit-keyframes heartbeat {
   from {
@@ -113,12 +113,12 @@
 
 .leftArtwork {
   bottom: 6%;
-  left: clamp(16px, 5vw, 82px);
+  left: clamp(2px, 6vw, 6px);
 }
 
 .rightArtwork {
   top: 7%;
-  right: clamp(16px, 5vw, 82px);
+  right: clamp(-40px, 5vw, -50px);
   transform: rotate(180deg) scale(0.8);
 }
 

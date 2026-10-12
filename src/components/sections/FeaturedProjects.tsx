@@ -78,20 +78,10 @@ export function FeaturedProjects() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          observer.disconnect();
           titleTimelineRef.current?.pause(0);
           titleIntroTimelineRef.current?.restart();
-          return;
         }
-
-        titleIntroTimelineRef.current?.pause(0);
-        titleTimelineRef.current?.pause(0);
-        gsap.set(title, {
-          xPercent: -145,
-          skewX: -12,
-          scaleX: 1.12,
-          scaleY: 0.92,
-          z: 0,
-        });
       },
       { threshold: 0.2 },
     );

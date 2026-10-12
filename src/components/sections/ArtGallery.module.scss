@@ -1391,6 +1391,14 @@
     max-height: 88%;
   }
 
+  .shape1Object,
+  .shape2Object,
+  .shape4Object {
+    --object-design-height: var(--object-design-width) !important;
+
+    aspect-ratio: 1 / 1 !important;
+  }
+
   .frame1,
   .frame2,
   .frame3,
@@ -1410,9 +1418,15 @@
     transform: rotate(-8deg);
   }
 
-  .shape2Object { order: 1; }
-  .frame2 { order: 2; }
-  .frame3 { order: 3; }
+  .frame1,
+  .frame2,
+  .frame4 { order: 1; }
+
+  .frame3,
+  .shape1Object,
+  .shape4Object { order: 2; }
+
+  .shape2Object { order: 3; }
 
   .frame1Buttons,
   .frame2Buttons,
