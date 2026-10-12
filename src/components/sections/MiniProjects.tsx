@@ -32,9 +32,8 @@ export function MiniProjects() {
 
       if (!context) return;
 
-      // 모바일에서는 이전 섹션의 노란 배경이 화면 전체 폭에서
-      // 자연스럽게 파란 배경으로 흘러내리도록 시작 폭을 맞춥니다.
-      const shapeWidth = width * (width <= 760 ? 1 : 0.6);
+      // 위 ArtGallery의 경계와 같은 비율에서 시작해 섹션 사이가 끊기지 않게 합니다.
+      const shapeWidth = width * 0.6;
       const x = (ratio: number) => shapeWidth * ratio;
       const y = (ratio: number) => height * ratio;
 

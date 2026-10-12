@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Scene } from "@/components/three/Scene";
 import styles from "./AboutTo.module.scss";
 
@@ -26,6 +27,11 @@ export function AboutTo() {
           <strong>Interactive Web</strong>
         </h2>
 
+        <div className={styles.processMarks} aria-label="Before and after design process">
+          <Image src="/assets/before.svg" alt="Before" width={101} height={122} />
+          <Image src="/assets/after.svg" alt="After" width={101} height={122} />
+        </div>
+
         <div className={styles.likes}>
           <h3>I Like To Create</h3>
           <p>Original Characters</p>
@@ -45,13 +51,6 @@ export function AboutTo() {
         />
       </div>
 
-      {/* <Image
-        className={styles.backgroundMark}
-        src="/assets/before.svg"
-        alt=""
-        fill
-        sizes="100vw"
-      /> */}
     </section>
   );
 }

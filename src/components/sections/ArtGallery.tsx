@@ -316,7 +316,7 @@ export function ArtGallery() {
         <div
           className={`${styles.projectDescription} ${styles.mergedDescription} ${styles.communityDescription}`}
         >
-          <p className={styles.communityEyebrow}>Selected Project / 03</p>
+          <p className={styles.communityEyebrow}>Selected Project / 04</p>
           <h3 className={styles.communityTitle}>Memory PODO &amp; Cloud CRUD</h3>
           <p className={styles.communitySubtitle}>Character Community</p>
           <p className={styles.communityLead}>

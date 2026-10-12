@@ -30,6 +30,7 @@
   gap: clamp(1.5rem, 4vw, 5rem);
   width: min(100%, 1500px);
   margin-inline: auto;
+ 
 }
 
 .projectMenus {
@@ -106,6 +107,7 @@
   line-height: 0.9;
   text-align: center;
   text-transform: uppercase;
+  line-height: 1.10;
 }
 
 .televisionProject {
@@ -370,6 +372,16 @@
     padding-inline: 0;
     // 모바일 메뉴 묶음의 세로 위치입니다.
     transform: translateY(1.5rem);
+  }
+
+  .menuGroup {
+    align-items: center;
+    text-align: center;
+  }
+
+  .menuGroup h3 {
+    width: 100%;
+    text-align: center;
   }
 
   .menuGroup button {

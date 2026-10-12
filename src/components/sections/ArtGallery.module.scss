@@ -72,7 +72,7 @@
   place-items: center;
   top: 2%;
   left: 12%;
-  width: 42%;
+  width: 40%;
   height: 63rem;
   overflow: hidden;
   aspect-ratio: 0.78;
@@ -225,8 +225,8 @@
   top: clamp(600px, 47vw, 800px);
   left: 30%;
   display: grid;
-  width: 60%;
-  height: clamp(30rem, 34vw, 60rem);
+  width: 65%;
+  height: clamp(50rem, 38vw, 70rem);
   overflow: hidden;
   place-items: center;
   aspect-ratio: 2.25;
@@ -304,8 +304,8 @@
   top: 15%;
   left: 9%;
   display: grid;
-  width: 55%;
-  height: 43rem;
+  width: 58%;
+  height: 48rem;
   overflow: hidden;
   place-items: center;
   aspect-ratio: 2.1;
@@ -377,6 +377,79 @@
   width: 100%;
   height: 0;
   flex-basis: 100%;
+}
+
+/* PC typography: BOOK.JS is the single source of truth for every text role. */
+@media (min-width: 769px) {
+  .section {
+    // BOOK.JS의 cqw 값을 기존 카드 폭(42vw) 기준의 동일한 실제 크기로 환산합니다.
+    --selected-eyebrow-size: clamp(1.12rem, 2.2176vw, 2.64rem);
+    --selected-title-size: clamp(3.2rem, 5.04vw, 7.2rem);
+    --selected-subtitle-size: clamp(1.36rem, 2.4192vw, 2.88rem);
+    --selected-lead-size: clamp(1.12rem, 1.6128vw, 1.92rem);
+    --selected-summary-size: clamp(1.08rem, 1.7808vw, 2.08rem);
+    --selected-tool-size: clamp(0.92rem, 1.8144vw, 2.16rem);
+  }
+
+  .bookDescription .bookEyebrow,
+  .communityDescription .communityEyebrow,
+  .piyoDescription .piyoEyebrow {
+    font-size: var(--selected-eyebrow-size);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: normal;
+  }
+
+  .bookTitle,
+  .communityDescription .communityTitle,
+  .piyoDescription .piyoTitle {
+    font-size: var(--selected-title-size);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: normal;
+  }
+
+  // 긴 제목만 예외적으로 줄여 하단 기술 태그가 원 안에 머물도록 합니다.
+  .communityDescription .communityTitle {
+    margin-bottom: -0.15rem;
+    font-size: clamp(2.64rem, 4.16vw, 5.94rem);
+    line-height: 0.82;
+  }
+
+  .bookDescription .bookSubtitle,
+  .communityDescription .communitySubtitle,
+  .piyoDescription .piyoSubtitle {
+    font-size: var(--selected-subtitle-size);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: normal;
+  }
+
+  .bookDescription .bookLead,
+  .communityDescription .communityLead {
+    font-size: var(--selected-lead-size);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: normal;
+  }
+
+  .bookDescription .bookSummary,
+  .communityDescription .communitySummary,
+  .piyoDescription .piyoSummary {
+    font-size: var(--selected-summary-size);
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: normal;
+  }
+
+  .bookTools .projectTool,
+  .communityTools .projectTool,
+  .piyoTools .projectTool {
+    font-size: var(--selected-tool-size);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: normal;
+  }
 }
 
 .frame1,
@@ -540,8 +613,8 @@
 }
 
 .frame3 {
-  top: clamp(60px, 7vw, 130px);
-  left: 4%;
+  top: clamp(25px, 2vw, 50px);
+  left: 10%;
   // border: 1px solid rgb(44, 230, 255);
   // 액자 3 크기
   .frame3Frame {
@@ -561,7 +634,7 @@
 
 .frame4 {
   top: 3%;
-  left: 55%;
+  left: 64%;
 
   // 액자 4 크기
   .frame4Frame {
@@ -1248,6 +1321,8 @@
 /* Mobile scales each completed desktop card or frame as one unchanged object. */
 @media (max-width: 768px) {
   .section {
+    --curve-end-x: 60;
+
     display: flex;
     flex-direction: column;
     gap: clamp(4rem, 12vw, 7rem);

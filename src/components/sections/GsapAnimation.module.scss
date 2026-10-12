@@ -442,7 +442,30 @@
     background-size: 13vw 13vw;
   }
 }
+@media (max-width: 375px) {
+  .section {
+    --mixer-top: 17%;
+    --mixer-left: 1.2%;
+    --mixer-width: 56%;
+    --hamster-top: 7%;
+    --hamster-right: 7%;
+    --hamster-width: 28%;
+    --strawberry-top: 39%;
+    --strawberry-left: 48%;
+    --choco-top: 55%;
+    --choco-left: 40%;
+    --banana-top: 45%;
+    --banana-left: 60%;
+    --dust-width: 24%;
 
+    min-height: 0;
+    aspect-ratio: 0.95;
+  }
+
+  .section::before {
+    background-size: 13vw 13vw;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .layer,
   .hamsterFrame {
