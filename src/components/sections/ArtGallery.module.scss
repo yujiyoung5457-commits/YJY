@@ -17,6 +17,11 @@
   width: 100%;
 }
 
+.scaledObject,
+.scaledObjectInner {
+  display: contents;
+}
+
 .firstProject {
   min-height: clamp(1050px, 95vw, 1450px);
 }
@@ -69,8 +74,10 @@
   left: 12%;
   width: 42%;
   height: 63rem;
+  overflow: hidden;
   aspect-ratio: 0.78;
   border-radius: 500px;
+  container-type: inline-size;
   // border: 1px solid rgb(255, 0, 242);
 }
 
@@ -88,7 +95,75 @@
   line-height: 1.35;
 }
 
+.bookDescription {
+  display: flex;
+  width: 78%;
+  max-height: 90%;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.3rem, 1.25cqw, 0.7rem);
+  overflow: hidden;
+}
+
+.bookDescription .bookEyebrow {
+  color: var(--color-blue);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(1.12rem, 5.28cqw, 2.64rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.bookTitle {
+  margin: 0;
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(3.2rem, 12cqw, 7.2rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.bookDescription .bookSubtitle {
+  color: var(--color-red);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(1.36rem, 5.76cqw, 2.88rem);
+  font-weight: 400;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.bookDescription .bookLead {
+  color: var(--color-red);
+  font-size: clamp(1.12rem, 3.84cqw, 1.92rem);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.bookDivider {
+  width: 100%;
+  height: clamp(2px, 0.45cqw, 4px);
+  flex: 0 0 auto;
+  background: var(--color-red);
+}
+
+.bookDescription .bookSummary {
+  font-size: clamp(1.08rem, 4.24cqw, 2.08rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.bookTools {
+  gap: clamp(0.25rem, 1.15cqw, 0.65rem);
+  margin-top: clamp(0.3rem, 1.5cqw, 0.8rem);
+}
+
+.bookTools .projectTool {
+  padding: clamp(0.25rem, 1.15cqw, 0.55rem) clamp(0.4rem, 1.8cqw, 1rem);
+  font-size: clamp(0.92rem, 4.32cqw, 2.16rem);
+}
+
 .mergedProject {
+  top: -6rem;
   min-height: clamp(1150px, 90vw, 1550px);
 }
 
@@ -147,25 +222,161 @@
 }
 
 .shape2 {
-  top: clamp(600px, 47vw, 850px);
-  left: 42%;
+  top: clamp(600px, 47vw, 800px);
+  left: 30%;
   display: grid;
-  width: 48%;
-  height: clamp(30rem, 34vw, 40rem);
+  width: 60%;
+  height: clamp(30rem, 34vw, 60rem);
+  overflow: hidden;
   place-items: center;
   aspect-ratio: 2.25;
   border-radius: 500px;
+  container-type: inline-size;
+}
+
+.communityDescription {
+  display: flex;
+  width: 82%;
+  max-height: 88%;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.2rem, 1.1cqw, 0.65rem);
+  overflow: hidden;
+}
+
+.communityDescription .communityEyebrow {
+  color: var(--color-blue);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(0.68rem, 5.32cqw, 2.31rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.communityDescription .communityTitle {
+  margin: 0;
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(1.4rem, 9.52cqw, 4.2rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.communityDescription .communitySubtitle {
+  color: var(--color-red);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(0.72rem, 4.76cqw, 2.1rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.communityDescription .communityLead {
+  color: var(--color-red);
+  font-size: clamp(0.6rem, 3.5cqw, 1.47rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.communityDivider {
+  width: 100%;
+  height: clamp(2px, 0.4cqw, 4px);
+  flex: 0 0 auto;
+  background: var(--color-red);
+}
+
+.communityDescription .communitySummary {
+  font-size: clamp(0.58rem, 3.15cqw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.communityTools {
+  gap: clamp(0.2rem, 0.8cqw, 0.45rem);
+  margin-top: clamp(0.2rem, 0.8cqw, 0.45rem);
+}
+
+.communityTools .projectTool {
+  padding: clamp(0.2rem, 0.75cqw, 0.4rem) clamp(0.35rem, 1.25cqw, 0.75rem);
+  font-size: clamp(0.55rem, 3.15cqw, 1.47rem);
 }
 
 .shape4 {
   top: 15%;
   left: 9%;
   display: grid;
-  width: 48%;
-  height: 42rem;
+  width: 55%;
+  height: 43rem;
+  overflow: hidden;
   place-items: center;
   aspect-ratio: 2.1;
- border-radius: 500px;
+  border-radius: 500px;
+  container-type: inline-size;
+}
+
+.piyoDescription {
+  display: flex;
+  width: 82%;
+  max-height: 88%;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.2rem, 1.1cqw, 0.65rem);
+  overflow: hidden;
+}
+
+.piyoDescription .piyoEyebrow {
+  color: var(--color-blue);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(0.68rem, 7.45cqw, 3.23rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.piyoDescription .piyoTitle {
+  margin: 0;
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(1.4rem, 13.33cqw, 5.88rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.piyoDescription .piyoSubtitle {
+  color: var(--color-red);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(0.72rem, 6.66cqw, 2.94rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.piyoDivider {
+  width: 100%;
+  height: clamp(2px, 0.4cqw, 4px);
+  flex: 0 0 auto;
+  background: var(--color-red);
+}
+
+.piyoDescription .piyoSummary {
+  font-size: clamp(0.58rem, 4.41cqw, 1.96rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.piyoTools {
+  width: 100%;
+  gap: clamp(0.2rem, 0.8cqw, 0.45rem);
+  margin-top: clamp(0.2rem, 0.8cqw, 0.45rem);
+}
+
+.piyoTools .projectTool {
+  padding: clamp(0.2rem, 0.75cqw, 0.4rem) clamp(0.35rem, 1.25cqw, 0.75rem);
+  font-size: clamp(0.55rem, 3.88cqw, 1.8rem);
+}
+
+.piyoToolBreak {
+  width: 100%;
+  height: 0;
+  flex-basis: 100%;
 }
 
 .frame1,
@@ -940,10 +1151,12 @@
   }
 
   .mergedProject {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
-      "frame2 shape2"
-      "frame3 shape2";
+      "frame2"
+      "shape2"
+      "frame3";
+    justify-items: center;
     align-items: center;
     gap: clamp(2rem, 7vw, 4rem);
   }
@@ -968,8 +1181,19 @@
 
   .shape1 { grid-area: shape; align-self: end; width: min(100%, 22rem); height: auto; aspect-ratio: 0.78; }
   .frame1 { grid-area: frame; justify-self: end; }
-  .frame2 { grid-area: frame2; justify-self: start; }
-  .shape2 { grid-area: shape2; justify-self: end; width: min(100%, 25rem); height: auto; aspect-ratio: 1; }
+  .frame2 {
+    grid-area: frame2;
+    width: min(100%, 45rem);
+    justify-self: center;
+  }
+  .shape2 {
+    grid-area: shape2;
+    width: min(100%, 45rem);
+    height: auto;
+    justify-self: center;
+    aspect-ratio: 1.45;
+  }
+
   .frame3 { grid-area: frame3; justify-self: center; }
   .shape4 { grid-area: shape4; width: min(100%, 25rem); height: auto; aspect-ratio: 1; }
   .frame4 { grid-area: frame4; justify-self: end; }
@@ -977,7 +1201,7 @@
   .frame1 .frame1Frame,
   .frame3 .frame3Frame,
   .frame4 .frame4Frame { width: min(100%, 20rem); }
-  .frame2 .frame2Frame { width: min(100%, 32rem); }
+  .frame2 .frame2Frame { width: 100%; }
 
   .frame3 .frame3Frame { transform: none; }
   .frame1Buttons,
@@ -1002,7 +1226,6 @@
   }
 
   .firstProject { grid-template-areas: "frame" "shape"; }
-  .mergedProject { grid-template-areas: "frame2" "shape2" "frame3"; }
   .lastProject { grid-template-areas: "frame4" "shape4"; }
 
   .shape1,
@@ -1014,10 +1237,124 @@
   .frame4 { justify-self: center; align-self: start; }
 
   .shape1 { width: min(72vw, 19rem); }
-  .shape2,
+  .shape2 { width: 100%; }
   .shape4 { width: min(80vw, 22rem); }
   .frame1 .frame1Frame,
   .frame3 .frame3Frame,
   .frame4 .frame4Frame { width: min(62vw, 17rem); }
-  .frame2 .frame2Frame { width: min(88vw, 25rem); }
+  .frame2 .frame2Frame { width: 100%; }
+}
+
+/* Mobile scales each completed desktop card or frame as one unchanged object. */
+@media (max-width: 768px) {
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(4rem, 12vw, 7rem);
+    width: 100%;
+    padding: clamp(2rem, 6vw, 4rem) var(--page-gutter)
+      clamp(5rem, 14vw, 8rem);
+    overflow: hidden;
+    background: #ffaa00;
+  }
+
+  .galleryGroup,
+  .firstProject,
+  .mergedProject,
+  .lastProject {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-height: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(2.5rem, 8vw, 4.5rem);
+  }
+
+  .scaledObject {
+    --object-scale: 1;
+
+    position: relative;
+    display: block;
+    width: min(100%, var(--object-design-width));
+    flex: 0 0 auto;
+  }
+
+  .scaledObjectInner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: var(--object-design-width);
+    height: var(--object-design-height);
+    transform: scale(var(--object-scale));
+    transform-origin: top left;
+  }
+
+  .scaledObjectInner > .textureShape,
+  .scaledObjectInner > .frame {
+    position: absolute;
+    inset: 0;
+    width: var(--object-design-width);
+    height: var(--object-design-height);
+    margin: 0;
+    transform: none;
+  }
+
+  .scaledObject .projectDescription {
+    transform: none;
+  }
+
+  .scaledObject .bookDescription {
+    width: 78%;
+    max-height: 90%;
+  }
+
+  .scaledObject .communityDescription,
+  .scaledObject .piyoDescription {
+    width: 82%;
+    max-height: 88%;
+  }
+
+  .frame1,
+  .frame2,
+  .frame3,
+  .frame4 {
+    position: relative;
+    inset: auto;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    transform: none;
+  }
+
+  .frame3 .scaledObjectInner > .frame3Frame {
+    transform: rotate(-8deg);
+  }
+
+  .shape2Object { order: 1; }
+  .frame2 { order: 2; }
+  .frame3 { order: 3; }
+
+  .frame1Buttons,
+  .frame2Buttons,
+  .frame3Buttons,
+  .frame4Buttons {
+    margin-top: 0;
+    transform: none;
+  }
+
+  .buttons > a {
+    min-width: 4.75rem;
+    padding: 0.65rem 1rem;
+    font-size: clamp(0.8rem, 3.5vw, 1.15rem);
+  }
+
+  .line {
+    display: block;
+    pointer-events: none;
+  }
 }

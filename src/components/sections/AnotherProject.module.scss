@@ -337,6 +337,11 @@
   display: none;
 }
 
+.scaledCircle,
+.scaledCircleInner {
+  display: contents;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .projectCardBackground,
   .projectDescriptionBackground,
@@ -345,396 +350,8 @@
   }
 }
 
+/* Mobile keeps each completed desktop circle intact and scales it as one object. */
 @media (max-width: 800px) {
-  .section {
-    min-height: 860px;
-  }
-
-  .title {
-    font-size: clamp(3.3rem, 11vw, 5.8rem);
-  }
-
-  .artwork {
-    top: 18%;
-    right: 4%;
-    width: min(34vw, 260px);
-  }
-
-  .projectCard {
-    top: 24%;
-    left: -10%;
-    width: min(72vw, 570px);
-  }
-
-  .projectSwapTrigger {
-    top: 72%;
-    right: -3%;
-    left: auto;
-    width: min(55vw, 440px);
-  }
-
-  .projectDescription {
-    top: 48%;
-    right: 5%;
-    width: min(48vw, 390px);
-  }
-
-  .nextProject {
-    right: -16%;
-    width: min(38vw, 310px);
-  }
-}
-
-@media (max-width: 520px) {
-  .section {
-    min-height: 760px;
-  }
-
-  .title {
-    top: 38px;
-    left: 7%;
-    font-size: 3.45rem;
-  }
-
-  .artwork {
-    top: 19%;
-    right: 5%;
-    width: 150px;
-  }
-
-  .projectCard {
-    top: 27%;
-    left: -19%;
-    width: 88vw;
-  }
-
-  .projectSwapTrigger {
-    top: 80%;
-    left: 50%;
-    width: 32vw;
-    transform: translateX(-50%);
-  }
-
-  .projectDescription {
-    top: 54%;
-    right: auto;
-    left: 50%;
-    width: min(78vw, 350px);
-    transform: translateX(-50%);
-  }
-
-  .projectDescriptionCopy h3 {
-    font-size: clamp(0.92rem, 4vw, 1.15rem);
-  }
-
-  .projectDescriptionTitle {
-    font-size: clamp(1.15rem, 5vw, 1.55rem);
-  }
-
-  .projectDescriptionCopy p {
-    font-size: clamp(0.68rem, 3vw, 0.9rem);
-  }
-
-  .techStack {
-    gap: 0.22rem;
-    margin-top: 0.3rem;
-  }
-
-  .techBadge {
-    padding: 0.24rem 0.42rem;
-    font-size: clamp(0.52rem, 2.4vw, 0.72rem);
-  }
-
-  .projectCard02 h3 {
-    font-size: clamp(0.8rem, 3.5vw, 1.15rem);
-  }
-
-  .projectCard h3 {
-    font-size: 2.25rem;
-  }
-
-  .nextProject {
-    right: -28%;
-    bottom: -8%;
-    width: 52vw;
-  }
-}
-
-@media (max-width: 800px) {
-  .section {
-    min-height: 1250px;
-  }
-}
-
-@media (min-width: 701px) and (max-width: 768px) {
-  .section {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: clamp(64px, 10vw, 88px);
-    min-height: 0;
-    padding: clamp(72px, 10vw, 96px) clamp(36px, 6vw, 52px)
-      clamp(280px, 38vw, 320px);
-    background: var(--color-blue);
-  }
-
-  .title {
-    position: relative;
-    top: auto;
-    left: auto;
-    grid-column: 1 / -1;
-    margin: 0;
-  }
-
-  .artwork {
-    position: relative;
-    top: auto;
-    right: auto;
-    grid-row: 2;
-    grid-column: 2;
-    align-self: start;
-    justify-self: end;
-    width: min(28vw, 215px);
-  }
-
-  .projectCard {
-    position: relative;
-    top: auto;
-    left: auto;
-    grid-row: 2;
-    grid-column: 1 / -1;
-    justify-self: start;
-    width: min(62vw, 470px);
-    margin-left: clamp(48px, 7vw, 56px);
-    translate: none;
-  }
-
-  .projectDescription {
-    position: relative;
-    top: auto;
-    right: auto;
-    grid-row: 3;
-    grid-column: 1 / -1;
-    justify-self: end;
-    width: min(52vw, 400px);
-    margin-right: clamp(36px, 6vw, 46px);
-    translate: none;
-  }
-
-  .projectSwapTrigger {
-    position: relative;
-    top: auto;
-    right: auto;
-    left: auto;
-    grid-row: 4;
-    grid-column: 1 / -1;
-    justify-self: start;
-    width: min(50vw, 380px);
-    margin-left: clamp(40px, 6vw, 48px);
-    translate: none;
-  }
-
-  .projectCard02 h3 {
-    font-size: clamp(2.6rem, 7vw, 3.4rem);
-  }
-}
-
-@media (max-width: 520px) {
-  .section {
-    min-height: 1700px;
-  }
-
-  .artwork {
-    top: 13%;
-  }
-
-  .projectCard {
-    top: 25%;
-    left: 50%;
-    width: min(92vw, 420px);
-    padding: 8% 7% 9%;
-    transform: translateX(-50%);
-  }
-
-  .projectSwapTrigger {
-    top: 81%;
-    left: 50%;
-    width: min(68vw, 300px);
-    transform: translateX(-50%);
-  }
-
-  .imagePlaceholder02 {
-    width: 100%;
-  }
-
-  .nextProject {
-    right: -18%;
-    bottom: -5%;
-    width: min(48vw, 230px);
-  }
-}
-
-@media (max-width: 375px) {
-  .section {
-    min-height: 1380px;
-    overflow: hidden;
-    background: transparent;
-  }
-
-  .wave {
-    display: none;
-  }
-
-  .title {
-    top: 4%;
-    left: 50%;
-    width: max-content;
-    font-size: 2.1rem;
-    transform: translateX(-50%);
-  }
-
-  .artwork {
-    top: 14%;
-    right: 4%;
-    width: 24vw;
-  }
-
-  .projectCard {
-    top: 19%;
-    left: -7%;
-    width: 84vw;
-    padding: 7% 6% 8%;
-    border-width: 10px;
-    transform: none;
-  }
-
-  .projectCard h3 {
-    margin-top: 4%;
-    font-size: 1rem;
-  }
-
-  .projectSwapTrigger {
-    top: 82%;
-    right: -4%;
-    left: auto;
-    width: 29vw;
-    padding: 7% 9% 8%;
-    transform: none;
-  }
-
-  .projectDescription {
-    top: 51%;
-    width: 88vw;
-  }
-
-  .imagePlaceholder02 {
-    width: 100%;
-  }
-
-  .projectCard02 h3 {
-    margin-top: 3%;
-    font-size: 0.62rem;
-    line-height: 0.9;
-  }
-
-  .mobilePreview {
-    position: absolute;
-    z-index: 2;
-    display: block;
-    overflow: hidden;
-    border-radius: 50%;
-  }
-
-  .mobilePreview img {
-    object-fit: cover;
-  }
-
-  .shoppingPreview {
-    top: 7%;
-    left: 14%;
-    width: 72%;
-    aspect-ratio: 1;
-  }
-
-  .hamsterPreview {
-    top: 25%;
-    left: 25%;
-    width: 50%;
-    aspect-ratio: 1;
-  }
-
-  .nextProject {
-    display: grid;
-  }
-}
-
-/* Tablet and phone layouts use document flow so the circular cards never overlap. */
-@media (max-width: 800px) {
-  .section {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-      "title title"
-      "card artwork"
-      "card description"
-      "swap description";
-    align-items: center;
-    align-content: start;
-    grid-auto-rows: max-content;
-    gap: clamp(2.5rem, 7vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
-    height: auto;
-    min-height: 0;
-    padding: clamp(3.5rem, 8vw, 5.5rem) var(--page-gutter)
-      clamp(5rem, 12vw, 8rem);
-  }
-
-  .title,
-  .artwork,
-  .projectCard,
-  .projectDescription,
-  .projectSwapTrigger {
-    position: relative;
-    inset: auto;
-    margin: 0;
-    translate: none;
-    transform: none;
-  }
-
-  .title {
-    grid-area: title;
-    justify-self: start;
-    font-size: clamp(3.4rem, 8vw, 5.8rem);
-  }
-
-  .artwork {
-    grid-area: artwork;
-    width: min(100%, 15rem);
-    justify-self: end;
-  }
-
-  .projectCard {
-    grid-area: card;
-    width: min(100%, 26rem);
-    justify-self: start;
-  }
-
-  .projectDescription {
-    grid-area: description;
-    width: min(100%, 23rem);
-    justify-self: end;
-    pointer-events: auto;
-  }
-
-  .projectSwapTrigger {
-    grid-area: swap;
-    width: min(100%, 22rem);
-    justify-self: start;
-  }
-
-  .wave { pointer-events: none; }
-  .nextProject { display: none; }
-}
-
-@media (max-width: 520px) {
   .section {
     --circle-offset-y: 0px;
 
@@ -742,46 +359,97 @@
     min-height: 0;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    gap: clamp(1rem, 5vw, 1.5rem);
+    gap: clamp(2.5rem, 8vw, 4.5rem);
     height: auto;
-    padding: clamp(1rem, 5vw, 1.5rem) var(--page-gutter)
-      clamp(4.5rem, 15vw, 6.5rem);
+    padding: clamp(3rem, 8vw, 5rem) var(--page-gutter)
+      clamp(5rem, 12vw, 8rem);
   }
 
   .title {
     position: relative;
-    top: auto;
-    left: auto;
+    inset: auto;
     align-self: flex-start;
-    width: auto;
     margin: 0;
-    font-size: clamp(2.25rem, 10vw, 3.45rem);
-    transform: none;
+    font-size: clamp(2.5rem, 8vw, 5rem);
   }
 
-  .artwork { display: none; }
+  .artwork {
+    position: absolute;
+    top: clamp(7rem, 18vw, 10rem);
+    right: var(--page-gutter);
+    width: min(20vw, 9rem);
+  }
+
+  .scaledCircle {
+    --card-scale: 1;
+
+    position: relative;
+    display: block;
+    flex: 0 0 auto;
+    aspect-ratio: 1;
+  }
+
+  .scaledCircleInner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: var(--card-design-size);
+    height: var(--card-design-size);
+    transform: scale(var(--card-scale));
+    transform-origin: top left;
+  }
+
+  .flowerCircle { width: min(78vw, 40rem); }
+  .descriptionCircle { width: min(66vw, 35rem); }
+  .hamsterCircle { width: min(72vw, 38rem); }
 
   .projectCard,
   .projectDescription,
   .projectSwapTrigger {
-    position: relative;
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
-    align-self: center;
-    width: min(82vw, 25rem);
+    position: absolute;
+    inset: 0;
+    width: var(--card-design-size);
+    height: var(--card-design-size);
     margin: 0;
-    translate: 0 0 !important;
-    transform: none !important;
+    translate: none;
+    transform: none;
   }
 
-  .projectDescriptionCopy h3 { font-size: clamp(0.92rem, 4vw, 1.15rem); }
-  .projectDescriptionTitle { font-size: clamp(1.15rem, 5vw, 1.55rem); }
-  .projectDescriptionCopy p { font-size: clamp(0.68rem, 3vw, 0.9rem); }
-  .techStack { gap: 0.22rem; margin-top: 0.3rem; }
-  .techBadge { padding: 0.24rem 0.42rem; font-size: clamp(0.52rem, 2.4vw, 0.72rem); }
-  .projectCard h3 { font-size: clamp(1.6rem, 7vw, 2.25rem); }
-  .projectCard02 h3 { font-size: clamp(1rem, 4.5vw, 1.4rem); }
+  .projectCard h3 { font-size: 4rem; }
+
+  .projectDescription {
+    pointer-events: auto;
+  }
+
+  .projectEyebrow { font-size: 1.125rem; }
+  .projectDescriptionTitle { font-size: 3.5rem; }
+  .projectSummary { font-size: 1.125rem; }
+  .techStack { gap: 0.5rem 0.7rem; margin-top: 1rem; }
+  .techBadge { padding: 0.7rem 1.15rem; font-size: 1.4rem; }
+  .moreTech { font-size: 3.25rem; }
+
+  .projectSwapTrigger { padding: 0; }
+  .projectCard02 h3 { font-size: 4rem; }
+
+  .wave { pointer-events: none; }
+  .nextProject,
+  .mobilePreview { display: none; }
+}
+
+@media (max-width: 600px) {
+  .section {
+    gap: clamp(2rem, 9vw, 3.5rem);
+    overflow: hidden;
+    padding-inline: var(--page-gutter);
+  }
+
+  .title { font-size: clamp(2.25rem, 10vw, 3.45rem); }
+  .artwork { display: none; }
+
+  .flowerCircle { width: min(86vw, 25rem); }
+  .descriptionCircle { width: min(72vw, 21rem); }
+  .hamsterCircle { width: min(80vw, 23rem); }
+
+  .wave { display: none; }
 }

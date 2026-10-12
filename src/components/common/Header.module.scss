@@ -25,7 +25,9 @@
 
 .inner {
   display: flex;
+  width: 100%;
   padding: 0 11rem;
+  box-sizing: border-box;
   min-height: var(--header-height);
   align-items: center;
   justify-content: space-between;
@@ -37,6 +39,7 @@
 .brand {
   position: relative;
   z-index: 22;
+  flex: 0 0 auto;
   color: var(--color-blue);
   font-family: var(--font-oleo-script), cursive;
   font-size: 1.75rem;
@@ -50,12 +53,25 @@
 
 .nav {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   gap: clamp(16px, 3vw, 36px);
   color: var(--color-ink);
   font-family: var(--font-oleo-script), cursive;
   font-size: 1.5rem;
+  white-space: nowrap;
    color: #FCF6EB;
+}
+
+@media (max-width: 1200px) {
+  .inner {
+    padding-inline: clamp(2rem, 7vw, 5rem);
+    gap: clamp(18px, 3vw, 32px);
+  }
+
+  .nav {
+    gap: clamp(16px, 2.4vw, 28px);
+  }
 }
 
 .nav a {
@@ -73,7 +89,7 @@
 @media (max-width: 768px) {
   .inner {
     gap: 18px;
-    padding: 0 5rem;
+    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
   }
 
   .brand {
@@ -81,12 +97,12 @@
   }
 
   .nav {
-    gap: 25px;
+    gap: clamp(12px, 3vw, 25px);
     font-size: 1.2rem;
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 600px) {
   .header {
     height: 57px;
     margin-bottom: -57px;
@@ -209,7 +225,7 @@
   }
 }
 
-@media (max-width: 375px) and (prefers-reduced-motion: reduce) {
+@media (max-width: 600px) and (prefers-reduced-motion: reduce) {
   .nav,
   .menuButton span {
     transition-duration: 0.01ms;

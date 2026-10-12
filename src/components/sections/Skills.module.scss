@@ -37,7 +37,7 @@
   top: clamp(10px, -8vw, -50px);
   left:4rem;
   display: grid;
-  width: clamp(440px, 55vw, 850px);
+  width: clamp(440px, 52vw, 800px);
   aspect-ratio: 1375 / 749;
   place-items: center;
 }
@@ -80,7 +80,7 @@
   position: absolute;
   z-index: 1;
   top: 22%;
-  right: clamp(54px, 12vw, 200px);
+  right: clamp(-60px, 12vw, -80px);
   width: clamp(360px, 39vw, 600px);
   height: auto;
   transform: rotate(12deg);
@@ -312,7 +312,7 @@
   .skillList {
     --tube-width: clamp(130px, 42vw, 220px);
 
-    gap: clamp(0.5rem, 3vw, 1rem);
+    gap: clamp(1.5rem, 7vw, 2rem);
   }
 
   .skillScale {
@@ -321,13 +321,14 @@
   }
 
   .skillScale span {
+    top:clamp(11rem, 5vw, 18rem) ;
     right: clamp(0.5rem, 3vw, 0.9rem);
     left: auto;
     font-size: clamp(2rem, 10vw, 3.25rem);
   }
 
   .palette {
-    width: min(70vw, 340px);
+    width: min(40vw, 200px);
   }
 }
 

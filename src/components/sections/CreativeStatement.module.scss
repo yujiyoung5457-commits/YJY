@@ -368,7 +368,7 @@
   text-align: center;
   text-transform: uppercase;
   // border: 1px solid red;
-  margin-top: -2.5rem;
+  // margin-top: -5rem;
 }
 }
 
@@ -427,9 +427,13 @@
   }
 
   .mainTitle {
-    top: 45%;
-    width: 78vw;
+    top: 42%;
+    width: 72vw;
     transform: translate(-50%, -50%);
+  }
+  .title{
+    // border: 1px solid red;
+    transform: translateY(-2rem);
   }
 
   .anton {

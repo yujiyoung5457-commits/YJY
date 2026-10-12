@@ -32,7 +32,7 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    const mobileQuery = window.matchMedia("(max-width: 375px)");
+    const mobileQuery = window.matchMedia("(max-width: 600px)");
     const handleBreakpointChange = (event: MediaQueryListEvent) => {
       if (!event.matches) setMenuOpen(false);
     };

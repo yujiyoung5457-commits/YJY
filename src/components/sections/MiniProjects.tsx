@@ -32,7 +32,9 @@ export function MiniProjects() {
 
       if (!context) return;
 
-      const shapeWidth = width * (width <= 760 ? 0.76 : 0.6);
+      // 모바일에서는 이전 섹션의 노란 배경이 화면 전체 폭에서
+      // 자연스럽게 파란 배경으로 흘러내리도록 시작 폭을 맞춥니다.
+      const shapeWidth = width * (width <= 760 ? 1 : 0.6);
       const x = (ratio: number) => shapeWidth * ratio;
       const y = (ratio: number) => height * ratio;
 
@@ -147,7 +149,7 @@ export function MiniProjects() {
           </div>
           <div className={styles.windowBody}>
             <div>
-              <h3>[주요 업무]</h3>
+              <h3>[KEY FEATURES]</h3>
               {selectedProject.tasks.length > 0 ? (
                 selectedProject.tasks.map((task) => <p key={task}>{task}</p>)
               ) : (
@@ -156,7 +158,7 @@ export function MiniProjects() {
             </div>
 
             <div>
-              <h3>[활용 기술]</h3>
+              <h3>[TECH STACK]</h3>
               {selectedProject.technologies.length > 0 ? (
                 <p className={styles.technologyList}>
                   {selectedProject.technologies.join(" · ")}

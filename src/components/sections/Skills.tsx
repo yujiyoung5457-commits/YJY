@@ -25,7 +25,7 @@ const skillSlides = [
     {
       name: "TypeScript",
       image: "/pt_img/ts.webp",
-      paint: { color: "#33beff", length: 530, thickness: 36, wave: 20 },
+      paint: { color: "#33beff", length: 520, thickness: 36, wave: 20 },
     },
     {
       name: "HTML5",
@@ -40,7 +40,7 @@ const skillSlides = [
     {
       name: "JavaScript",
       image: "/pt_img/colorjs.webp",
-      paint: { color: "#ffeb3b", length: 700, thickness: 40, wave: 28 },
+      paint: { color: "#ffeb3b", length: 500, thickness: 40, wave: 28 },
     },
   ],
   [
@@ -52,12 +52,12 @@ const skillSlides = [
     {
       name: "InDesign",
       image: "/pt_img/indesign.webp",
-      paint: { color: "#ff0055", length: 810, thickness: 36, wave: 20 },
+      paint: { color: "#ff0055", length: 600, thickness: 36, wave: 20 },
     },
     {
       name: "Figma",
       image: "/pt_img/figma.webp",
-      paint: { color: "#b340ff", length: 800, thickness: 40, wave: 26 },
+      paint: { color: "#b340ff", length: 710, thickness: 40, wave: 26 },
     },
     {
       name: "Premiere",
@@ -67,14 +67,14 @@ const skillSlides = [
     {
       name: "React Native",
       image: "/pt_img/rn.webp",
-      paint: { color: "#ccc", length: 750, thickness: 40, wave: 28 },
+      paint: { color: "#ccc", length: 400, thickness: 40, wave: 28 },
     },
   ],
   [
     {
       name: "Photoshop",
       image: "/pt_img/photoshop.webp",
-      paint: { color: "#9bb3f5", length: 860, thickness: 38, wave: 24 },
+      paint: { color: "#9bb3f5", length: 600, thickness: 38, wave: 24 },
     },
     {
       name: "Codex",
@@ -84,12 +84,12 @@ const skillSlides = [
     {
       name: "GPT",
       image: "/pt_img/gpt.webp",
-      paint: { color: "#b9b9b9", length: 850, thickness: 40, wave: 26 },
+      paint: { color: "#b9b9b9", length: 650, thickness: 40, wave: 26 },
     },
     {
       name: "DaVinci Resolve",
       image: "/pt_img/davinch.webp",
-      paint: { color: "#64e675", length: 760, thickness: 36, wave: 22 },
+      paint: { color: "#64e675", length: 700, thickness: 36, wave: 22 },
     },
   ],
 ] as const;
@@ -199,17 +199,27 @@ export function Skills() {
         const tubeBounds = tube.getBoundingClientRect();
         const paint = skill.paint;
         const responsiveScale = Math.min(1, tubeBounds.width / 400);
+        const isMobilePaint = window.innerWidth <= 600;
         const startX = tubeBounds.right - rowBounds.left - 10 * responsiveScale;
-        const startY = tubeBounds.top - rowBounds.top + tubeBounds.height / 2+16;
+        const startY =
+          tubeBounds.top - rowBounds.top + tubeBounds.height / 2 + 16 * responsiveScale;
         // Keep a clear visual gap before the 100-point guide, even when a
         // skill's configured paint length is longer than the guide.
         const scaleBounds = skillScale?.getBoundingClientRect();
-        const paintToScaleGap = Math.max(150, Math.min(200, width * 0.07));
+        const paintToScaleGap =
+          isMobilePaint
+            ? Math.max(20, width * 0.05)
+            : Math.max(150, Math.min(200, width * 0.07));
         const paintEnd = scaleBounds
           ? scaleBounds.left - rowBounds.left - paintToScaleGap
           : width - 12;
         const availableLength = Math.max(0, paintEnd - startX);
-        const length = Math.min(paint.length *1.09 * responsiveScale, availableLength);
+        const longestPaintLength = Math.max(
+          ...activeSkills.map((activeSkill) => activeSkill.paint.length),
+        );
+        const length = isMobilePaint
+          ? availableLength * (paint.length / longestPaintLength)
+          : Math.min(paint.length * 1.09 * responsiveScale, availableLength);
         const endX = startX + length;
         const wave = paint.wave * responsiveScale;
 

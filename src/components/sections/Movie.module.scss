@@ -233,22 +233,39 @@
   text-decoration: none;
 }
 
+@media (max-width: 1439px) {
+  .intro {
+    height: clamp(260px, 34vw, 490px);
+    min-height: 0;
+  }
+
+  .nextSlide {
+    left: 50%;
+  }
+
+  .movieFrame {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+}
+
 @media (max-width: 700px) {
   .section {
-    --movie-section-height: max(115svh, 820px);
+    --movie-section-height: 0px;
     --weather-section-height: 0px;
+
+    min-height: 0;
   }
 
   .intro {
-    min-height: 285px;
-
+    height: clamp(200px, 55vw, 330px);
   }
 
   .squiggle {
     top: 0;
     height: 78px;
     stroke-width: 10;
-
   }
 
   .logo {
@@ -259,87 +276,66 @@
 
   .nextSlide {
     bottom: 20%;
-    left: 55%;
-  }
-
-  .movieFrame {
-    min-height: 280px;
+    left: 50%;
   }
 
   .contactDisc {
-    bottom: -31vw;
-    width: 110vw;
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: 50%;
+    width: 118vw;
+    margin-top: clamp(1.5rem, 7vw, 3rem);
+    margin-bottom: -66vw;
   }
 
   .contactText {
-    top: 14%;
-    font-size: clamp(2rem, 5vw, 2.2rem);
-  }
-}
-
-@media (max-width: 700px) {
-  .section {
-    --movie-section-height: 1200px;
-  }
-
-  .intro {
-    height: 330px;
-  }
-
-  .movieFrame {
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    aspect-ratio: 16 / 9;
-  }
-
-  .contactDisc {
-    bottom: -90vw;
-    width: 134vw;
-    border: 1px solid red;
+    top: 12%;
+    gap: clamp(0.45rem, 2.5vw, 0.8rem);
+    font-size: clamp(0.95rem, 4vw, 1.25rem);
   }
 }
 
 @media (max-width: 430px) {
   .section {
-    --movie-section-height: 1080px;
+    --movie-section-height: 0px;
   }
 
   .intro {
-    height: 300px;
+    height: clamp(190px, 55vw, 235px);
   }
 
   .logo {
     bottom: 8%;
-    width: 68vw;
+    width: 42vw;
   }
 
   .simuCharacter {
-    --character-right: 2%;
+    --character-right: 4%;
     --character-bottom: 4%;
-    --character-width: 29vw;
+    --character-width: 20vw;
   }
 
   .ulsdCharacter {
-    --character-right: 2%;
+    --character-right: 4%;
     --character-bottom: 4%;
-    --character-width: 29vw;
+    --character-width: 20vw;
   }
 
   .birthdayCharacter {
-    --character-right: 2%;
+    --character-right: 4%;
     --character-bottom: 4%;
-    --character-width: 29vw;
+    --character-width: 20vw;
   }
 
   .nextSlide {
-    bottom: 22%;
-    left: 55%;
+    bottom: 20%;
+    left: 50%;
   }
 
   .contactDisc {
-    bottom: -58vw;
-    width: 145vw;
+    width: 118vw;
+    margin-bottom: -66vw;
   }
 }
 
@@ -356,13 +352,11 @@
   }
 
   .intro {
-    height: 500px;
+    height: clamp(260px, 38vw, 292px);
     min-height: 0;
   }
 
   .movieFrame {
-    height: auto;
-    min-height: 0;
     aspect-ratio: 16 / 9;
   }
 
@@ -381,22 +375,6 @@
 
   .contactText {
     top: 15%;
-    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-size: clamp(1.8rem, 5vw, 5rem);
   }
-
-  .contactText {
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  display: flex;
-  width: 84%;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(12px, 1.3vw, 22px);
-  color: var(--color-blue);
-  font-family: var(--font-anton), Impact, sans-serif;
-  font-size: clamp(1.8rem, 5vw, 5rem);
-  text-align: center;
-  transform: translateX(-50%)translateY(25%);
-}
 }

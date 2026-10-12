@@ -292,6 +292,7 @@
 
 .technologyList {
   font-weight: 700;
+  color: var(--color-red);
 }
 
 .emptyText {
@@ -338,7 +339,9 @@
 
 @media (max-width: 760px) {
   .section {
-    padding: clamp(6rem, 24vw, 8rem) clamp(1rem, 5vw, 2rem)
+    // 제목을 노란 물결 아래의 파란 영역에서 시작시킵니다.
+    padding: calc(clamp(10rem, 38vw, 14rem) + clamp(1.5rem, 5vw, 2.5rem))
+      clamp(1rem, 5vw, 2rem)
       clamp(4rem, 16vw, 7rem);
   }
 

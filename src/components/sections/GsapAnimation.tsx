@@ -432,7 +432,7 @@ export function GsapAnimation() {
               src={`/GsapAnimation/${layer}.svg`}
               alt=""
               fill
-              sizes="(max-width: 700px) 1px, 31vw"
+              sizes="(max-width: 700px) 56vw, 31vw"
             />
           </div>
         ))}
@@ -523,7 +523,13 @@ export function GsapAnimation() {
             aria-label={`Drag ${alt.toLowerCase()} into the bowl`}
             key={flavor}
           >
-            <Image src={src} alt={alt} fill sizes="15vw" draggable={false} />
+            <Image
+              src={src}
+              alt={alt}
+              fill
+              sizes="(max-width: 700px) 24vw, 15vw"
+              draggable={false}
+            />
           </button>
         ))}
       </div>
@@ -533,7 +539,7 @@ export function GsapAnimation() {
           src="/GsapAnimation/real_hamster.png"
           alt="A hamster beside the mixer"
           fill
-          sizes="(max-width: 700px) 1px, 15vw"
+          sizes="(max-width: 700px) 28vw, 15vw"
         />
       </div>
 

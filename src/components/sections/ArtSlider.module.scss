@@ -115,54 +115,115 @@
   visibility: hidden;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1439px) {
+  .stickyStage {
+    align-items: center;
+    justify-content: center;
+    min-height: max(calc(100svh - var(--header-height)), 820px);
+    padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .heading {
+    width: min(92vw, 780px);
+    gap: clamp(18px, 3vw, 42px);
+  }
+
+  .heading > span {
+    font-size: clamp(8rem, 18vw, 15rem);
+  }
+
+  .heading h2 {
+    font-size: clamp(2.6rem, 6vw, 5.5rem);
+  }
+
+  .gallery {
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: clamp(380px, 44vw, 540px);
+  }
+
+  .cards {
+    top: 44%;
+    width: min(46vw, 560px);
+  }
+
+  .actions {
+    bottom: 18px;
+  }
+}
+
+@media (max-width: 768px) {
   .stickyStage {
     min-height: max(calc(100svh - var(--header-height)), 760px);
     padding: 3rem 0 1.5rem;
   }
 
   .heading {
-    width: min(92vw, 430px);
+    width: min(92vw, 560px);
+    gap: clamp(14px, 3vw, 24px);
+  }
+
+  .heading > span {
+    font-size: clamp(6rem, 20vw, 10rem);
+  }
+
+  .heading h2 {
+    font-size: clamp(2rem, 8vw, 4rem);
+  }
+
+  .gallery {
+    min-height: clamp(360px, 62vw, 450px);
+  }
+
+  .cards {
+    top: 43%;
+    width: min(68vw, 460px);
+  }
+}
+
+@media (max-width: 700px) {
+  .stickyStage {
+    min-height: max(calc(100svh - var(--header-height)), 680px);
+    padding-top: 2.5rem;
+  }
+
+  .heading {
+    width: min(94vw, 430px);
     gap: 12px;
   }
 
   .heading > span {
-    font-size: clamp(4rem, 18vw, 6rem);
+    font-size: clamp(4.5rem, 20vw, 7rem);
   }
 
   .heading h2 {
-    font-size: clamp(1.6rem, 7vw, 2.3rem);
+    font-size: clamp(1.7rem, 7vw, 2.5rem);
+  }
+
+  .gallery {
+    min-height: clamp(350px, 105vw, 430px);
   }
 
   .cards {
-    top: 46%;
-    width: min(74vw, 360px);
+    top: 42%;
+    width: min(88vw, 400px);
   }
 
   .actions {
-    bottom: 24px;
+    bottom: 20px;
   }
 }
-@media (max-width: 768px) {
-  .heading h2 {
-    font-size: clamp(1.6rem, 9vw, 5rem);
-  }
-  .cards {
-  position: absolute;
-  top: 48%;
-  left: 50%;
-  width: min(50vw, 700px);
-  aspect-ratio: 3 / 2;
-  margin: 0;
-  padding: 0;
-  cursor: grab;
-  touch-action: pan-y;
-  transform: translate(-50%, -50%);
-}
-}
+
 @media (max-width: 375px) {
-  .section,
   .stickyStage {
-    background: var(--color-blue);
+    min-height: max(calc(100svh - var(--header-height)), 640px);
+  }
+
+  .heading {
+    width: 96vw;
+  }
+
+  .cards {
+    width: 90vw;
   }
 }

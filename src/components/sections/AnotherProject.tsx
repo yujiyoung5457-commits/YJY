@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import styles from "./AnotherProject.module.scss";
 
 const VISIBLE_TECH_COUNT = 5;
@@ -46,6 +46,42 @@ const projectDetails = {
 
 type ProjectKey = keyof typeof projectDetails;
 
+type ScaledCircleProps = {
+  children: ReactNode;
+  className: string;
+  designSize: number;
+};
+
+function ScaledCircle({ children, className, designSize }: ScaledCircleProps) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const updateScale = () => {
+      const scale = Math.min(1, wrapper.getBoundingClientRect().width / designSize);
+      wrapper.style.setProperty("--card-scale", String(scale));
+    };
+
+    const resizeObserver = new ResizeObserver(updateScale);
+    resizeObserver.observe(wrapper);
+    updateScale();
+
+    return () => resizeObserver.disconnect();
+  }, [designSize]);
+
+  return (
+    <div
+      ref={wrapperRef}
+      className={`${styles.scaledCircle} ${className}`}
+      style={{ "--card-design-size": `${designSize}px` } as CSSProperties}
+    >
+      <div className={styles.scaledCircleInner}>{children}</div>
+    </div>
+  );
+}
+
 export function AnotherProject() {
   const [selectedProject, setSelectedProject] = useState<ProjectKey>("flower");
   const selectedDetails = projectDetails[selectedProject];
@@ -80,6 +116,7 @@ export function AnotherProject() {
         height={204}
       />
 
+      <ScaledCircle className={styles.flowerCircle} designSize={1280}>
       <button
         type="button"
         className={styles.projectCard}
@@ -109,7 +146,9 @@ export function AnotherProject() {
           Mall
         </h3>
       </button>
+      </ScaledCircle>
 
+      <ScaledCircle className={styles.descriptionCircle} designSize={560}>
       <article className={styles.projectDescription} aria-live="polite">
         <Image
           className={styles.projectDescriptionBackground}
@@ -139,7 +178,9 @@ export function AnotherProject() {
           </div>
         </div>
       </article>
+      </ScaledCircle>
 
+      <ScaledCircle className={styles.hamsterCircle} designSize={680}>
       <button
         type="button"
         className={styles.projectSwapTrigger}
@@ -171,6 +212,7 @@ export function AnotherProject() {
           </h3>
         </div>
       </button>
+      </ScaledCircle>
     </section>
   );
 }

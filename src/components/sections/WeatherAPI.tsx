@@ -316,14 +316,27 @@ export function WeatherAPI() {
               src={src}
               alt=""
               fill
-              sizes="14vw"
+              sizes="(max-width: 430px) 35vw, (max-width: 700px) 22vw, 14vw"
             />
           </div>
         ))}
         </div>
 
         <div className={styles.result} aria-live="polite">
-        <Image className={styles.resultShape} src="/setumei.svg" alt="" fill sizes="78vw" />
+        <Image
+          className={`${styles.resultShape} ${styles.resultShapeDesktop}`}
+          src="/setumei.svg"
+          alt=""
+          fill
+          sizes="(max-width: 1439px) 90vw, 78vw"
+        />
+        <Image
+          className={`${styles.resultShape} ${styles.resultShapeMobile}`}
+          src="/taroRound2.svg"
+          alt=""
+          fill
+          sizes="88vw"
+        />
 
         <div className={styles.resultContent}>
           {error ? (

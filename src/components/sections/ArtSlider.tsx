@@ -208,7 +208,7 @@ export function ArtSlider() {
                   src={src}
                   alt={`작품 ${index + 1}`}
                   fill
-                  sizes="(max-width: 700px) 74vw, 35vw"
+                  sizes="(max-width: 375px) 90vw, (max-width: 700px) 88vw, (max-width: 768px) 68vw, (max-width: 1439px) 46vw, 35vw"
                 />
               </li>
             ))}

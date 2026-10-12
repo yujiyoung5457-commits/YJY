@@ -1,8 +1,56 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import styles from "./ArtGallery.module.scss";
+
+type ScaledObjectProps = {
+  children: ReactNode;
+  className: string;
+  designWidth: number;
+  designHeight: number;
+};
+
+function ScaledObject({
+  children,
+  className,
+  designWidth,
+  designHeight,
+}: ScaledObjectProps) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const updateScale = () => {
+      const scale = Math.min(1, wrapper.getBoundingClientRect().width / designWidth);
+      wrapper.style.setProperty("--object-scale", String(scale));
+    };
+
+    const resizeObserver = new ResizeObserver(updateScale);
+    resizeObserver.observe(wrapper);
+    updateScale();
+
+    return () => resizeObserver.disconnect();
+  }, [designWidth]);
+
+  return (
+    <div
+      ref={wrapperRef}
+      className={`${styles.scaledObject} ${className}`}
+      style={
+        {
+          "--object-design-width": `${designWidth}px`,
+          "--object-design-height": `${designHeight}px`,
+          aspectRatio: `${designWidth} / ${designHeight}`,
+        } as CSSProperties
+      }
+    >
+      <div className={styles.scaledObjectInner}>{children}</div>
+    </div>
+  );
+}
 
 type ProjectButtonsProps = {
   className: string;
@@ -179,18 +227,26 @@ export function ArtGallery() {
 
       <div className={`${styles.galleryGroup} ${styles.firstProject}`}>
       {/* 클리핑 마스크 형태 1: 텍스트가 들어갈 아이보리색 영역 */}
+      <ScaledObject className={styles.shape1Object} designWidth={605} designHeight={1008}>
       <div className={`${styles.textureShape} ${styles.shape1}`}>
-        <div className={styles.projectDescription}>
-          <p>
-            [주요 업무]<br />React 기반 온라인 출판 서비스 관리자 대시보드를 제작했습니다.
+        <div className={`${styles.projectDescription} ${styles.bookDescription}`}>
+          <p className={styles.bookEyebrow}>Selected Project / 03</p>
+          <h3 className={styles.bookTitle}>Book.JS</h3>
+          <p className={styles.bookSubtitle}>Library Admin Dashboard</p>
+          <p className={styles.bookLead}>
+            도서와 사용자를 한눈에 관리하는
             <br />
-            방문자·회원·도서·게시판·설정 등 6개 관리 화면을 구성하고 Chart.js를
-            활용한 데이터 시각화와 검색·필터·정렬·모달·슬라이드 기능을
-            구현했습니다.
-            <br />
-            GSAP 인터랙션과 반응형 UI도 적용했습니다. <br />[활용 기술]
+            온라인 출판 서비스 관리자 대시보드
           </p>
-          <div className={styles.projectTools} aria-label="사용 기술">
+          <span className={styles.bookDivider} aria-hidden="true" />
+          <p className={styles.bookSummary}>
+            React 기반의 6개 관리 화면을 구현하고 데이터 시각화와
+            검색·필터·정렬 기능을 적용했습니다.
+          </p>
+          <div
+            className={`${styles.projectTools} ${styles.bookTools}`}
+            aria-label="사용 기술"
+          >
             <span className={styles.projectTool}>React</span>
             <span className={styles.projectTool}>React Router</span>
             <span className={styles.projectTool}>Chart.js</span>
@@ -200,9 +256,11 @@ export function ArtGallery() {
           </div>
         </div>
       </div>
+      </ScaledObject>
 
       {/* 액자 + 액자 안쪽 검정 박스 1 */}
       <div className={styles.frame1}>
+        <ScaledObject className={styles.frame1Object} designWidth={700} designHeight={933}>
         <div className={`${styles.frame} ${styles.frame1Frame}`}>
           <div
             className={`${styles.frameWindow} ${styles.frame1Window}`}
@@ -217,6 +275,7 @@ export function ArtGallery() {
             sizes="28vw"
           />
         </div>
+        </ScaledObject>
         <ProjectButtons
           className={styles.frame1Buttons}
           liveUrl="https://dash-125133337.vercel.app/"
@@ -228,6 +287,7 @@ export function ArtGallery() {
       {/* 액자 + 액자 안쪽 검정 박스 2 */}
       <div className={`${styles.galleryGroup} ${styles.mergedProject}`}>
       <div className={styles.frame2}>
+        <ScaledObject className={styles.frame2Object} designWidth={778} designHeight={584}>
         <div className={`${styles.frame} ${styles.frame2Frame}`}>
           <div
             className={`${styles.frameWindow} ${styles.frame2Window}`}
@@ -242,6 +302,7 @@ export function ArtGallery() {
             sizes="65rem"
           />
         </div>
+        </ScaledObject>
         <ProjectButtons
           className={styles.frame2Buttons}
           liveUrl="https://memory-podo-u6zd.vercel.app/"
@@ -250,20 +311,27 @@ export function ArtGallery() {
       </div>
 
       {/* 클리핑 마스크 형태 2: 텍스트가 들어갈 아이보리색 영역 */}
+      <ScaledObject className={styles.shape2Object} designWidth={864} designHeight={490}>
       <div className={`${styles.textureShape} ${styles.shape2}`}>
-        <div className={`${styles.projectDescription} ${styles.mergedDescription}`}>
-          <h3>[주요 업무]</h3>
-          <p>
-            React와 Firebase를 활용해 회원 인증과 게시글·방명록 CRUD 기능을 갖춘
-            캐릭터형 커뮤니티를 구현했습니다. Zustand로 사용자 및 게시글 상태를
-            관리하고, 사용자별 수정·삭제 권한과 실시간 데이터 처리를 적용했습니다.
-            검색·페이지네이션·드래그 갤러리·비디오 슬라이드와 SVG·CSS 애니메이션,
-            마우스 추적 인터랙션 등 다양한 UI 기능을 구현했으며, 반응형 화면과
-            캐릭터·시각 에셋까지 직접 제작했습니다.
+        <div
+          className={`${styles.projectDescription} ${styles.mergedDescription} ${styles.communityDescription}`}
+        >
+          <p className={styles.communityEyebrow}>Selected Project / 03</p>
+          <h3 className={styles.communityTitle}>Memory PODO &amp; Cloud CRUD</h3>
+          <p className={styles.communitySubtitle}>Character Community</p>
+          <p className={styles.communityLead}>
+            캐릭터와 인터랙션을 결합한 참여형 커뮤니티 웹 서비스
           </p>
-          <h3>[활용 기술]</h3>
+          <span className={styles.communityDivider} aria-hidden="true" />
+          <p className={styles.communitySummary}>
+            React·Firebase 기반 커뮤니티에 회원 인증, CRUD 및 사용자별 권한 관리를
+            구현했습니다.
+            <br />
+            Zustand 상태 관리와 검색·페이지네이션·드래그 갤러리 등 인터랙티브 UI를
+            적용했습니다.
+          </p>
           <div
-            className={`${styles.projectTools} ${styles.mergedTools}`}
+            className={`${styles.projectTools} ${styles.mergedTools} ${styles.communityTools}`}
             aria-label="활용 기술 목록"
           >
             {mergedProjectTools.map((technology) => (
@@ -274,9 +342,11 @@ export function ArtGallery() {
           </div>
         </div>
       </div>
+      </ScaledObject>
 
       {/* 액자 + 액자 안쪽 검정 박스 3 */}
       <div className={styles.frame3}>
+        <ScaledObject className={styles.frame3Object} designWidth={446} designHeight={595}>
         <div className={`${styles.frame} ${styles.frame3Frame}`}>
           <div
             className={`${styles.frameWindow} ${styles.frame3Window}`}
@@ -291,6 +361,7 @@ export function ArtGallery() {
             sizes="28vw"
           />
         </div>
+        </ScaledObject>
         <ProjectButtons
           className={styles.frame3Buttons}
           liveUrl="https://gb-4lvk.vercel.app/"
@@ -302,33 +373,42 @@ export function ArtGallery() {
 
       <div className={`${styles.galleryGroup} ${styles.lastProject}`}>
       {/* 클리핑 마스크 형태 4: 텍스트가 들어갈 아이보리색 영역 */}
+      <ScaledObject className={styles.shape4Object} designWidth={792} designHeight={688}>
       <div className={`${styles.textureShape} ${styles.shape4}`}>
         <div
-          className={`${styles.projectDescription} ${styles.mergedDescription} ${styles.finalDescription}`}
+          className={`${styles.projectDescription} ${styles.mergedDescription} ${styles.finalDescription} ${styles.piyoDescription}`}
         >
-          <h3>[주요 업무]</h3>
-          <p>
-            HTML·CSS·JavaScript로 반응형 캐릭터 브랜드 쇼핑몰을 구현했습니다. JSON
-            상품 데이터를 비동기로 불러와 상품 목록을 동적으로 생성하고, 드래그형
-            슬라이더·스크롤 애니메이션·모바일 메뉴·Kakao Maps 기반 매장 안내 기능을
-            제작했습니다.
+          <p className={styles.piyoEyebrow}>Selected Project / 05</p>
+          <h3 className={styles.piyoTitle}>Piyo-Plush</h3>
+          <p className={styles.piyoSubtitle}>Character Shopping Mall</p>
+          <span className={styles.piyoDivider} aria-hidden="true" />
+          <p className={styles.piyoSummary}>
+            JSON 기반 동적 상품 목록과 드래그 슬라이더·스크롤 인터랙션을
+            구현했습니다.
+            <br />
+            반응형 UI와 Kakao Maps API를 활용한 매장 안내 기능을 적용했습니다.
           </p>
-          <h3>[활용 기술]</h3>
-          <div className={`${styles.projectTools} ${styles.finalProjectTools}`}>
+          <div
+            className={`${styles.projectTools} ${styles.finalProjectTools} ${styles.piyoTools}`}
+            aria-label="활용 기술 목록"
+          >
             <span className={styles.projectTool}>HTML</span>
             <span className={styles.projectTool}>CSS</span>
             <span className={styles.projectTool}>JavaScript</span>
             <span className={styles.projectTool}>Fetch API</span>
             <span className={styles.projectTool}>JSON</span>
+            <span className={styles.piyoToolBreak} aria-hidden="true" />
             <span className={styles.projectTool}>IntersectionObserver</span>
             <span className={styles.projectTool}>Pointer Events</span>
             <span className={styles.projectTool}>Kakao Maps API</span>
           </div>
         </div>
       </div>
+      </ScaledObject>
 
       {/* 액자 + 액자 안쪽 검정 박스 4 */}
       <div className={styles.frame4}>
+        <ScaledObject className={styles.frame4Object} designWidth={520} designHeight={693}>
         <div className={`${styles.frame} ${styles.frame4Frame}`}>
           <div
             className={`${styles.frameWindow} ${styles.frame4Window}`}
@@ -342,6 +422,7 @@ export function ArtGallery() {
             sizes="28vw"
           />
         </div>
+        </ScaledObject>
         <ProjectButtons
           className={styles.frame4Buttons}
           liveUrl="https://yujiyoung5457-commits.github.io/piyo/"
