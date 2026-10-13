@@ -3,6 +3,7 @@ import { FloatingNav } from "@/components/common/FloatingNav";
 import { Header } from "@/components/common/Header";
 import { AboutMe } from "@/components/sections/AboutMe";
 import { AboutTo } from "@/components/sections/AboutTo";
+import { AIStudyProject } from "@/components/sections/AIStudyProject";
 import { AnotherProject } from "@/components/sections/AnotherProject";
 import { ArtGallery } from "@/components/sections/ArtGallery";
 import { ArtGalleryHeading } from "@/components/sections/ArtGalleryHeading";
@@ -30,6 +31,7 @@ export default function Home() {
         <FeaturedProjects />
         <TeamProjects />
         <Skills />
+        <AIStudyProject />
         <DesignCode />
         <div className={styles.projectFlow}>
           <svg

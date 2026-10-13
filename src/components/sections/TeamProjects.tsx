@@ -8,14 +8,17 @@ const projects = [
   {
     name: "For-log",
     liveUrl: "https://tae0419.github.io/forlog2/Home/index.html",
+    githubUrl: "https://github.com/Teamforlog",
   },
   {
     name: "Midnight Chord",
     liveUrl: "https://tae0419.github.io/midnightChord/pages/opening/",
+    githubUrl: "https://github.com/TAE0419/midnightChord",
   },
   {
     name: "L:CODE",
     liveUrl: "https://lcode-2.vercel.app/",
+    githubUrl: "https://github.com/turtlesoupteam",
   },
 ];
 
@@ -124,9 +127,20 @@ export function TeamProjects() {
               >
                 Live Site
               </a>
-              <button className={styles.githubButton} type="button">
-                Github
-              </button>
+              {project.githubUrl ? (
+                <a
+                  className={styles.githubButton}
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Github
+                </a>
+              ) : (
+                <button className={styles.githubButton} type="button">
+                  Github
+                </button>
+              )}
             </div>
           </article>
         ))}

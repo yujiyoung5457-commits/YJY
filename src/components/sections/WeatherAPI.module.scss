@@ -118,6 +118,18 @@
   object-fit: contain;
 }
 
+.windowShutter {
+  will-change: transform;
+}
+
+.windowShutterLeft {
+  transform-origin: right center;
+}
+
+.windowShutterRight {
+  transform-origin: left center;
+}
+
 .windowWeather {
   z-index: 1;
   padding: 4%;

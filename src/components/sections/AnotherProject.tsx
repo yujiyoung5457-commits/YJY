@@ -117,12 +117,13 @@ export function AnotherProject() {
       />
 
       <ScaledCircle className={styles.flowerCircle} designSize={1280}>
-      <button
-        type="button"
+      <a
         className={styles.projectCard}
+        href="https://flower-dance-sigma.vercel.app/"
+        target="_blank"
+        rel="noreferrer"
         onClick={() => setSelectedProject("flower")}
-        aria-label="Flower Dance 쇼핑몰 프로젝트 설명 보기"
-        aria-pressed={selectedProject === "flower"}
+        aria-label="Flower Dance 사이트 새 탭에서 열기"
       >
         <Image
           className={styles.projectCardBackground}
@@ -145,7 +146,7 @@ export function AnotherProject() {
           <br />
           Mall
         </h3>
-      </button>
+      </a>
       </ScaledCircle>
 
       <ScaledCircle className={styles.descriptionCircle} designSize={560}>
@@ -181,12 +182,13 @@ export function AnotherProject() {
       </ScaledCircle>
 
       <ScaledCircle className={styles.hamsterCircle} designSize={680}>
-      <button
-        type="button"
+      <a
         className={styles.projectSwapTrigger}
+        href="https://hamster-olive-mu.vercel.app/"
+        target="_blank"
+        rel="noreferrer"
         onClick={() => setSelectedProject("hamster")}
-        aria-label="Hamster Care 프로젝트 설명 보기"
-        aria-pressed={selectedProject === "hamster"}
+        aria-label="Hamster Care 사이트 새 탭에서 열기"
       >
         <div className={styles.projectCard02}>
           <div className={`${styles.mobilePreview} ${styles.hamsterPreview}`}>
@@ -211,7 +213,7 @@ export function AnotherProject() {
             Care Game
           </h3>
         </div>
-      </button>
+      </a>
       </ScaledCircle>
     </section>
   );

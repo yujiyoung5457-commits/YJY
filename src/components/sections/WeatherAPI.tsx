@@ -1,5 +1,6 @@
 "use client";
 
+import { gsap } from "gsap";
 import Image from "next/image";
 import {
   type CSSProperties,
@@ -10,6 +11,11 @@ import {
   useState,
 } from "react";
 import taro from "@/data/taro.json";
+import cloverDecoration from "../../../public/clover.png";
+import darumaDecoration from "../../../public/daruma.png";
+import eyesDecoration from "../../../public/eyes.png";
+import fortuneDecoration from "../../../public/fortune.png";
+import martryocikaDecoration from "../../../public/martryocika.png";
 import styles from "./WeatherAPI.module.scss";
 
 type Weather = {
@@ -36,11 +42,11 @@ const WINDOW_IMAGES = [
 ];
 
 const WINDOW_DECORATIONS = [
-  "/martryocika.png",
-  "/fortune.png",
-  "/eyes.png",
-  "/daruma.png",
-  "/clover.png",
+  martryocikaDecoration,
+  fortuneDecoration,
+  eyesDecoration,
+  darumaDecoration,
+  cloverDecoration,
 ] as const;
 
 const VISIBLE_CITY_COUNT = 3;
@@ -67,6 +73,7 @@ function randomTaro() {
 }
 
 export function WeatherAPI() {
+  const windowsRef = useRef<HTMLDivElement>(null);
   const [weather, setWeather] = useState<Weather[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [cityOffset, setCityOffset] = useState(0);
@@ -133,6 +140,42 @@ export function WeatherAPI() {
     }, 0);
 
     return () => window.clearTimeout(chooseDecoration);
+  }, []);
+
+  useEffect(() => {
+    const windows = windowsRef.current;
+    if (!windows) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduceMotion.matches) return;
+
+    const shutters = windows.querySelectorAll<HTMLElement>(
+      `.${styles.windowShutter}`,
+    );
+    const tween = gsap.to(shutters, {
+      scaleX: 0.08,
+      duration: 0.75,
+      ease: "power2.inOut",
+      stagger: 0.06,
+      repeat: -1,
+      repeatDelay: 1.8,
+      yoyo: true,
+      paused: true,
+    });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) tween.play();
+        else tween.pause();
+      },
+      { threshold: 0.15 },
+    );
+
+    observer.observe(windows);
+
+    return () => {
+      observer.disconnect();
+      tween.kill();
+    };
   }, []);
 
   const selectedWeather = weather[selectedIndex];
@@ -288,7 +331,7 @@ export function WeatherAPI() {
         </h2>
         </div>
 
-        <div className={styles.windows} aria-hidden="true">
+        <div ref={windowsRef} className={styles.windows} aria-hidden="true">
         {WINDOW_IMAGES.map((src, index) => (
           <div className={styles.window} key={`${src}-${index}`}>
             {index === 1 && (
@@ -303,7 +346,7 @@ export function WeatherAPI() {
             )}
             {index === 2 && windowDecorationIndex !== null && (
               <Image
-                key={WINDOW_DECORATIONS[windowDecorationIndex]}
+                key={WINDOW_DECORATIONS[windowDecorationIndex].src}
                 className={styles.windowDecoration}
                 src={WINDOW_DECORATIONS[windowDecorationIndex]}
                 alt=""
@@ -312,7 +355,13 @@ export function WeatherAPI() {
               />
             )}
             <Image
-              className={styles.windowFrame}
+              className={`${styles.windowFrame} ${
+                index === 0 || index === WINDOW_IMAGES.length - 1
+                  ? styles.windowShutter
+                  : ""
+              } ${index === 0 ? styles.windowShutterLeft : ""} ${
+                index === WINDOW_IMAGES.length - 1 ? styles.windowShutterRight : ""
+              }`}
               src={src}
               alt=""
               fill
