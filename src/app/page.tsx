@@ -15,6 +15,7 @@ import { Hero } from "@/components/sections/Hero";
 import { GsapAnimation } from "@/components/sections/GsapAnimation";
 import { Movie } from "@/components/sections/Movie";
 import { MiniProjects } from "@/components/sections/MiniProjects";
+import GatchaPOP from "@/components/sections/GatchaPOP";
 import { Skills } from "@/components/sections/Skills";
 import { TeamProjects } from "@/components/sections/TeamProjects";
 import styles from "./page.module.scss";
@@ -54,6 +55,7 @@ export default function Home() {
           <ArtGalleryHeading />
           <ArtGallery />
           <MiniProjects />
+          <GatchaPOP />
         </div>
         <ArtSlider />
         <Movie />

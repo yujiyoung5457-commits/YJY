@@ -18,6 +18,15 @@
   align-items: center;
   gap: clamp(3.5rem, 6vw, 7.5rem);
 }
+.redSQ{
+  position: absolute;
+  width: 50%;
+  right: 30%;
+  // border: 1px solid red;
+}
+.summarySlot {
+  display: contents;
+}
 
 .projectSummary {
   position: relative;
@@ -91,9 +100,9 @@
 .livePreview {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 7.6;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: var(--color-cream);
+  background: var(--color-yellow);
   box-shadow: 0 18px 42px rgb(0 0 0 / 0.2);
 }
 
@@ -152,3 +161,190 @@
     animation: none;
   }
 }
+
+/* 1440px 미만: PC 원본 원형을 고정한 채 부모 Grid와 전체 배율만 변경합니다. */
+@media (max-width: 1439px) {
+  .section {
+    min-height: 0;
+    place-items: initial center;
+    padding: clamp(5rem, 8vw, 7rem) var(--page-gutter);
+  }
+
+  .layout {
+    --summary-design-size: 700px;
+    --summary-size: clamp(360px, 46vw, 660px);
+
+    width: min(92vw, 1180px);
+    grid-template-columns: var(--summary-size) minmax(220px, 1fr);
+    grid-template-areas:
+      "preview preview"
+      "summary technologies";
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 4rem);
+  }
+
+  .summarySlot {
+    position: relative;
+    display: block;
+    width: var(--summary-size);
+    aspect-ratio: 1;
+    grid-area: summary;
+  }
+
+  .projectSummary {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: var(--summary-design-size);
+    height: var(--summary-design-size);
+    transform: scale(calc(var(--summary-size) / var(--summary-design-size)));
+    transform-origin: top left;
+  }
+
+  .summaryCopy {
+    width: 76%;
+  }
+
+  .eyebrow {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  .title {
+    font-size: 53px;
+  }
+
+  .divider {
+    height: 4px;
+    margin: 17px auto;
+  }
+
+  .description {
+    font-size: 19px;
+  }
+
+  .projectMedia {
+    display: contents;
+  }
+
+  .livePreview {
+    width: min(100%, 900px);
+    grid-area: preview;
+    justify-self: center;
+  }
+
+  .technologyList {
+    grid-area: technologies;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(0.65rem, 1.3vw, 1rem);
+  }
+
+  .technologyList li {
+    min-height: 2.75rem;
+    padding: 0.55rem 1.35rem;
+    font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  }
+}
+
+/* 태블릿: 미리보기 아래에서 원형과 기술 배지가 한 덩어리처럼 정렬됩니다. */
+@media (min-width: 701px) and (max-width: 900px) {
+  .section {
+    padding: clamp(3.5rem, 8vw, 5rem) var(--page-gutter);
+  }
+
+  .layout {
+    --summary-size: clamp(480px, 58vw, 580px);
+
+    width: min(92vw, 760px);
+    grid-template-columns: var(--summary-size) minmax(0, 1fr);
+    column-gap: clamp(1.25rem, 3vw, 2rem);
+    row-gap: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  .livePreview {
+    width: 100%;
+  }
+
+  .technologyList {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, max-content);
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.55rem, 2.5vw,2rem);
+  }
+
+  .technologyList li {
+    width: 100%;
+    min-height: 2.15rem;
+    padding: 0.45rem clamp(0.65rem, 1.5vw, 0.9rem);
+    font-size: clamp(0.92rem, 2vw, 1.08rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    padding: clamp(3rem, 12vw, 5rem) var(--page-gutter);
+    padding-top: clamp(1rem, 6vw, 2rem) var(--page-gutter);
+  }
+
+  .layout {
+    --summary-size: min(82vw, 360px);
+
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "preview"
+      "summary"
+      "technologies";
+    justify-items: center;
+    gap: clamp(2rem, 8vw, 3rem);
+  }
+
+  .livePreview {
+    width: 100%;
+  }
+
+  .technologyList {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem 0.65rem;
+  }
+
+  .technologyList li {
+    min-height: 1.9rem;
+    padding: 0.42rem 0.72rem;
+    font-size: clamp(0.85rem, 4vw, 1rem);
+  }
+}
+
+
+.projectMedia {
+  position: relative;
+  isolation: isolate;
+}
+
+.redSQ {
+  position: absolute;
+  width: 100% !important;
+  height: 70% !important;
+  top: -8% !important;
+  right: -8% !important;
+  left: auto !important;
+  bottom: auto !important;
+  object-fit: contain;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.livePreview {
+  position: relative;
+  z-index: 1;
+}
+
