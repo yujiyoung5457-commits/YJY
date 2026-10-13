@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, Noto_Sans_KR, Oleo_Script } from "next/font/google";
+import Chatbot from "@/components/common/Chatbot";
 import { ClickToComponentDev } from "@/components/common/ClickToComponentDev";
 import "./globals.css";
 
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body>
         {children}
+        <Chatbot />
         <ClickToComponentDev />
       </body>
     </html>

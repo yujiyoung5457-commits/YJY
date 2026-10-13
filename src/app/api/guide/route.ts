@@ -1,152 +1,175 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import OpenAI from "openai";
-import { NextResponse } from "next/server";
-import { readFile } from "fs/promises";
-import path from "path";
-import { output } from "three/tsl";
 
-const openai=new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-})
+export const runtime = "nodejs";
 
-//제공된 질문과 TXT파일(RAG)를 가지고 관련 단원을 검색하는 부분
-const searchGuide=(question:string, guideText: string)=>{
-    const normalize=(text:string)=>{
-        return text.toLocaleLowerCase().replace(/\s+/g, '') //소문자로 바꾸기, 공백빼기, 정규식 나옴(공백 찾아서 다 없애 버리기=검색을 빠르게 하기 위해(컴퓨터가))
+type GuideSection = {
+  text: string;
+  title: string;
+  keywords: string[];
+};
+
+const normalize = (value: string) =>
+  value
+    .normalize("NFKC")
+    .toLocaleLowerCase("ko-KR")
+    .replace(/[^\p{L}\p{N}+#]/gu, "");
+
+const tokenize = (value: string) =>
+  value
+    .normalize("NFKC")
+    .toLocaleLowerCase("ko-KR")
+    .match(/[\p{L}\p{N}+#.]+/gu)
+    ?.filter((word) => word.length >= 2) ?? [];
+
+const parseSections = (guideText: string): GuideSection[] =>
+  guideText
+    .split(/(?=^\[\d{2}\.\s.+\]\s*$)/gm)
+    .map((text) => text.trim())
+    .filter((text) => /^\[\d{2}\./.test(text))
+    .map((text) => ({
+      text,
+      title:
+        text.match(/^대표\s*명칭:\s*(.+)$/m)?.[1]?.trim() ??
+        text.match(/^\[\d{2}\.\s*(.+)\]$/m)?.[1]?.trim() ??
+        "",
+      keywords:
+        text
+          .match(/^관련\s*표현:\s*(.+)$/m)?.[1]
+          ?.split(",")
+          .map((keyword) => keyword.trim())
+          .filter(Boolean) ?? [],
+    }));
+
+const scoreSection = (question: string, section: GuideSection) => {
+  const normalizedQuestion = normalize(question);
+  const normalizedSection = normalize(section.text);
+  const questionWords = [...new Set(tokenize(question))];
+  let score = 0;
+
+  const phrases = [section.title, ...section.keywords]
+    .map(normalize)
+    .filter(Boolean);
+
+  for (const phrase of phrases) {
+    if (normalizedQuestion.includes(phrase)) {
+      score += 80 + phrase.length;
     }
-    const useQuestion=normalize(question)
+  }
 
-    //TXT파일을 단원별로 나누는 작업
-    const sections=guideText.split(/(?=\[\d{2}\.s)/g) //txt파일에서 [대괄호\d{숫자2자리}.\s(공백)]가 나올때 나눈다 라는 뜻
-    /*결과 예시
-    [01. 홈페이지 소개] ------------sections[0]
-    [02. 어쩌고 소개] ------------sections[1]
-    [03. AI개념 설명] ------------sections[2]
-    */
-
-    const result:{
-        text: string
-        score: number
-    }[]=[]   //result중 저수가 높은 것을 가져갈 것임
-    //공통 규칙 가져오기---------------
-    const commonRule=sections.find(
-        item=> item.includes('[00. 챗봇 공통 답변 원칙]')
-    )
-
-    for(const item of sections){ //for of 문 : 자료 끝까지 찾는 놈/ 기본 for문은 배열이 생겨 불편
-        if(item.includes('[00. 챗봇 공통 답변 원칙]')){
-            continue
-        }
-
-        const title = item.match(/대표\s*명칭:\s*(.+)/); //공백 상관 없이 대표 명칭이란 글자를 찾으면 그 한줄을 다 갖고옴
-        //title[0] ::: 한 줄 싹 가져옴
-        //title[1] ::: 홈페이지 소개를 갖고옴
-
-        const keywords=item.match(/관련\s*표현:\s*([\s\S]*?)(?=\n\s*\n|기능설명:)/)
-        //기능설명이라는 글자가 나오기 전까지 줄도 공백도 상관없이 다 갖고오기 !!!!괄호는 한 묶음()
-        /*keyword[0]관련 표현:AI퀴즈, ai퀴즈, QUIZE, 퀴즈, 문제, 문제풀기 등등
-          keyword[1]AI퀴즈, ai퀴즈, QUIZE, 퀴즈, 문제, 문제풀기 등등----> 이거 전부words애 넣은거(아래)
-        */
-
-        const words=[title?.[1], ...(keywords?.[1].split(',') ||[])]
-        //words[0]::홈페이지 소개, [1]::AI퀴즈, [2]::ai퀴즈
-
-        let score=0;   //계속 바뀌니까 let으로
-        for(const initem of words){
-          const keyword=(initem)
-          if(!keyword) continue
-          if(useQuestion.includes(keyword)){
-            score += keyword.length
-          }
-        }
-
-        if(score>0){
-            result.push({
-                text:item,
-                score:score
-            })
-        }
+  for (const word of questionWords) {
+    const normalizedWord = normalize(word);
+    if (normalizedWord && normalizedSection.includes(normalizedWord)) {
+      score += Math.min(16, normalizedWord.length * 2);
     }
-    /*예상 결과: const result =[
-    {text: 'AI퀴즈', score:30},
-    {text: '(섹션안의 내용)', score:40},
-    {text: '회원가입', score:50},
-    {text: '로그인 설명', score:60},
-    ]
-    */
-    result.sort((a,b)=>b.score-a.score)
-    //관련성이 높은 단원 최대 3개 선택
-const selected=result.slice(0,3).map(item=>item.text).join('\n\n') //\n\n는 줄바꿈
-    /*
-    ai퀴즈
-    회원가입
-    로그인설명
-    */
+  }
 
-    return commonRule + '\n\n'+selected
-}
-export const POST =async (req:Request )=>{ //req: fetch로 호출한 , POST방식으로 대답, 바디에 JSON으로 전송(question)을->이 전체를 req가 받는 것임
-    try{
-        const { question }=await req.json()  //프론트가 보내는 question을 여기로 받는 것임
+  if (
+    normalizedQuestion.length >= 4 &&
+    normalizedSection.includes(normalizedQuestion)
+  ) {
+    score += 120;
+  }
 
-        if(typeof question !== 'string'|| !question.trim()){
-            return NextResponse.json(
-                {err: '질문을 입력해 주세요'},
-                {status: 400}
-            )
-        }
+  return score;
+};
 
-        //TXT파일을 한 섹션만 AI에게 던져주는 공간
-        const filePath=path.join(
-            process.cwd(), //프로젝트 최상위 경로의 파일을 가지고 옴-> 예: C:\Users\이젠\Desktop\portfoliolast/
-            'public', 
-            'data', 
-            'myChatBot.txt' 
-        )
-        //파일을 진짜 읽는 부분
-        const guideText=await readFile(
-            filePath,
-            'utf-8'
-        )
-       // 이제 검색 RAG로
-const searchResult = searchGuide(question, guideText);
+const searchGuide = (question: string, guideText: string) => {
+  const sections = parseSections(guideText);
+  const commonRule =
+    sections.find((section) => section.text.startsWith("[00."))?.text ?? "";
 
-// 검색된 내용이 없으면 안내 메시지 반환
-if (!searchResult.trim()) {
-  return NextResponse.json({
-    answer:
-      "해당 내용을 찾지 못했습니다. React 학습, AI 퀴즈, 힌트, 로그인 기능 등을 질문해 주세요.",
-  });
-}
+  const selected = sections
+    .filter((section) => !section.text.startsWith("[00."))
+    .map((section) => ({
+      text: section.text,
+      score: scoreSection(question, section),
+    }))
+    .filter((section) => section.score >= 12)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map((section) => section.text);
 
-// OpenAI에게 전달
-const response = await openai.responses.create({
-  model: "gpt-4.1-mini",
+  return {
+    found: selected.length > 0,
+    context: [commonRule, ...selected].filter(Boolean).join("\n\n"),
+  };
+};
 
-  instructions: `당신은 React 학습 홈페이지의 안내 챗봇입니다.
-  아래 검색된 홈페이지 안내자료만 참고하여 사용자의 질문에 답변하세요.
+export async function POST(request: Request) {
+  try {
+    const body: unknown = await request.json();
+    const question =
+      typeof body === "object" && body !== null && "question" in body
+        ? (body as { question?: unknown }).question
+        : undefined;
 
-  답변 규칙
-  1. 자료에 없는 기능을 만들어내지 마세요.
-  2. 대소문자와 띄어쓰기의 차이를 무시하세요.
-  3. 퀴즈와 문제처럼 비슷한 표현을 이해하세요.
-  4. 짧고 간결하게 한국어로 대답하세요.
-  5. 사용자가 이용 방법을 질문하면 순서대로 쉽게 설명하세요.
-
-  [검색된 홈페이지 안내자료]
-  ${searchResult}`,
-
-  input: question,
-});
-
-// 프론트한테 넘기기
-return NextResponse.json({
-  answer: response.output_text,
-})
-    }catch(err){
-        console.error('챗봇오류', err)
-        return NextResponse.json(
-            {error: 'ai답변 생성에 실패했습니다'},
-            {status: 500}
-        )
+    if (typeof question !== "string" || !question.trim()) {
+      return Response.json({ error: "질문을 입력해 주세요." }, { status: 400 });
     }
+
+    if (question.length > 500) {
+      return Response.json(
+        { error: "질문은 500자 이내로 입력해 주세요." },
+        { status: 400 },
+      );
+    }
+
+    const guidePath = path.join(
+      process.cwd(),
+      "public",
+      "data",
+      "myChatBot.txt",
+    );
+    const guideText = await readFile(guidePath, "utf8");
+    const searchResult = searchGuide(question.trim(), guideText);
+
+    if (!searchResult.found) {
+      return Response.json({
+        answer:
+          "제공된 포트폴리오 자료에서는 해당 내용을 확인하기 어려워요. 제작자 소개, 기술, 프로젝트 또는 협업 경험을 질문해 주세요.",
+      });
+    }
+
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      return Response.json(
+        { error: "OPENAI_API_KEY가 설정되지 않았습니다." },
+        { status: 503 },
+      );
+    }
+
+    const openai = new OpenAI({ apiKey });
+    const response = await openai.responses.create({
+      model: "gpt-4.1-mini",
+      store: false,
+      max_output_tokens: 350,
+      instructions: `당신은 유지영의 포트폴리오 안내 챗봇입니다.
+아래 검색 자료에 적힌 사실만 사용해 방문자의 질문에 답하세요.
+
+답변 규칙:
+- 자료에 없는 경력, 기능, 수치, 링크는 추측하거나 만들어내지 않습니다.
+- 팀 프로젝트에서는 제작자 본인의 담당 범위와 팀 전체 결과를 구분합니다.
+- 개인정보나 확인되지 않은 내용은 답하지 않습니다.
+- 자연스럽고 친절한 한국어로 핵심만 2~5문장으로 답합니다.
+- 질문과 무관한 정보는 덧붙이지 않습니다.
+
+[검색된 포트폴리오 안내 자료]
+${searchResult.context}`,
+      input: question.trim(),
+    });
+
+    const answer = response.output_text.trim();
+    return Response.json({
+      answer:
+        answer || "답변을 만들지 못했어요. 질문을 조금 다르게 입력해 주세요.",
+    });
+  } catch (error) {
+    console.error("포트폴리오 가이드 챗봇 오류", error);
+    return Response.json(
+      { error: "AI 답변 생성에 실패했습니다. 잠시 후 다시 시도해 주세요." },
+      { status: 500 },
+    );
+  }
 }

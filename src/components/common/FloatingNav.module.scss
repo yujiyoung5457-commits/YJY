@@ -14,8 +14,12 @@
   display: grid;
   width: clamp(72px, 7vw, 104px);
   aspect-ratio: 1;
+  padding: 0;
   place-items: center;
+  border: 0;
+  background: transparent;
   filter: drop-shadow(0 6px 8px rgb(24 24 24 / 0.2));
+  cursor: pointer;
   transition:
     filter 160ms ease,
     transform 160ms ease;
@@ -47,6 +51,7 @@
   font-family: var(--font-anton), Impact, sans-serif;
   font-size: clamp(1rem, 1.45vw, 1.45rem);
   text-transform: uppercase;
+  line-height: 1.1;
 }
 
 .top span {
