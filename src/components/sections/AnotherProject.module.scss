@@ -416,7 +416,9 @@
     padding: clamp(3rem, 8vw, 5rem) var(--page-gutter)
       clamp(5rem, 12vw, 8rem);
   }
-
+  .artwork{
+    display: none;
+  }
   .title {
     position: relative;
     inset: auto;

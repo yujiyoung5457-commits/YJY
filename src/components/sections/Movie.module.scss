@@ -350,7 +350,10 @@
     min-height: 0;
     padding-bottom: 0;
   }
-
+ .nextSlide {
+    bottom: 33%;
+    left: 63%;
+  }
   .intro {
     height: clamp(260px, 38vw, 292px);
     min-height: 0;

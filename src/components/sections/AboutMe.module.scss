@@ -169,6 +169,7 @@
 
 .activeTab {
   background: var(--color-teal);
+  color: var(--color-red);
 }
 
 .detailCopy {
@@ -241,7 +242,7 @@
   }
 
   .rightLeg {
-    top: 40%;
+    top: 46%;
     left: 100%;
     width: 30%;
   }
@@ -320,6 +321,66 @@
 
   .details {
     grid-template-columns: minmax(6.5rem, 8.5rem) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+  .section,
+  .aboutGroups {
+    min-height: 750px;
+  }
+
+  .heading {
+    margin-bottom: 1.75rem;
+    font-size:clamp(5rem, 6vw, 10rem) ;
+  }
+
+  .name,
+  .role {
+    line-height: 1.15;
+    font-size:clamp(1.2rem, 4vw, 3rem) ;
+  }
+
+  .role {
+    margin-top: 1rem;
+  }
+
+  .statement {
+    margin-top: 2rem;
+    line-height: 1.12;
+     font-size:clamp(2rem, 5vw, 4rem) ;
+  }
+
+  .statement span {
+    display: block;
+  }
+
+  .detailCopy {
+    line-height: 1.12;
+  }
+
+  .description {
+    margin-top: 0.4rem;
+    line-height: 1.25;
+    
+  }
+
+  .redShape {
+    z-index: -1;
+    top: 0;
+    bottom: auto;
+    left: -4.2rem;
+    width: clamp(220px, 22.5vw, 433px);
+  }
+  /* 태블릿 다리 위치 조절: top은 위아래, left는 좌우 위치입니다. */
+  .leftLeg {
+    top: 58%;
+    left: 10%;
+  }
+
+  .rightLeg {
+    top: 72%;
+    left: 50%;
   }
 }
 

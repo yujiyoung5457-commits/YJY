@@ -274,8 +274,14 @@
 
   .palette {
     grid-area: palette;
-    width: min(52vw, 460px);
+    width: min(42vw, 400px);
     justify-self: end;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .skillList {
+    gap: calc(clamp(0.75rem, 2.5vw, 2rem) + 10px);
   }
 }
 

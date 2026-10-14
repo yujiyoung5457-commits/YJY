@@ -39,12 +39,21 @@ export default function Chatbot() {
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [open]);
 
+  // useEffect(() => {
+  //   const openChatbot = () => setOpen(true);
+  //   window.addEventListener("open-portfolio-chatbot", openChatbot);
+  //   return () =>
+  //     window.removeEventListener("open-portfolio-chatbot", openChatbot);
+  // }, []);
+  //다시 토글하면 닫힘
   useEffect(() => {
-    const openChatbot = () => setOpen(true);
-    window.addEventListener("open-portfolio-chatbot", openChatbot);
-    return () =>
-      window.removeEventListener("open-portfolio-chatbot", openChatbot);
-  }, []);
+  const toggleChatbot = () => setOpen((prev) => !prev);
+
+  window.addEventListener("open-portfolio-chatbot", toggleChatbot);
+
+  return () =>
+    window.removeEventListener("open-portfolio-chatbot", toggleChatbot);
+}, []);
 
   const handleSend = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

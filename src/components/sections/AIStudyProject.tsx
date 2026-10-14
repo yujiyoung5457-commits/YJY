@@ -64,11 +64,12 @@ export function AIStudyProject() {
 
   <div className={styles.livePreview}>
     <div className={styles.printMask}>
-      <iframe
-        src={LIVE_SITE_URL}
-        title="React AI Study 라이브 사이트 미리보기"
-        loading="lazy"
-        tabIndex={-1}
+      <Image
+        className={styles.previewImage}
+        src="/reactRunning.png"
+        alt="React AI Study 프로젝트 화면"
+        fill
+        sizes="(max-width: 900px) 92vw, 52vw"
       />
       <a
         className={styles.previewLink}
