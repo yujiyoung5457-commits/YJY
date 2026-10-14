@@ -232,12 +232,13 @@
   z-index: 2;
   top: 0;
   left: 0;
-  width: clamp(72px, calc(14vw + 0.6rem), 240px);
+
+  width: clamp(120px, 20vw, 360px);
+
   visibility: hidden;
   pointer-events: none;
   will-change: transform;
 }
-
 .contactArtwork img {
   display: block;
   width: 100%;

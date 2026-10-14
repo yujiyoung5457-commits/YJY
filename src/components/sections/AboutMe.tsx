@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./AboutMe.module.scss";
 
 const details = {
@@ -30,10 +30,55 @@ type DetailKey = keyof typeof details;
 
 export function AboutMe() {
   const [activeDetail, setActiveDetail] = useState<DetailKey>("education");
+  const sectionRef = useRef<HTMLElement>(null);
   const selectedDetail = details[activeDetail];
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const textItems = Array.from(
+      section.querySelectorAll<HTMLElement>("[data-about-text-reveal]"),
+    );
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (reduceMotion.matches || !("IntersectionObserver" in window)) {
+      textItems.forEach((item) => item.classList.add(styles.textRevealVisible));
+      return;
+    }
+
+    section.classList.add(styles.revealReady);
+    textItems.forEach((item, index) => {
+      item.style.setProperty("--about-reveal-delay", `${index * 65}ms`);
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add(styles.textRevealVisible);
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.15 },
+    );
+
+    textItems.forEach((item) => observer.observe(item));
+
+    return () => {
+      observer.disconnect();
+      section.classList.remove(styles.revealReady);
+    };
+  }, []);
+
   return (
-    <section className={styles.section} id="about" aria-labelledby="about-title">
+    <section
+      ref={sectionRef}
+      className={styles.section}
+      id="about"
+      aria-labelledby="about-title"
+    >
       <Image
         className={styles.background}
         src="/section01_background03.webp"
@@ -80,18 +125,36 @@ export function AboutMe() {
 
         <div className={styles.content}>
           <div className={styles.groupAbout02}>
-            <h2 className={styles.heading} id="about-title">
+            <h2
+              className={`${styles.heading} ${styles.textReveal}`}
+              id="about-title"
+              data-about-text-reveal
+            >
               About Me
             </h2>
 
             <div className={styles.intro}>
-              <p className={styles.name}>Yu JiYeong</p>
-              <p className={styles.role}>Front-End Developer &amp; Designer</p>
+              <p
+                className={`${styles.name} ${styles.textReveal}`}
+                data-about-text-reveal
+              >
+                Yu JiYeong
+              </p>
+              <p
+                className={`${styles.role} ${styles.textReveal}`}
+                data-about-text-reveal
+              >
+                Front-End Developer &amp; Designer
+              </p>
             </div>
 
             <p className={styles.statement}>
-              <span>I turn visual ideas</span>
-              <span>into interactive web experiences.</span>
+              <span className={styles.textReveal} data-about-text-reveal>
+                I turn visual ideas
+              </span>
+              <span className={styles.textReveal} data-about-text-reveal>
+                into interactive web experiences.
+              </span>
             </p>
           </div>
 
@@ -110,7 +173,9 @@ export function AboutMe() {
                   onClick={() => setActiveDetail(key)}
                   key={key}
                 >
-                  {details[key].label}
+                  <span className={styles.textReveal} data-about-text-reveal>
+                    {details[key].label}
+                  </span>
                 </button>
               ))}
             </div>
@@ -121,8 +186,13 @@ export function AboutMe() {
               role="tabpanel"
               aria-labelledby={`about-tab-${activeDetail}`}
             >
-              <strong>{selectedDetail.title}</strong>
-              <span className={styles.description}>
+              <strong className={styles.textReveal} data-about-text-reveal>
+                {selectedDetail.title}
+              </strong>
+              <span
+                className={`${styles.description} ${styles.textReveal}`}
+                data-about-text-reveal
+              >
                 {selectedDetail.description}
               </span>
             </div>

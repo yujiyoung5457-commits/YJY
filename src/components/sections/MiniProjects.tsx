@@ -15,6 +15,24 @@ export function MiniProjects() {
   const selectedProject =
     projectItems.find((project) => project.id === selectedProjectId) ??
     projectItems[0];
+  const isCalculator = selectedProject.id === "calculator";
+  const selectedGroup = miniProjectsData.groups.find((group) =>
+    group.projects.some((project) => project.id === selectedProject.id),
+  );
+  const projectType = selectedGroup?.id === "copy-site" ? "COPY SITE" : "PERSONAL PROJECT";
+  const primaryTechnology =
+    selectedProject.technologies.find((technology) =>
+      technology.toLowerCase().includes("javascript"),
+    ) ?? selectedProject.technologies[0];
+  const projectTitle = isCalculator ? "My Melody Calculator" : selectedProject.label;
+  const projectSubtitle = isCalculator
+    ? "캐릭터 테마의 인터랙티브 계산기"
+    : selectedProject.tasks[0];
+  const projectDescriptions = isCalculator
+    ? [
+        "HTML·CSS·JavaScript로 사칙연산 및 입력 제어 기능을 구현하고, CSS 3D Transform을 이용해 카드 플립 인터랙션을 제작했습니다.",
+      ]
+    : selectedProject.tasks.slice(1);
 
   useEffect(() => {
     const canvas = flowCanvasRef.current;
@@ -146,25 +164,30 @@ export function MiniProjects() {
             <span className={styles.blueDot} />
             <span className={styles.close}>×</span>
           </div>
-          <div className={styles.windowBody}>
-            <div>
-              <h3>[KEY FEATURES]</h3>
-              {selectedProject.tasks.length > 0 ? (
-                selectedProject.tasks.map((task) => <p key={task}>{task}</p>)
-              ) : (
-                <p className={styles.emptyText}>JSON에 주요 업무를 입력해 주세요.</p>
-              )}
-            </div>
-
-            <div>
-              <h3>[TECH STACK]</h3>
-              {selectedProject.technologies.length > 0 ? (
-                <p className={styles.technologyList}>
-                  {selectedProject.technologies.join(" · ")}
-                </p>
-              ) : (
-                <p className={styles.emptyText}>JSON에 활용 기술을 입력해 주세요.</p>
-              )}
+          <div className={`${styles.windowBody} ${styles.projectOverviewBody}`}>
+            <div className={styles.projectOverview}>
+              <p className={styles.projectEyebrow}>
+                {projectType} / {primaryTechnology?.toUpperCase()}
+              </p>
+              <h3 className={styles.projectTitle}>{projectTitle}</h3>
+              {projectSubtitle ? (
+                <p className={styles.projectSubtitle}>{projectSubtitle}</p>
+              ) : null}
+              <span className={styles.projectDivider} aria-hidden="true" />
+              <div className={styles.projectDescription}>
+                {projectDescriptions.length > 0 ? (
+                  projectDescriptions.map((description) => (
+                    <p key={description}>{description}</p>
+                  ))
+                ) : (
+                  <p className={styles.emptyText}>JSON에 주요 업무를 입력해 주세요.</p>
+                )}
+              </div>
+              <ul className={styles.projectTags} aria-label="기술 스택">
+                {selectedProject.technologies.map((technology) => (
+                  <li key={technology}>{technology}</li>
+                ))}
+              </ul>
             </div>
 
             <div className={styles.projectLinks}>

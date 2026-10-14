@@ -145,11 +145,14 @@
 
 .likes h3 {
   margin-bottom: 1rem;
-  font-size: clamp(1.8rem,5vw, 4.5rem);
+  font-size: clamp(1.8rem, 5vw, 4.5rem);
   text-transform: uppercase;
-  .redname{
+
+  .redname {
+    display: inline-block; // ⭐ 핵심!!
     color: var(--color-red);
-    font-size: clamp(1.8rem,5vw, 6rem);
+    font-size: clamp(1.8rem, 5vw, 6rem);
+    animation: vibrate-1 0.8s infinite;
   }
 }
 

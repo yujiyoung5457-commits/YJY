@@ -6,6 +6,41 @@
   color: var(--color-ink);
 }
 
+.textReveal {
+  --about-reveal-delay: 0ms;
+}
+
+.statement .textReveal {
+  display: block;
+}
+
+.tab .textReveal {
+  display: inline-block;
+}
+
+.revealReady .textReveal {
+  opacity: 0;
+  transform: translateY(1.35rem);
+  transition:
+    opacity 650ms ease,
+    transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--about-reveal-delay);
+  will-change: opacity, transform;
+}
+
+.revealReady .textRevealVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revealReady .textReveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .background {
   z-index: -3;
   object-fit: cover;
