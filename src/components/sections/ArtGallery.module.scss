@@ -1478,6 +1478,10 @@
 }
 
 @media (max-width: 480px) {
+  .mergedProject {
+    margin-top: 2rem;
+  }
+
   .shape1Object {
     --object-design-height: 550px !important;
 
@@ -1485,11 +1489,11 @@
   }
 
   .shape2Object {
-    --object-design-height: 900px !important;
+    --object-design-height: 960px !important;
 
     width: min(96vw, 854px);
     max-width: none;
-    aspect-ratio: 854 / 900 !important; // 실제 도형 세로 비율
+    aspect-ratio: 854 / 960 !important; // 모바일에서 본문과 태그가 숨 쉴 세로 여유
   }
 
   .shape4Object {

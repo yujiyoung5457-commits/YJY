@@ -1,0 +1,159 @@
+.section {
+  display: grid;
+  min-height: clamp(500px, 38vw, 650px);
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(1.5rem, 6vw, 6rem) 0;
+  background: var(--color-blue);
+  color: var(--color-yellow);
+}
+
+.inner {
+  width: min(100%, 1600px);
+}
+
+.heading {
+  margin-bottom: clamp(1rem, 1.8vw, 1.75rem);
+  text-align: center;
+}
+
+.heading p,
+.heading h2,
+.caption {
+  margin: 0;
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-weight: 400;
+}
+
+.heading p {
+  font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+  line-height: 1;
+}
+
+.heading h2 {
+  margin-top: 0.45rem;
+  font-size: clamp(2.8rem, 4vw, 4.6rem);
+  line-height: 0.95;
+}
+
+.viewport {
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0 clamp(0.5rem, 1vw, 1rem);
+  list-style: none;
+}
+
+.card {
+  flex: 0 0 20%;
+  padding-inline: clamp(0.35rem, 0.65vw, 0.7rem);
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 0.74;
+  overflow: hidden;
+  border-radius: clamp(10px, 1vw, 16px);
+  background: #071063;
+}
+
+.imageFrame img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.controls {
+  display: none;
+}
+
+.caption {
+  margin-top: clamp(1.1rem, 1.8vw, 1.8rem);
+  font-size: clamp(0.95rem, 1.15vw, 1.25rem);
+  line-height: 1;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    min-height: auto;
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .inner {
+    width: 100%;
+  }
+
+  .viewport {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+  }
+
+  .viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .track {
+    padding: 0;
+  }
+
+  .card {
+    flex-basis: calc(100% / 3);
+    scroll-snap-align: start;
+  }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .controls button {
+    min-width: 4.75rem;
+    padding: 0.65rem 1rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-red);
+    color: var(--color-cream);
+    font-family: var(--font-anton), Impact, sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-block: 2.75rem;
+  }
+
+  .heading {
+    padding-inline: 1rem;
+  }
+
+  .heading h2 {
+    font-size: clamp(2rem, 10vw, 2.7rem);
+  }
+
+  .card {
+    flex-basis: 100%;
+    padding-inline: 5vw;
+  }
+
+  .imageFrame {
+    aspect-ratio: 0.78;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport {
+    scroll-behavior: auto;
+  }
+}

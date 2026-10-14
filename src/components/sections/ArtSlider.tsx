@@ -6,10 +6,16 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import styles from "./ArtSlider.module.scss";
 
-const SLIDER_IMAGES = Array.from(
-  { length: 37 },
-  (_, index) => `/artwork/slider_img/${index + 1}.webp`,
-);
+const SLIDER_IMAGES = [
+  ...Array.from(
+    { length: 37 },
+    (_, index) => `/artwork/slider_img/${index + 1}.webp`,
+  ),
+  ...Array.from(
+    { length: 64 },
+    (_, index) => `/artwork/slider_img/artwork_${index + 369}.webp`,
+  ),
+];
 
 export function ArtSlider() {
   const stageRef = useRef<HTMLDivElement>(null);

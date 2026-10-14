@@ -13,6 +13,7 @@ import { DesignCode } from "@/components/sections/DesignCode";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Hero } from "@/components/sections/Hero";
 import { GsapAnimation } from "@/components/sections/GsapAnimation";
+import { IntoTheBlue } from "@/components/sections/IntoTheBlue";
 import { Movie } from "@/components/sections/Movie";
 import { MiniProjects } from "@/components/sections/MiniProjects";
 import GatchaPOP from "@/components/sections/GatchaPOP";
@@ -58,6 +59,7 @@ export default function Home() {
           <GatchaPOP />
         </div>
         <ArtSlider />
+        <IntoTheBlue />
         <Movie />
         <GsapAnimation />
       </main>
