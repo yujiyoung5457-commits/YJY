@@ -52,7 +52,7 @@ export function AIStudyProject() {
         </div>
           
         <div className={styles.projectMedia}>
-  {/* 사이트 박스 뒤에 들어가는 빨간 장식 */}
+  {/* 사이트 박스 뒤에 들어가는 빨간 장식
   <Image
     className={styles.redSQ}
     src="/redSQ.svg"
@@ -60,22 +60,24 @@ export function AIStudyProject() {
     fill
     sizes="35vw"
     aria-hidden="true"
-  />
+  /> */}
 
   <div className={styles.livePreview}>
-    <iframe
-      src={LIVE_SITE_URL}
-      title="React AI Study 라이브 사이트 미리보기"
-      loading="lazy"
-      tabIndex={-1}
-    />
-    <a
-      className={styles.previewLink}
-      href={LIVE_SITE_URL}
-      target="_blank"
-      rel="noreferrer"
-      aria-label="React AI Study 라이브 사이트 새 탭에서 열기"
-    />
+    <div className={styles.printMask}>
+      <iframe
+        src={LIVE_SITE_URL}
+        title="React AI Study 라이브 사이트 미리보기"
+        loading="lazy"
+        tabIndex={-1}
+      />
+      <a
+        className={styles.previewLink}
+        href={LIVE_SITE_URL}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="React AI Study 라이브 사이트 새 탭에서 열기"
+      />
+    </div>
   </div>
 
   <ul className={styles.technologyList} aria-label="사용 기술">

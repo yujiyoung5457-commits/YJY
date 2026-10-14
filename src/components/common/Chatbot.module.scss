@@ -26,11 +26,11 @@
 
 .header {
   display: flex;
-  min-height: 72px;
+  min-height: 65px;
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px 0 20px;
+  padding: 0 15px 0 22px;
   background: var(--color-red);
 }
 
@@ -83,7 +83,7 @@
   max-width: 84%;
   margin: 0;
   padding: 13px 17px;
-  border-radius: 13px;
+  border-radius: 13px 13px  13px 0;
   color: #171717;
   font-size: 0.95rem;
   line-height: 1.55;
@@ -98,6 +98,7 @@
 
 .userMessage {
   align-self: flex-end;
+  border-radius: 13px 13px 0 13px;
   background: #ffae00;
 }
 

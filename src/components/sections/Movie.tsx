@@ -167,7 +167,7 @@ export function Movie() {
 
       <div className={styles.contactDisc}>
         <div className={styles.contactText}>
-          <a href="mailto:yujiy0303@naver.com">e-mail: yujiy0303@naver.com</a>
+          <a href="mailto:yujiy0303@naver.com">e-mail: yujiyeong5457@gmail.com</a>
           <a href="tel:01054572905">Phone-number: 010-5457-2905</a>
         </div>
       </div>

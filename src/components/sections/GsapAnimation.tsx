@@ -79,7 +79,6 @@ export function GsapAnimation() {
     const dustBoxes = DUSTS.map(({ flavor }) => dustRefs.current[flavor]).filter(
       (box): box is HTMLButtonElement => Boolean(box),
     );
-
     if (
       !section ||
       !mixer ||
@@ -98,6 +97,11 @@ export function GsapAnimation() {
     ) {
       return;
     }
+
+    const introBadges = gsap.utils.toArray<HTMLElement>(
+      `.${styles.introBadge}`,
+      section,
+    );
 
     gsap.registerPlugin(ScrollTrigger, Draggable);
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -151,6 +155,11 @@ export function GsapAnimation() {
 
         introTimeline
           .from(mixer, { x: -80, autoAlpha: 0, duration: 1.1, ease: "power2.out" })
+          .from(
+            introBadges,
+            { y: 18, autoAlpha: 0, stagger: 0.12, duration: 0.65 },
+            "-=0.65",
+          )
           .from(dustBoxes, { x: 90, opacity: 0, stagger: 0.12 }, "-=0.55")
           .from(`.${styles.hamsterFrame}`, { scale: 0.6, rotation: 8, opacity: 0 }, "-=0.35");
 
@@ -429,6 +438,30 @@ export function GsapAnimation() {
       className={styles.section}
       aria-label="Animated stand mixer"
     >
+      <div
+        className={`${styles.introBadge} ${styles.hamsterMakerBadge}`}
+        aria-hidden="true"
+      >
+        <Image
+          src="/hamstermaker_1.svg"
+          alt=""
+          fill
+          sizes="(max-width: 700px) 22vw, 17vw"
+        />
+      </div>
+
+      <div
+        className={`${styles.introBadge} ${styles.assetByMeBadge}`}
+        aria-hidden="true"
+      >
+        <Image
+          src="/AssetbyMe.svg"
+          alt=""
+          fill
+          sizes="(max-width: 700px) 22vw, 17vw"
+        />
+      </div>
+
       <div
         ref={mixerRef}
         className={styles.mixer}

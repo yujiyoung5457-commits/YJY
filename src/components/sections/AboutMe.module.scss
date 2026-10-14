@@ -103,6 +103,7 @@
   font-weight: 400;
   line-height: 0.88;
   text-transform: uppercase;
+  // border: 1px solid red;
 }
 
 .intro {
@@ -277,13 +278,21 @@
   .role { margin-top: 0; font-size: clamp(1.3rem, 2.2vw, 2.2rem); }
 
   .statement {
-    max-width: none;
-    margin: clamp(30px, 4.4vh, 46px) 0;
-    padding: 3rem 0 3rem 8rem;
-    font-size: clamp(1.85rem, 3vw, 4rem);
-    line-height: 1.08;
-    text-align: center;
+  width: 100%;
+  max-width: none;
+  margin: clamp(30px, 4.4vh, 46px) 0;
+  padding: 3rem 4rem;
+  box-sizing: border-box;
+
+  font-size: clamp(2rem, 4vw, 4.8rem);
+  line-height: 1.08;
+  text-align: start;
+
+  span {
+    display: block;
+    white-space: nowrap;
   }
+}
 
   .details {
     grid-template-columns: clamp(124px, 14vw, 190px) minmax(0, 1fr);

@@ -98,12 +98,34 @@
 }
 
 .livePreview {
+  --preview-border-width: 5px;
+
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
+  filter: drop-shadow(0 18px 21px rgb(0 0 0 / 0.2));
+  isolation: isolate;
+}
+
+.livePreview::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: var(--color-red);
+  content: "";
+  pointer-events: none;
+  -webkit-mask: url("/print.svg") center / 100% 100% no-repeat;
+  mask: url("/print.svg") center / 100% 100% no-repeat;
+}
+
+.printMask {
+  position: absolute;
+  z-index: 1;
+  inset: var(--preview-border-width);
   overflow: hidden;
   background: var(--color-yellow);
-  box-shadow: 0 18px 42px rgb(0 0 0 / 0.2);
+  -webkit-mask: url("/print.svg") center / 100% 100% no-repeat;
+  mask: url("/print.svg") center / 100% 100% no-repeat;
 }
 
 .livePreview iframe {

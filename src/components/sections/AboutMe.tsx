@@ -8,7 +8,7 @@ const details = {
   education: {
     label: "Education",
     title: "Education",
-    description: `B.F.A. in Western Painting,
+    description: `B.F.A. in Western Painting
 GPA 4.39 / 4.5
 16 Exhibitions & Art Projects
 Visual Design & Digital Media
@@ -90,9 +90,8 @@ export function AboutMe() {
             </div>
 
             <p className={styles.statement}>
-              I turn visual ideas
-              <br />
-             into interactive web experiences.
+              <span>I turn visual ideas</span>
+              <span>into interactive web experiences.</span>
             </p>
           </div>
 

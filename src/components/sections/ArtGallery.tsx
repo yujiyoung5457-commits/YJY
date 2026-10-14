@@ -127,7 +127,44 @@ function FrameSlider({ images, alt }: FrameSliderProps) {
 }
 
 export function ArtGallery() {
+  const sectionRef = useRef<HTMLElement>(null);
   const lineCanvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const revealItems = Array.from(
+      section.querySelectorAll<HTMLElement>("[data-gallery-reveal]"),
+    );
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (reduceMotion.matches || !("IntersectionObserver" in window)) {
+      revealItems.forEach((item) => item.classList.add(styles.revealVisible));
+      return;
+    }
+
+    section.classList.add(styles.revealReady);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add(styles.revealVisible);
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.12 },
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+
+    return () => {
+      observer.disconnect();
+      section.classList.remove(styles.revealReady);
+    };
+  }, []);
 
   useEffect(() => {
     const canvas = lineCanvasRef.current;
@@ -219,6 +256,7 @@ export function ArtGallery() {
 
   return (
     <section
+      ref={sectionRef}
       className={styles.section}
       id="art-gallery"
       aria-labelledby="art-gallery-title"
@@ -228,7 +266,10 @@ export function ArtGallery() {
       <div className={`${styles.galleryGroup} ${styles.firstProject}`}>
       {/* 클리핑 마스크 형태 1: 텍스트가 들어갈 아이보리색 영역 */}
       <ScaledObject className={styles.shape1Object} designWidth={605} designHeight={1008}>
-      <div className={`${styles.textureShape} ${styles.shape1}`}>
+      <div
+        className={`${styles.textureShape} ${styles.shape1} ${styles.revealFromLeft}`}
+        data-gallery-reveal
+      >
         <div className={`${styles.projectDescription} ${styles.bookDescription}`}>
           <p className={styles.bookEyebrow}>Selected Project / 03</p>
           <h3 className={styles.bookTitle}>Book.JS</h3>
@@ -259,7 +300,10 @@ export function ArtGallery() {
       </ScaledObject>
 
       {/* 액자 + 액자 안쪽 검정 박스 1 */}
-      <div className={styles.frame1}>
+      <div
+        className={`${styles.frame1} ${styles.revealFromRight}`}
+        data-gallery-reveal
+      >
         <ScaledObject className={styles.frame1Object} designWidth={700} designHeight={933}>
         <div className={`${styles.frame} ${styles.frame1Frame}`}>
           <div
@@ -286,7 +330,10 @@ export function ArtGallery() {
 
       {/* 액자 + 액자 안쪽 검정 박스 2 */}
       <div className={`${styles.galleryGroup} ${styles.mergedProject}`}>
-      <div className={styles.frame2}>
+      <div
+        className={`${styles.frame2} ${styles.revealFromLeft}`}
+        data-gallery-reveal
+      >
         <ScaledObject className={styles.frame2Object} designWidth={778} designHeight={584}>
         <div className={`${styles.frame} ${styles.frame2Frame}`}>
           <div
@@ -312,7 +359,10 @@ export function ArtGallery() {
 
       {/* 클리핑 마스크 형태 2: 텍스트가 들어갈 아이보리색 영역 */}
       <ScaledObject className={styles.shape2Object} designWidth={864} designHeight={490}>
-      <div className={`${styles.textureShape} ${styles.shape2}`}>
+      <div
+        className={`${styles.textureShape} ${styles.shape2} ${styles.revealFromRight}`}
+        data-gallery-reveal
+      >
         <div
           className={`${styles.projectDescription} ${styles.mergedDescription} ${styles.communityDescription}`}
         >
@@ -345,7 +395,10 @@ export function ArtGallery() {
       </ScaledObject>
 
       {/* 액자 + 액자 안쪽 검정 박스 3 */}
-      <div className={styles.frame3}>
+      <div
+        className={`${styles.frame3} ${styles.revealFromLeft}`}
+        data-gallery-reveal
+      >
         <ScaledObject className={styles.frame3Object} designWidth={446} designHeight={595}>
         <div className={`${styles.frame} ${styles.frame3Frame}`}>
           <div
@@ -374,7 +427,10 @@ export function ArtGallery() {
       <div className={`${styles.galleryGroup} ${styles.lastProject}`}>
       {/* 클리핑 마스크 형태 4: 텍스트가 들어갈 아이보리색 영역 */}
       <ScaledObject className={styles.shape4Object} designWidth={792} designHeight={688}>
-      <div className={`${styles.textureShape} ${styles.shape4}`}>
+      <div
+        className={`${styles.textureShape} ${styles.shape4} ${styles.revealFromLeft}`}
+        data-gallery-reveal
+      >
         <div
           className={`${styles.projectDescription} ${styles.mergedDescription} ${styles.finalDescription} ${styles.piyoDescription}`}
         >
@@ -407,7 +463,10 @@ export function ArtGallery() {
       </ScaledObject>
 
       {/* 액자 + 액자 안쪽 검정 박스 4 */}
-      <div className={styles.frame4}>
+      <div
+        className={`${styles.frame4} ${styles.revealFromRight}`}
+        data-gallery-reveal
+      >
         <ScaledObject className={styles.frame4Object} designWidth={520} designHeight={693}>
         <div className={`${styles.frame} ${styles.frame4Frame}`}>
           <div

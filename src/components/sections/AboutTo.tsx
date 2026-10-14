@@ -33,7 +33,7 @@ export function AboutTo() {
         </div>
 
         <div className={styles.likes}>
-          <h3>I Like To Create</h3>
+          <h3>I Like To <span className={styles.redname}>Create</span></h3>
           <p>Original Characters</p>
           <p>Illustrations · Playful Visuals</p>
         </div>
