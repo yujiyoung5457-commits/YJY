@@ -490,4 +490,32 @@
     align-content: center;
     gap: clamp(10px, 3vw, 16px);
   }
+
+  .cityButton {
+    font-size: 0.9rem;
+  }
+
+  .weatherHeading p {
+    font-size: 1rem;
+  }
+
+  .weatherHeading h3 {
+    font-size: 2.25rem;
+  }
+
+  .weatherDetails dt {
+    font-size: 1.2rem;
+  }
+
+  .weatherDetails dd {
+    font-size: 1rem;
+  }
+
+  .fortune {
+    font-size: 1rem;
+  }
+
+  .fortune strong {
+    font-size: 1.65rem;
+  }
 }

@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { gsap } from "gsap";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import { WeatherAPI } from "./WeatherAPI";
 import styles from "./Movie.module.scss";
@@ -51,6 +53,9 @@ const MOVIE_SLIDES = [
 export function Movie() {
   const [activeIndex, setActiveIndex] = useState(0);
   const squigglePathRef = useRef<SVGPathElement>(null);
+  const contactDiscRef = useRef<HTMLDivElement>(null);
+  const contactPathRef = useRef<SVGPathElement>(null);
+  const contactArtworkRef = useRef<HTMLDivElement>(null);
   const activeSlide = MOVIE_SLIDES[activeIndex];
 
   useEffect(() => {
@@ -100,6 +105,56 @@ export function Movie() {
     });
 
     return () => {
+      tween.kill();
+    };
+  }, []);
+
+  useEffect(() => {
+    const contactDisc = contactDiscRef.current;
+    const path = contactPathRef.current;
+    const artwork = contactArtworkRef.current;
+
+    if (!contactDisc || !path || !artwork) return;
+
+    gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
+
+    const motionPath = {
+      path,
+      align: path,
+      alignOrigin: [0.5, 0.5],
+      autoRotate: true,
+    };
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (reduceMotion.matches) {
+      gsap.set(artwork, {
+        autoAlpha: 1,
+        motionPath: { ...motionPath, start: 0.5, end: 0.5 },
+      });
+      return () => gsap.set(artwork, { clearProps: "transform,opacity,visibility" });
+    }
+
+    gsap.set(artwork, {
+      autoAlpha: 1,
+      motionPath: { ...motionPath, start: 0, end: 0 },
+    });
+
+    const tween = gsap.to(artwork, {
+      duration: 8,
+      ease: "none",
+      repeat: -1,
+      repeatDelay: 1.5,
+      motionPath: { ...motionPath, start: 0, end: 1 },
+      scrollTrigger: {
+        trigger: contactDisc,
+        start: "top bottom",
+        end: "bottom top",
+        toggleActions: "play pause resume pause",
+      },
+    });
+
+    return () => {
+      tween.scrollTrigger?.kill();
       tween.kill();
     };
   }, []);
@@ -165,7 +220,23 @@ export function Movie() {
 
       <WeatherAPI />
 
-      <div className={styles.contactDisc}>
+      <div ref={contactDiscRef} className={styles.contactDisc}>
+        <svg
+          className={styles.contactMotionGuide}
+          viewBox="0 0 1000 1000"
+          preserveAspectRatio="xMidYMid meet"
+          aria-hidden="true"
+        >
+          <path
+            ref={contactPathRef}
+            d="M 116 820 A 500 500 0 1 1 884 820"
+          />
+        </svg>
+
+        <div ref={contactArtworkRef} className={styles.contactArtwork} aria-hidden="true">
+          <Image src="/lastArtwork.svg" alt="" width={227} height={118} />
+        </div>
+
         <div className={styles.contactText}>
           <a href="mailto:yujiy0303@naver.com">e-mail: yujiyeong5457@gmail.com</a>
           <a href="tel:01054572905">Phone-number: 010-5457-2905</a>

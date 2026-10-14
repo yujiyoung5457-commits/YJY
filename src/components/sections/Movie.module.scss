@@ -212,6 +212,68 @@
   transform: translateX(-50%) translateY(3%);
 }
 
+.contactMotionGuide {
+  position: absolute;
+  z-index: 1;
+  inset: -10rem;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  fill: none;
+  pointer-events: none;
+}
+
+.contactMotionGuide path {
+  stroke: transparent;
+}
+
+.contactArtwork {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: clamp(72px, calc(14vw + 0.6rem), 240px);
+  visibility: hidden;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.contactArtwork img {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: jello-horizontal 2.2s infinite;
+}
+@-webkit-keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
 .contactText {
   position: absolute;
   top: 15%;

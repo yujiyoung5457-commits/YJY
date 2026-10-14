@@ -107,15 +107,34 @@
   isolation: isolate;
 }
 
+// .livePreview::before {
+//   position: absolute;
+//   z-index: 0;
+//   inset: 0;
+//   background: var(--color-red);
+//   content: "";
+//   pointer-events: none;
+//   -webkit-mask: url("/print2.svg") center / 100% 100% no-repeat;
+//   mask: url("/print2.svg") center / 100% 100% no-repeat;
+// }
+.livePreview {
+  position: relative;
+  overflow: visible;
+}
+
 .livePreview::before {
   position: absolute;
   z-index: 0;
-  inset: 0;
+
+  // 영역 자체를 크게 만들기
+  inset: -10%;
+
   background: var(--color-red);
   content: "";
   pointer-events: none;
-  -webkit-mask: url("/print.svg") center / 100% 100% no-repeat;
-  mask: url("/print.svg") center / 100% 100% no-repeat;
+
+  -webkit-mask: url("/print2.svg") center / 100% 100% no-repeat;
+  mask: url("/print2.svg") center / 100% 100% no-repeat;
 }
 
 .printMask {
@@ -366,5 +385,11 @@
 .livePreview {
   position: relative;
   z-index: 1;
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding-top: 0;
+  }
 }
 

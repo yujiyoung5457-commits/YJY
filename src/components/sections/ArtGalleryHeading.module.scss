@@ -98,16 +98,29 @@
 
 @media (max-width: 480px) {
   .boundary {
-    background: linear-gradient(
-      to right,
-      #ffaa00 0 70%,
-      var(--color-blue) 70% 100%
-    );
+    overflow: visible;
+    background: var(--color-blue);
+    isolation: isolate;
     padding: clamp(1.5rem, 7vw, 2.25rem) var(--page-gutter) 0.75rem;
   }
 
+  .boundary::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background: #ffaa00;
+    clip-path: polygon(0 0, 73% 0, 71% 100%, 0 100%);
+    content: "";
+    pointer-events: none;
+  }
+
   .heading {
-    font-size: clamp(2rem, 8.5vw, 3rem);
-    transform: rotate(-4deg);
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+    white-space: nowrap;
+    transform: rotate(-2deg);
   }
 }

@@ -13,7 +13,7 @@
   min-width: 0;
   min-height: max(calc(100svh - var(--header-height)), 760px);
   overflow: hidden;
-  border-radius: 0 50% 50% 0;
+  border-radius: 0 99px 99px 0;
   background: #ff78b1;
 }
 
@@ -121,6 +121,13 @@
     min-height: 0;
     border-radius: 0 clamp(36px, 12vw, 76px)
       clamp(36px, 12vw, 76px) 0;
+  }
+
+  .popMain iframe {
+    width: 400%;
+    height: 400%;
+    transform: scale(0.25);
+    transform-origin: top left;
   }
 
   .projectCopy {

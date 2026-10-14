@@ -34,6 +34,7 @@
   --replay-width: 14%;
 
   position: relative;
+  z-index: 5;
   width: 100%;
   min-height: clamp(440px, 64.4vw, 980px);
   overflow: hidden;

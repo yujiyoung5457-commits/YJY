@@ -44,8 +44,9 @@ export function AIStudyProject() {
             <span className={styles.divider} aria-hidden="true" />
             <p className={styles.description}>
               OpenAI API 기반 React 학습 기능과 RAG 챗봇을 구현했습니다.
-              소셜 로그인, MySQL 회원관리, WebSocket 실시간 채팅을 개발하고
-              GCP에 서버를 배포했습니다.
+              소셜 로그인, Google Cloud SQL(MySQL) 기반 회원관리,
+              WebSocket 실시간 채팅을 개발하고
+              Node.js·Express 서버를 Google Cloud Run에 배포했습니다.
             </p>
           </div>
         </article>
