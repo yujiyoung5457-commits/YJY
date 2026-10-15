@@ -1,0 +1,257 @@
+.section {
+  --team-surface: #ffaa00;
+
+  position: relative;
+  overflow: hidden;
+  background: var(--color-blue);
+  color: var(--color-blue);
+  isolation: isolate;
+  padding-bottom: 8rem;
+}
+
+.waveCanvas {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1920px);
+  margin-inline: auto;
+  padding: clamp(2.5rem, 3.4vw, 4rem) clamp(2rem, 3vw, 4rem)
+    clamp(3rem, 4.5vw, 5rem);
+}
+
+.heading {
+  margin: 0;
+  color: var(--team-surface);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(3.5rem, 4.5vw, 5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: clamp(3rem, 6vw, 7rem);
+  margin-top: clamp(1rem, 1.5vw, 1.75rem);
+}
+
+.previewPlaceholder {
+  display: grid;
+  width: 100%;
+  max-width: 54rem;
+  aspect-ratio: 16 / 9;
+  align-self: center;
+  place-items: center;
+  overflow: hidden;
+  border-radius: clamp(1.5rem, 2.2vw, 2.5rem);
+  background: #a80000;
+  color: var(--color-cream);
+}
+
+.previewPlaceholder p {
+  margin: 0;
+  padding: 2rem;
+  font-family: var(--font-noto-sans-kr), sans-serif;
+  font-size: clamp(1.6rem, 2.8vw, 3.4rem);
+  font-weight: 400;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.description {
+  min-width: 0;
+  padding-top: clamp(0.5rem, 1.5vw, 1.5rem);
+}
+
+.projectName,
+.description h3,
+.troubleshooting h4 {
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.projectName {
+  margin: 0;
+  font-size: clamp(1.8rem, 2.2vw, 2.8rem);
+  text-align: center;
+}
+
+.description h3 {
+  margin: clamp(0.75rem, 1vw, 1rem) 0 clamp(2.25rem, 3vw, 3.5rem);
+  font-size: clamp(2.8rem, 3.2vw, 4rem);
+  line-height: 1;
+  text-align: center;
+}
+
+.summary {
+  font-family: var(--font-noto-sans-kr), sans-serif;
+  font-size: clamp(1.2rem, 1.55vw, 2rem);
+  font-weight: 600;
+  line-height: 1.35;
+  word-break: keep-all;
+}
+
+.summary p,
+.troubleshooting p {
+  margin: 0;
+}
+
+.summary p + p {
+  margin-top: 0.15em;
+}
+
+.troubleshooting {
+  margin-top: clamp(2rem, 3vw, 3.5rem);
+  padding-top: clamp(1.25rem, 2vw, 2rem);
+  border-top: clamp(4px, 0.45vw, 8px) solid var(--color-red);
+}
+
+.troubleshooting h4 {
+  margin: 0 0 clamp(1.2rem, 2vw, 2rem);
+  color: var(--color-red);
+  font-size: clamp(2rem, 2.5vw, 3rem);
+  line-height: 1;
+  text-align: center;
+}
+
+.troubleshooting p {
+  font-family: var(--font-noto-sans-kr), sans-serif;
+  font-size: clamp(1.15rem, 1.45vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.45;
+  word-break: keep-all;
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: clamp(8rem, 11vw, 13rem) 0 0;
+  color: var(--color-cream);
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(1.9rem, 2.7vw, 3rem);
+  line-height: 1.25;
+  text-align: center;
+}
+
+.technologies > span {
+  white-space: nowrap;
+}
+
+@media (min-width: 901px) {
+  .heading {
+    transform: scale(0.92);
+    transform-origin: top left;
+  }
+
+  .content {
+    transform: scale(0.92);
+    transform-origin: top center;
+  }
+
+  .previewPlaceholder {
+    transform: translateY(clamp(2rem, 2.5vw, 3rem));
+  }
+
+  .technologies {
+    transform: scale(0.92);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 900px) {
+  .inner {
+    padding: clamp(2.5rem, 7vw, 4rem) var(--page-gutter)
+      clamp(3rem, 8vw, 5rem);
+  }
+
+  .heading {
+    font-size: clamp(3.5rem, 10vw, 5.5rem);
+  }
+
+  .content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.5rem, 7vw, 4rem);
+    margin-top: clamp(4rem, 10vw, 6rem);
+  }
+
+  .previewPlaceholder {
+    width: min(100%, 42rem);
+    justify-self: center;
+  }
+  .description {
+    width: min(100%, 42rem);
+    justify-self: center;
+    padding-top: 0;
+  }
+
+  .description h3 {
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+
+  .technologies {
+    margin-top: clamp(8rem, 18vw, 11rem);
+    font-size: clamp(1.55rem, 4.5vw, 2.4rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .inner {
+    padding-top: clamp(2rem, 8vw, 3rem);
+  }
+
+  .heading {
+    font-size: clamp(2.9rem, 13vw, 4.2rem);
+    line-height: 1;
+  }
+
+  .content {
+    gap: clamp(2rem, 9vw, 3rem);
+    margin-top: clamp(3rem, 13vw, 4.5rem);
+  }
+
+  .previewPlaceholder {
+    border-radius: clamp(1.2rem, 6vw, 2rem);
+  }
+
+  .previewPlaceholder p {
+    padding: 1.25rem;
+    font-size: clamp(1.15rem, 6vw, 1.7rem);
+  }
+
+  .projectName {
+    font-size: clamp(1.45rem, 7vw, 2rem);
+  }
+
+  .description h3 {
+    font-size: clamp(2.25rem, 11vw, 3.4rem);
+  }
+
+  .summary,
+  .troubleshooting p {
+    font-size: clamp(0.95rem, 4.2vw, 1.12rem);
+    line-height: 1.55;
+  }
+
+  .troubleshooting h4 {
+    font-size: clamp(1.8rem, 9vw, 2.5rem);
+  }
+
+  .technologies {
+    gap: 0.25rem;
+    margin-top: clamp(7rem, 28vw, 9rem);
+    font-size: clamp(1.25rem, 6vw, 1.75rem);
+  }
+}

@@ -18,6 +18,7 @@ import { Movie } from "@/components/sections/Movie";
 import { MiniProjects } from "@/components/sections/MiniProjects";
 import GatchaPOP from "@/components/sections/GatchaPOP";
 import { Skills } from "@/components/sections/Skills";
+import { Team } from "@/components/sections/Team";
 import { TeamProjects } from "@/components/sections/TeamProjects";
 import styles from "./page.module.scss";
 
@@ -32,6 +33,7 @@ export default function Home() {
       <main>
         <FeaturedProjects />
         <TeamProjects />
+        <Team />
         <Skills />
         <AIStudyProject />
         <DesignCode />
