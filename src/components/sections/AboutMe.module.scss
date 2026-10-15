@@ -14,6 +14,10 @@
   display: block;
 }
 
+.mobileStatementBreak {
+  display: none;
+}
+
 .tab .textReveal {
   display: inline-block;
 }
@@ -168,8 +172,24 @@
   font-size: clamp(2rem, 4.1vw, 4rem);
   font-weight: 400;
   line-height: 1.02;
+  -webkit-animation: text-pop-up-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
-
+@-webkit-keyframes text-pop-up-top {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    text-shadow: none;
+  }
+  100% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    text-shadow: 0 1px 0 #FFFAD7, 0 4px 0 #FFFAD7, 0 7px 0 #FFFAD7, 0 8px 0 #FFFAD7, 0 9px 0 #FFFAD7, 0 50px 30px rgba(82, 41, 8, 0.3);
+  }
+}
 .details {
   display: grid;
   grid-template-columns: minmax(7.25rem, 10rem) minmax(0, 1fr);
@@ -213,6 +233,7 @@
   min-width: 0;
   padding-top: 0.2rem;
   line-height: 1.05;
+  // border: 1px solid yellowgreen;
 }
 
 .detailCopy strong {
@@ -222,7 +243,7 @@
 }
 
 .description {
-  margin-top: 0.25rem;
+  margin-top: 1rem;
   font-size: clamp(1.1rem, 1.8vw, 2rem);
   line-height: 1.15;
   overflow-wrap: anywhere;
@@ -381,7 +402,7 @@
   }
 
   .statement {
-    margin-top: 2rem;
+    margin-top: 5rem;
     line-height: 1.12;
      font-size:clamp(2rem, 5vw, 4rem) ;
   }
@@ -471,12 +492,46 @@
   .statement {
     max-width: none;
     margin-top: clamp(1.5rem, 7vw, 2.5rem);
-    font-size: clamp(1.7rem, 7.3vw, 2.65rem);
+    font-size: clamp(1.35rem, 5.8vw, 2.1rem);
     text-align: right;
+    animation: heartbeat 2s infinite;
+    transform: translateY(0);
   }
 
-  .statement br {
-    display: none;
+  .statement .textReveal {
+    white-space: nowrap;
+  }
+
+  .statement .mobileStatementBreak {
+    display: block;
+  }
+
+  @keyframes heartbeat {
+    from {
+      transform: scale(1);
+      transform-origin: center center;
+      animation-timing-function: ease-out;
+    }
+
+    10% {
+      transform: scale(0.91);
+      animation-timing-function: ease-in;
+    }
+
+    17% {
+      transform: scale(0.98);
+      animation-timing-function: ease-out;
+    }
+
+    33% {
+      transform: scale(0.87);
+      animation-timing-function: ease-in;
+    }
+
+    45% {
+      transform: scale(1);
+      animation-timing-function: ease-out;
+    }
   }
 
   .details {

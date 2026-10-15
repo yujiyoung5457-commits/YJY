@@ -1,7 +1,7 @@
 .section {
   position: relative;
   width: 100%;
-  padding: clamp(2rem, 5vw, 5rem) 0 clamp(4rem, 8vw, 8rem);
+  padding: clamp(2rem, 7vw, 6rem) 0 clamp(4rem, 8vw, 8rem);
   overflow: hidden;
   background: var(--color-blue);
 }
@@ -359,6 +359,9 @@
 }
 
 @media (max-width: 1439px) {
+  // .section{
+  //   padding: clamp(2rem, 6vw, 10rem) 0;
+  // }
   .card {
     display: none;
   }
@@ -374,12 +377,12 @@
   }
 
   .windows {
-    top: 18%;
-    width: min(70vw, 900px);
+    top: 24%;
+    width: min(86vw, 900px);
   }
 
   .result {
-    bottom: 3%;
+    bottom: -1%;
     width: min(82vw, 1050px);
   }
 }

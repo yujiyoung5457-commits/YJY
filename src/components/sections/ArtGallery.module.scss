@@ -1428,6 +1428,12 @@
     aspect-ratio: 1 / 1 !important;
   }
 
+  .scaledObjectInner > .shape1,
+  .scaledObjectInner > .shape2,
+  .scaledObjectInner > .shape4 {
+    border-radius: 9% / 12%;
+  }
+
   .frame1,
   .frame2,
   .frame3,

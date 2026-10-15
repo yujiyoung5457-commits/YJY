@@ -153,7 +153,8 @@ export function AboutMe() {
                 I turn visual ideas
               </span>
               <span className={styles.textReveal} data-about-text-reveal>
-                into interactive web experiences.
+                into interactive web
+                <br className={styles.mobileStatementBreak} /> experiences.
               </span>
             </p>
           </div>

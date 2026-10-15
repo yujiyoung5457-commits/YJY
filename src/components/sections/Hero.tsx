@@ -4,11 +4,18 @@ import { Scene } from "@/components/three/Scene";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { DM_Serif_Display } from "next/font/google";
 import { useLayoutEffect, useRef } from "react";
 import { createHeroVortex } from "./heroVortex";
 import styles from "./Hero.module.scss";
 
 const HERO_SCROLL_DISTANCE = "+=275%";
+const dmSerifDisplay = DM_Serif_Display({
+  weight: "400",
+  style: "italic",
+  subsets: ["latin"],
+  display: "swap",
+});
 const introBackgrounds = [
   "/heromain_1.webp",
   "/heromain_2.webp",
@@ -168,6 +175,19 @@ export function Hero() {
           Frontend Developer
         </h1>
 
+        <div
+          className={`${styles.originalityCopy} ${dmSerifDisplay.className}`}
+        >
+          <p className={styles.originalityCopyLeft}>
+            <span>Every Asset.</span>
+            <span>Made by Me.</span>
+          </p>
+          <p className={styles.originalityCopyRight}>
+            <span>NO STOCK</span>
+            <span>ALL ORIGINAL</span>
+          </p>
+        </div>
+
         <div className={styles.modelStack}>
           <div
             ref={(node) => {
@@ -175,7 +195,7 @@ export function Hero() {
             }}
             className={styles.modelStage}
           >
-            <Scene maintainZoomQuality />
+            <Scene maintainZoomQuality contain modelScale={0.78} />
           </div>
           <div
             ref={(node) => {
@@ -183,7 +203,12 @@ export function Hero() {
             }}
             className={styles.modelStage}
           >
-            <Scene modelPath="/second3D.glb" maintainZoomQuality />
+            <Scene
+              modelPath="/second3D.glb"
+              maintainZoomQuality
+              contain
+              modelScale={0.78}
+            />
           </div>
         </div>
 
