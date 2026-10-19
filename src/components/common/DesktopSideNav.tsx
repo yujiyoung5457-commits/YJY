@@ -21,13 +21,32 @@ export function DesktopSideNav() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    const mobileQuery = window.matchMedia("(max-width: 600px)");
     const desktopQuery = window.matchMedia("(min-width: 1025px)");
-    const closeBelowDesktop = (event: MediaQueryListEvent) => {
-      if (!event.matches) setIsOpen(false);
+    let currentMode = mobileQuery.matches
+      ? "mobile"
+      : desktopQuery.matches
+        ? "desktop"
+        : "hidden";
+
+    const closeWhenModeChanges = () => {
+      const nextMode = mobileQuery.matches
+        ? "mobile"
+        : desktopQuery.matches
+          ? "desktop"
+          : "hidden";
+
+      if (nextMode !== currentMode) setIsOpen(false);
+      currentMode = nextMode;
     };
 
-    desktopQuery.addEventListener("change", closeBelowDesktop);
-    return () => desktopQuery.removeEventListener("change", closeBelowDesktop);
+    mobileQuery.addEventListener("change", closeWhenModeChanges);
+    desktopQuery.addEventListener("change", closeWhenModeChanges);
+
+    return () => {
+      mobileQuery.removeEventListener("change", closeWhenModeChanges);
+      desktopQuery.removeEventListener("change", closeWhenModeChanges);
+    };
   }, []);
 
   useEffect(() => {
@@ -41,11 +60,30 @@ export function DesktopSideNav() {
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen || !window.matchMedia("(max-width: 600px)").matches) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
   const moveToSection = (targetId: string) => {
     const target = document.getElementById(targetId);
     if (!target) return;
 
     setIsOpen(false);
+
+    if (window.matchMedia("(max-width: 600px)").matches) {
+      window.requestAnimationFrame(() => {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      return;
+    }
+
     target.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 

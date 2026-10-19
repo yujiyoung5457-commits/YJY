@@ -39,7 +39,7 @@
     width: 38%;
     height: 4px;
     border-radius: 999px;
-    background: var(--color-yellow);
+    background: #FFAA00;
     transition:
       background-color 320ms ease,
       opacity 180ms ease,
@@ -59,7 +59,7 @@
   }
 
   .menuButtonOpen::before {
-    background: var(--color-yellow);
+    background: #FFAA00;
   }
 
   .menuButtonOpen span {
@@ -143,7 +143,7 @@
     padding: 0;
     border: 0;
     background: transparent;
-    color: var(--color-yellow);
+    color: #FFAA00;
     font-family: var(--font-anton), Impact, sans-serif;
     font-size: clamp(20px, 1.5vw, 26px);
     line-height: 1.6;
@@ -168,6 +168,184 @@
 }
 
 @media (min-width: 1025px) and (prefers-reduced-motion: reduce) {
+  .menuButton::before,
+  .menuButton span,
+  .backdrop,
+  .panel,
+  .nav button {
+    transition-duration: 0.01ms;
+  }
+}
+
+@media (max-width: 600px) {
+  .menuButton {
+    position: fixed;
+    z-index: 1102;
+    top: 8px;
+    right: 10px;
+    display: block;
+    width: 50px;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    filter: drop-shadow(0 4px 6px rgb(24 24 24 / 20%));
+  }
+
+  .menuButton::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background: var(--color-ink);
+    content: "";
+    -webkit-mask: url("/hamburgerbar/hamburger.svg") center / contain no-repeat;
+    mask: url("/hamburgerbar/hamburger.svg") center / contain no-repeat;
+    transition: background-color 320ms ease;
+  }
+
+  .menuButton span {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 38%;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--color-yellow);
+    transition:
+      background-color 320ms ease,
+      opacity 180ms ease,
+      transform 320ms ease;
+  }
+
+  .menuButton span:nth-child(1) {
+    transform: translate(-50%, calc(-50% - 7px));
+  }
+
+  .menuButton span:nth-child(2) {
+    transform: translate(-50%, -50%);
+  }
+
+  .menuButton span:nth-child(3) {
+    transform: translate(-50%, calc(-50% + 7px));
+  }
+
+  .menuButtonOpen::before {
+    background: var(--color-yellow);
+  }
+
+  .menuButtonOpen span {
+    background: var(--color-ink);
+  }
+
+  .menuButtonOpen span:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .menuButtonOpen span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menuButtonOpen span:nth-child(3) {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .menuButton:focus-visible {
+    outline: 3px solid var(--color-cream);
+    outline-offset: 3px;
+  }
+
+  .backdrop {
+    position: fixed;
+    z-index: 1100;
+    inset: 0;
+    display: block;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: visibility 0s linear 380ms;
+  }
+
+  .backdropOpen {
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .panel {
+    position: fixed;
+    z-index: 1101;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 100%;
+    max-width: 100vw;
+    height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: rgb(6 10 123 / 88%);
+    transform: translateX(100%);
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 380ms;
+  }
+
+  .panelOpen {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .nav {
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    padding: clamp(5.5rem, 14dvh, 7rem) clamp(1.5rem, 8vw, 2.5rem) 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: clamp(0.65rem, 1.8dvh, 1rem);
+  }
+
+  .nav button {
+    max-width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-yellow);
+    font-family: var(--font-anton), Impact, sans-serif;
+    font-size: clamp(1.3rem, 6vw, 1.75rem);
+    line-height: 1.15;
+    text-align: left;
+    text-transform: uppercase;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+    transition:
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .nav button:hover,
+  .nav button:focus-visible {
+    color: var(--color-cream);
+    transform: translateX(6px);
+  }
+
+  .nav button:focus-visible {
+    outline: 2px solid currentcolor;
+    outline-offset: 4px;
+  }
+}
+
+@media (max-width: 600px) and (prefers-reduced-motion: reduce) {
   .menuButton::before,
   .menuButton span,
   .backdrop,
