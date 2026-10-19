@@ -1,13 +1,59 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import forLogScreenshot01 from "../../../public/follogscreenshot01.jpg";
+import forLogScreenshot02 from "../../../public/follogscreenshot02.jpg";
+import forLogScreenshot03 from "../../../public/follogscreenshot03.jpg";
+import forLogScreenshot04 from "../../../public/follogscreenshot04.jpg";
+import forLogScreenshot05 from "../../../public/follogscreenshot05.jpg";
+import forLogScreenshot06 from "../../../public/follogscreenshot06.jpg";
+import lcodeScreenshot01 from "../../../public/locodescreenshot01.jpg";
+import lcodeScreenshot02 from "../../../public/locodescreenshot02.jpg";
+import lcodeScreenshot03 from "../../../public/locodescreenshot03.jpg";
+import lcodeScreenshot04 from "../../../public/locodescreenshot04.jpg";
+import lcodeScreenshot05 from "../../../public/locodescreenshot05.jpg";
+import lcodeScreenshot06 from "../../../public/locodescreenshot06.jpg";
+import midnightChordScreenshot01 from "../../../public/midnightchordscreenshot01.jpg";
+import midnightChordScreenshot02 from "../../../public/midnightchordscreenshot02.jpg";
+import midnightChordScreenshot03 from "../../../public/midnightchordscreenshot03.jpg";
+import midnightChordScreenshot04 from "../../../public/midnightchordscreenshot04.jpg";
+import midnightChordScreenshot05 from "../../../public/midnightchordscreenshot05.jpg";
+import midnightChordScreenshot06 from "../../../public/midnightchordscreenshot06.jpg";
 import styles from "./Team.module.scss";
+
+const FOR_LOG_SCREENSHOTS = [
+  forLogScreenshot01,
+  forLogScreenshot02,
+  forLogScreenshot03,
+  forLogScreenshot04,
+  forLogScreenshot05,
+  forLogScreenshot06,
+] as const;
+
+const LCODE_SCREENSHOTS = [
+  lcodeScreenshot01,
+  lcodeScreenshot02,
+  lcodeScreenshot03,
+  lcodeScreenshot04,
+  lcodeScreenshot05,
+  lcodeScreenshot06,
+] as const;
+
+const MIDNIGHT_CHORD_SCREENSHOTS = [
+  midnightChordScreenshot01,
+  midnightChordScreenshot02,
+  midnightChordScreenshot03,
+  midnightChordScreenshot04,
+  midnightChordScreenshot05,
+  midnightChordScreenshot06,
+] as const;
 
 const slides = [
   {
     projectName: "L:CODE",
     title: "My Page - Event",
-    previewUrl: "https://lcode-2.vercel.app/my",
+    previewScreenshots: LCODE_SCREENSHOTS,
     summary: [
       "마이페이지 사용자 흐름을 설계하고 Firebase를 연동해 회원정보·일정·찜·후기·구매·쿠폰 기능을 구현했습니다.",
       "여행 밸런스 게임과 가챠·매거진 이벤트 페이지를 제작하고, 반응형 UI와 다양한 사용자 인터랙션을 구현했습니다.",
@@ -26,7 +72,7 @@ const slides = [
   {
     projectName: "FOR LOG",
     title: "Home Page",
-    previewUrl: "https://tae0419.github.io/forlog2/Home/index.html",
+    previewScreenshots: FOR_LOG_SCREENSHOTS,
     summary: [
       "FOR-LOG의 대표 HOME 페이지 UI/UX 디자인과 프론트엔드 구현을 담당했습니다. 오리지널 캐릭터 ‘초로기’를 직접 디자인하고",
       "HTML·CSS·JavaScript를 활용해 반응형 레이아웃과 Canvas 인트로, 스크롤 애니메이션, 3D 카드, 리뷰 슬라이더, 이벤트 팝업 등 다양한 인터랙션을 구현했습니다.",
@@ -41,6 +87,24 @@ const slides = [
       "Canvas API",
       "IntersectionObserver",
       "Adobe Illustrator",
+    ],
+  },
+  {
+    projectName: "Midnight Chord",
+    title: "Artists & Playlist Page",
+    previewScreenshots: MIDNIGHT_CHORD_SCREENSHOTS,
+    summary: [
+      "Artist 목록·상세 페이지와 Playlist 영역의 UI 및 인터랙션을 구현했습니다. 아티스트 검색·페이지네이션·음악 재생·팔로우 기능과 드래그형 플레이리스트 캐러셀, 재생 컨트롤, 최근 재생 목록 및 모달 기능을 개발했습니다.",
+    ],
+    troubleshooting:
+      "팀원 간 공통 JSON 파일 사용으로 발생한 데이터 충돌을 해결하기 위해 파일을 개별 분리하고, 독립적으로 관리할 수 있도록 구조를 개선했습니다.",
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "LocalStorage",
+      "HTMLAudioElement",
+      "Pointer Events",
     ],
   },
 ] as const;
@@ -209,23 +273,27 @@ export function Team() {
               >
                 <div className={styles.content}>
                   <div className={styles.previewPlaceholder}>
-                    {slide.previewUrl ? (
-                      <iframe
-                        src={slide.previewUrl}
-                        title={`${slide.projectName} 사이트 미리보기`}
-                        loading="lazy"
-                        tabIndex={slideIndex === activeSlideIndex ? 0 : -1}
-                        style={{
-                          display: "block",
-                          width: "100%",
-                          height: "100%",
-                          border: 0,
-                          background: "#a80000",
-                        }}
-                      />
-                    ) : (
-                      <p>사이트 모습을 보여주는 부분</p>
-                    )}
+                    <div
+                      className={styles.previewSlideshow}
+                      role="img"
+                      aria-label={`${slide.projectName} 주요 화면 미리보기`}
+                    >
+                      {slide.previewScreenshots.map(
+                        (screenshot, screenshotIndex) => (
+                          <Image
+                            key={screenshot.src}
+                            className={styles.previewSlide}
+                            src={screenshot}
+                            alt=""
+                            fill
+                            sizes="(max-width: 900px) 100vw, 46vw"
+                            style={{
+                              animationDelay: `${screenshotIndex * 5 - 1}s`,
+                            }}
+                          />
+                        ),
+                      )}
+                    </div>
                   </div>
 
                   <article className={styles.description}>

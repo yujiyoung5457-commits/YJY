@@ -4,7 +4,11 @@ import styles from "./AboutTo.module.scss";
 
 export function AboutTo() {
   return (
-    <section className={styles.section} aria-labelledby="about-to-title">
+    <section
+      className={styles.section}
+      id="my-journey"
+      aria-labelledby="about-to-title"
+    >
       <div className={`${styles.modelStage} ${styles.leftModel}`}>
         <Scene
           modelPath="/honya/HN01.glb"

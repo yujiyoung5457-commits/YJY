@@ -1,4 +1,5 @@
 import { Footer } from "@/components/common/Footer";
+import { DesktopSideNav } from "@/components/common/DesktopSideNav";
 import { FloatingNav } from "@/components/common/FloatingNav";
 import { Header } from "@/components/common/Header";
 import { AboutMe } from "@/components/sections/AboutMe";
@@ -67,6 +68,7 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingNav />
+      <DesktopSideNav />
     </div>
   );
 }

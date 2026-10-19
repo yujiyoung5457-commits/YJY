@@ -16,6 +16,11 @@ import darumaDecoration from "../../../public/daruma.png";
 import eyesDecoration from "../../../public/eyes.png";
 import fortuneDecoration from "../../../public/fortune.png";
 import martryocikaDecoration from "../../../public/martryocika.png";
+import clearWeather from "../../../public/clear.webp";
+import cloudsWeather from "../../../public/Clouds.webp";
+import rainWeather from "../../../public/Rain.webp";
+import snowWeather from "../../../public/Snow.webp";
+import thunderstormWeather from "../../../public/Thunderstorm.webp";
 import styles from "./WeatherAPI.module.scss";
 
 type Weather = {
@@ -55,16 +60,16 @@ const CITY_DRAG_THRESHOLD = 22;
 function weatherImage(condition: string) {
   switch (condition.toLowerCase()) {
     case "clear":
-      return "/clear.webp";
+      return clearWeather;
     case "thunderstorm":
-      return "/Thunderstorm.webp";
+      return thunderstormWeather;
     case "drizzle":
     case "rain":
-      return "/Rain.webp";
+      return rainWeather;
     case "snow":
-      return "/Snow.webp";
+      return snowWeather;
     default:
-      return "/Clouds.webp";
+      return cloudsWeather;
   }
 }
 
@@ -181,7 +186,7 @@ export function WeatherAPI() {
   const selectedWeather = weather[selectedIndex];
   const selectedWeatherImage = selectedWeather
     ? weatherImage(selectedWeather.conditionGroup)
-    : "/Clouds.webp";
+    : cloudsWeather;
   const visibleCities = Array.from(
     { length: Math.min(VISIBLE_CITY_COUNT + 2, weather.length) },
     (_, index) => {
@@ -336,7 +341,7 @@ export function WeatherAPI() {
           <div className={styles.window} key={`${src}-${index}`}>
             {index === 1 && (
               <Image
-                key={selectedWeatherImage}
+                key={selectedWeatherImage.src}
                 className={styles.windowWeather}
                 src={selectedWeatherImage}
                 alt=""

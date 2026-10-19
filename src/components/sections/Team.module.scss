@@ -69,6 +69,45 @@
   word-break: keep-all;
 }
 
+.previewSlideshow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fbf8e9;
+}
+
+.previewSlide {
+  object-fit: cover;
+  opacity: 0;
+  animation: previewFade 30s ease-in-out infinite;
+}
+
+@keyframes previewFade {
+  0% {
+    opacity: 0;
+  }
+
+  3.333%,
+  16.667% {
+    opacity: 1;
+  }
+
+  20%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .previewSlide {
+    animation: none;
+  }
+
+  .previewSlide:first-child {
+    opacity: 1;
+  }
+}
+
 .description {
   min-width: 0;
   padding-top: clamp(0.5rem, 1.5vw, 1.5rem);

@@ -1,0 +1,178 @@
+.menuButton,
+.backdrop,
+.panel {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  .menuButton {
+    position: fixed;
+    z-index: 1102;
+    top: clamp(18px, 2vw, 40px);
+    right: clamp(14px, 2.4vw, 55px);
+    display: block;
+    width: clamp(68px, 5vw, 86px);
+    aspect-ratio: 1;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    filter: drop-shadow(0 6px 8px rgb(24 24 24 / 20%));
+  }
+
+  .menuButton::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background: var(--color-ink);
+    content: "";
+    -webkit-mask: url("/hamburgerbar/hamburger.svg") center / contain no-repeat;
+    mask: url("/hamburgerbar/hamburger.svg") center / contain no-repeat;
+    transition: background-color 320ms ease;
+  }
+
+  .menuButton span {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 38%;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--color-yellow);
+    transition:
+      background-color 320ms ease,
+      opacity 180ms ease,
+      transform 320ms ease;
+  }
+
+  .menuButton span:nth-child(1) {
+    transform: translate(-50%, calc(-50% - 10px));
+  }
+
+  .menuButton span:nth-child(2) {
+    transform: translate(-50%, -50%);
+  }
+
+  .menuButton span:nth-child(3) {
+    transform: translate(-50%, calc(-50% + 10px));
+  }
+
+  .menuButtonOpen::before {
+    background: var(--color-yellow);
+  }
+
+  .menuButtonOpen span {
+    background: var(--color-ink);
+  }
+
+  .menuButtonOpen span:nth-child(1) {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .menuButtonOpen span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menuButtonOpen span:nth-child(3) {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .menuButton:focus-visible {
+    outline: 3px solid var(--color-cream);
+    outline-offset: 4px;
+  }
+
+  .backdrop {
+    position: fixed;
+    z-index: 1100;
+    inset: 0;
+    display: block;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: visibility 0s linear 380ms;
+  }
+
+  .backdropOpen {
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .panel {
+    position: fixed;
+    z-index: 1101;
+    top: 0;
+    right: 0;
+    display: block;
+    width: clamp(280px, 25vw, 390px);
+    height: 100dvh;
+    overflow-y: auto;
+    background: rgb(6 10 123 / 88%);
+    transform: translateX(100%);
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 380ms;
+  }
+
+  .panelOpen {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .nav {
+    display: flex;
+    min-height: 100%;
+    padding: clamp(7rem, 15dvh, 9.5rem) clamp(1.75rem, 3vw, 3.25rem)
+      clamp(2rem, 5dvh, 4rem);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(0.55rem, 1.25dvh, 0.95rem);
+  }
+
+  .nav button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-yellow);
+    font-family: var(--font-anton), Impact, sans-serif;
+    font-size: clamp(20px, 1.5vw, 26px);
+    line-height: 1.6;
+    text-align: left;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .nav button:hover,
+  .nav button:focus-visible {
+    color: var(--color-cream);
+    transform: translateX(6px);
+  }
+
+  .nav button:focus-visible {
+    outline: 2px solid currentcolor;
+    outline-offset: 4px;
+  }
+}
+
+@media (min-width: 1025px) and (prefers-reduced-motion: reduce) {
+  .menuButton::before,
+  .menuButton span,
+  .backdrop,
+  .panel,
+  .nav button {
+    transition-duration: 0.01ms;
+  }
+}

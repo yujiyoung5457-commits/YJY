@@ -191,7 +191,11 @@ export function ArtSlider() {
   }, []);
 
   return (
-    <section className={styles.section} aria-labelledby="art-slider-title">
+    <section
+      className={styles.section}
+      id="artwork"
+      aria-labelledby="art-slider-title"
+    >
       <div ref={stageRef} className={styles.stickyStage}>
         <div ref={headingRef} className={styles.heading}>
           <span aria-hidden="true">&#123;</span>
