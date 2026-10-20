@@ -72,15 +72,15 @@ function ProjectButtons({ className, liveUrl, githubUrl }: ProjectButtonsProps) 
 }
 
 const bookSlides = [
-  "/book.png",
+  "/book.webp",
   "/book01.png",
   "/book02.png",
 ] as const;
 
-const memoryPodoSlides = ["/memory-podo.png", "/memoryPodo-01.png"] as const;
+const memoryPodoSlides = ["/memory-podo.webp", "/memoryPodo-01.png"] as const;
 
 const cloudCrudSlides = [
-  "/cloud-CRUD.png",
+  "/cloud-CRUD.webp",
   "/cloud-CRUD01.png",
   "/cloud-CRUD02.png",
 ] as const;

@@ -1,0 +1,134 @@
+.wrapper {
+  position: absolute;
+  z-index: 5;
+  top: clamp(1.5rem, 4vh, 2.75rem);
+  left: 50%;
+  width: clamp(280px, 30vw, 430px);
+  max-width: calc(100vw - 2rem);
+  opacity: 1;
+  transform: translateX(-50%);
+  transition: opacity 360ms ease;
+  animation: go-project-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.wrapper.isDismissed {
+  animation: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mainButton {
+  display: flex;
+  width: 100%;
+  min-height: clamp(94px, 9vw, 116px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.2rem, 0.45vw, 0.4rem);
+  padding: 1rem 3.5rem 0.9rem 2rem;
+  border: 0;
+  border-radius: 9999px;
+  background: #ffaa00;
+  color: #8d1515;
+  text-align: center;
+  cursor: pointer;
+  // animation: heartbeat 2s infinite;
+}
+@-webkit-keyframes heartbeat {
+  from {
+  transform: scale(1.05);
+  transform-origin: center center;
+  animation-timing-function: ease-out;
+}
+10% {
+  transform: scale(0.96);
+  animation-timing-function: ease-in;
+}
+17% {
+  transform: scale(1.03);
+  animation-timing-function: ease-out;
+}
+33% {
+  transform: scale(0.92);
+  animation-timing-function: ease-in;
+}
+45% {
+  transform: scale(1.05);
+  animation-timing-function: ease-out;
+}
+}
+.mainButton strong,
+.mainButton span {
+  font-family: var(--font-anton), Impact, sans-serif;
+  line-height: 1;
+}
+
+.mainButton strong {
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.mainButton span {
+  font-size: clamp(0.72rem, 1.15vw, 1.1rem);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.8rem;
+  right: 1.8rem;
+  display: grid;
+  width: clamp(24px, 2.1vw, 30px);
+  aspect-ratio: 1;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #8d1515;
+  color: #ffaa00;
+  font-family: Arial, sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mainButton:focus-visible,
+.closeButton:focus-visible {
+  outline: 3px solid #fcf6eb;
+  outline-offset: 3px;
+}
+
+@keyframes go-project-enter {
+  from {
+    transform: translate(-50%, -160%);
+  }
+
+  to {
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width: 560px) {
+  .wrapper {
+    top: max(1rem, env(safe-area-inset-top));
+    width: min(78vw, 320px);
+  }
+
+  .mainButton {
+    min-height: 82px;
+    padding: 0.8rem 2.8rem 0.75rem 1.4rem;
+  }
+
+  .closeButton {
+    top: 0.45rem;
+    right: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrapper {
+    animation: none;
+  }
+}

@@ -6,6 +6,13 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import styles from "./ArtSlider.module.scss";
 
+const ARTWORK_SOURCE_ALIASES: Partial<Record<number, number>> = {
+  390: 386,
+  391: 385,
+  411: 410,
+  415: 413,
+};
+
 const SLIDER_IMAGES = [
   ...Array.from(
     { length: 37 },
@@ -13,7 +20,12 @@ const SLIDER_IMAGES = [
   ),
   ...Array.from(
     { length: 64 },
-    (_, index) => `/artwork/slider_img/artwork_${index + 369}.webp`,
+    (_, index) => {
+      const imageNumber = index + 369;
+      const sourceNumber = ARTWORK_SOURCE_ALIASES[imageNumber] ?? imageNumber;
+
+      return `/artwork/slider_img/artwork_${sourceNumber}.webp`;
+    },
   ),
 ];
 
@@ -212,7 +224,7 @@ export function ArtSlider() {
         <div className={styles.gallery}>
           <ul ref={cardsRef} className={styles.cards} aria-label="작품 슬라이드">
             {SLIDER_IMAGES.map((src, index) => (
-              <li key={src} className={styles.card} aria-label={`작품 ${index + 1}`}>
+              <li key={`${src}-${index}`} className={styles.card} aria-label={`작품 ${index + 1}`}>
                 <Image
                   className={styles.cardImage}
                   src={src}

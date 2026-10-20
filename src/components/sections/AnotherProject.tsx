@@ -149,7 +149,7 @@ export function AnotherProject() {
         />
         <div className={`${styles.mobilePreview} ${styles.shoppingPreview}`}>
           <Image
-            src="/reactShoppingmall-cotti.png"
+            src="/reactShoppingmall-cotti.webp"
             alt=""
             fill
             sizes="(max-width: 375px) 70vw, 1px"
@@ -216,7 +216,7 @@ export function AnotherProject() {
         <div className={styles.projectCard02}>
           <div className={`${styles.mobilePreview} ${styles.hamsterPreview}`}>
             <Image
-              src="/hamstercareImg.png"
+              src="/hamstercareImg.webp"
               alt=""
               fill
               sizes="(max-width: 375px) 24vw, 1px"

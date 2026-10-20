@@ -1,6 +1,7 @@
 "use client";
 
 import { Scene } from "@/components/three/Scene";
+import { GoProjectButton } from "@/components/common/GoProjectButton";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -145,6 +146,8 @@ export function Hero() {
   return (
     <section ref={heroRef} className={styles.hero} id="home" aria-labelledby="hero-title">
       <div ref={introPanelRef} className={`${styles.panel} ${styles.introPanel}`}>
+        <GoProjectButton />
+
         <div className={styles.backgroundSequence} aria-hidden="true">
           {introBackgrounds.map((src, index) => (
             <Image
