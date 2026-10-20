@@ -15,7 +15,6 @@ import cloverDecoration from "../../../public/clover.png";
 import darumaDecoration from "../../../public/daruma.png";
 import eyesDecoration from "../../../public/eyes.png";
 import fortuneDecoration from "../../../public/fortune.png";
-import martryocikaDecoration from "../../../public/martryocika.png";
 import clearWeather from "../../../public/clear.webp";
 import cloudsWeather from "../../../public/Clouds.webp";
 import rainWeather from "../../../public/Rain.webp";
@@ -47,7 +46,6 @@ const WINDOW_IMAGES = [
 ];
 
 const WINDOW_DECORATIONS = [
-  martryocikaDecoration,
   fortuneDecoration,
   eyesDecoration,
   darumaDecoration,
@@ -269,7 +267,11 @@ export function WeatherAPI() {
   };
 
   return (
-    <section className={styles.section} aria-labelledby="weather-api-title">
+    <section
+      className={styles.section}
+      id="weather-api"
+      aria-labelledby="weather-api-title"
+    >
       <div className={styles.composition}>
         <button
           className={`${styles.card} ${styles.cardLeft} ${

@@ -4,16 +4,16 @@ import { useEffect, useState } from "react";
 import styles from "./DesktopSideNav.module.scss";
 
 const NAV_ITEMS = [
-  { label: "ABOUT ME", targetId: "about" },
-  { label: "MY JOURNEY", targetId: "my-journey" },
+  { label: "ABOUT", targetId: "about" },
+  // { label: "MY JOURNEY", targetId: "my-journey" },
   { label: "TEAM PROJECT", targetId: "team-projects" },
   { label: "SKILLS", targetId: "skills" },
-  { label: "LEARNING PLATFORM", targetId: "ai-study" },
+  // { label: "LEARNING PLATFORM", targetId: "ai-study" },
   { label: "ANOTHER PROJECTS", targetId: "another-project" },
-  { label: "DASHBOARD & CRUD + SHOPPING", targetId: "art-gallery" },
+  // { label: "DASHBOARD & CRUD + SHOPPING", targetId: "art-gallery" },
   { label: "MINI PROJECTS", targetId: "mini-projects" },
   { label: "ARTWORK", targetId: "artwork" },
-  { label: "WEATHER API", targetId: "contact" },
+  { label: "WEATHER API", targetId: "weather-api" },
   { label: "GSAP ANIMATION", targetId: "gsap-animation" },
 ] as const;
 

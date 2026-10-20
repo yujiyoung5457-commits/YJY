@@ -147,10 +147,8 @@ export function Skills() {
   }, []);
 
   useEffect(() => {
-    if (activeSlide >= skillSlides.length - 1) return;
-
     const timeoutId = window.setTimeout(() => {
-      setActiveSlide((current) => current + 1);
+      setActiveSlide((current) => (current + 1) % skillSlides.length);
     }, SLIDE_INTERVAL_MS);
 
     return () => window.clearTimeout(timeoutId);

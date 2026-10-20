@@ -11,6 +11,7 @@ const projectDetails = {
     title: "Flower Dance",
     eyebrow: "Project 01 · Shopping Mall",
     summary: "캐릭터 기반 반응형 쇼핑몰",
+    liveUrl: "https://flower-dance-sigma.vercel.app/",
     task:
       "자체 제작 캐릭터를 활용한 반응형 쇼핑몰을 기획·구현했습니다. React와 Firebase를 연동해 회원·상품·찜·장바구니·주문·관리자 기능을 제작하고, 상품 검색·필터·재고 관리와 포토존·Kakao Maps 등 인터랙티브 기능을 구현했습니다.",
     tech: [
@@ -29,6 +30,7 @@ const projectDetails = {
     title: "I love hamster",
     eyebrow: "Project 02 · Care Game",
     summary: "햄스터 육성·방 꾸미기 웹앱",
+    liveUrl: "https://hamster-olive-mu.vercel.app/",
     task:
       "Next.js·TypeScript 기반으로 햄스터 육성 및 방 꾸미기 웹앱을 구현했습니다. Firebase를 활용해 사용자 인증과 햄스터 이름·호감도·레벨 데이터를 관리하고, PC·모바일 드래그 앤 드롭과 상태별 캐릭터 반응·퀘스트 시스템을 제작했습니다. 캐릭터와 아이템 에셋도 직접 디자인했습니다.",
     tech: [
@@ -84,9 +86,22 @@ function ScaledCircle({ children, className, designSize }: ScaledCircleProps) {
 
 export function AnotherProject() {
   const [selectedProject, setSelectedProject] = useState<ProjectKey>("flower");
-  const selectedDetails = projectDetails[selectedProject];
+  const [clickedProject, setClickedProject] = useState<ProjectKey | null>(null);
+  const activeProject = clickedProject ?? selectedProject;
+  const selectedDetails = projectDetails[activeProject];
   const visibleTech = selectedDetails.tech.slice(0, VISIBLE_TECH_COUNT);
   const remainingTechCount = selectedDetails.tech.length - visibleTech.length;
+
+  const previewProject = (project: ProjectKey, pointerType: string) => {
+    if (pointerType === "mouse" && clickedProject === null) {
+      setSelectedProject(project);
+    }
+  };
+
+  const selectProject = (project: ProjectKey) => {
+    setSelectedProject(project);
+    setClickedProject(project);
+  };
 
   return (
     <section
@@ -117,13 +132,13 @@ export function AnotherProject() {
       />
 
       <ScaledCircle className={styles.flowerCircle} designSize={1280}>
-      <a
+      <button
+        type="button"
         className={styles.projectCard}
-        href="https://flower-dance-sigma.vercel.app/"
-        target="_blank"
-        rel="noreferrer"
-        onClick={() => setSelectedProject("flower")}
-        aria-label="Flower Dance 사이트 새 탭에서 열기"
+        onPointerEnter={(event) => previewProject("flower", event.pointerType)}
+        onClick={() => selectProject("flower")}
+        aria-label="Flower Dance 프로젝트 정보 보기"
+        aria-pressed={activeProject === "flower"}
       >
         <Image
           className={styles.projectCardBackground}
@@ -146,7 +161,7 @@ export function AnotherProject() {
           <br />
           Mall
         </h3>
-      </a>
+      </button>
       </ScaledCircle>
 
       <ScaledCircle className={styles.descriptionCircle} designSize={560}>
@@ -177,18 +192,26 @@ export function AnotherProject() {
               </span>
             ) : null}
           </div>
+          <a
+            className={styles.liveSite}
+            href={selectedDetails.liveUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            LIVE SITE
+          </a>
         </div>
       </article>
       </ScaledCircle>
 
       <ScaledCircle className={styles.hamsterCircle} designSize={680}>
-      <a
+      <button
+        type="button"
         className={styles.projectSwapTrigger}
-        href="https://hamster-olive-mu.vercel.app/"
-        target="_blank"
-        rel="noreferrer"
-        onClick={() => setSelectedProject("hamster")}
-        aria-label="Hamster Care 사이트 새 탭에서 열기"
+        onPointerEnter={(event) => previewProject("hamster", event.pointerType)}
+        onClick={() => selectProject("hamster")}
+        aria-label="Hamster Care 프로젝트 정보 보기"
+        aria-pressed={activeProject === "hamster"}
       >
         <div className={styles.projectCard02}>
           <div className={`${styles.mobilePreview} ${styles.hamsterPreview}`}>
@@ -213,7 +236,7 @@ export function AnotherProject() {
             Care Game
           </h3>
         </div>
-      </a>
+      </button>
       </ScaledCircle>
     </section>
   );
