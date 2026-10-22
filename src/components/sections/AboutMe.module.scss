@@ -55,7 +55,7 @@
   z-index: -2;
   top: 0;
   bottom: 0;
-  left: clamp(-6rem, -5vw, -2rem);
+  left: clamp(-10rem, -10vw, -8rem);
   width: clamp(13rem, 25vw, 27rem);
   height: 100%;
   max-width: none;
@@ -254,7 +254,7 @@
    tablet and mobile rules below. */
 @media (min-width: 981px) {
   .section {
-    --about-section-height: max(130svh, 720px);
+    --about-section-height: max(100svh, 720px);
     height: var(--about-section-height);
     overflow: hidden;
   }
@@ -277,7 +277,7 @@
     z-index: 1;
     top: 17%;
     left: clamp(42px, 7.8vw, 120px);
-    width: clamp(210px, 23vw, 350px);
+    width: clamp(190px, 18vw, 300px);
     height: 79%;
     aspect-ratio: auto;
   }
@@ -314,35 +314,35 @@
     justify-content: start;
     gap: 0;
     margin-left: clamp(320px, 35vw, 680px);
-    padding: 8rem 0;
+    padding: clamp(5rem, 10vh, 7rem) 0;
   }
 
   .heading {
-    margin: 0 0 clamp(30px, 4.6vh, 48px);
-    padding-bottom: 1.5rem;
+    margin: 0 0 clamp(20px, 3vh, 32px);
+    padding-bottom: 0.75rem;
     padding-left: 8rem;
-    font-size: clamp(3rem, 5.4vw, 8rem);
+    font-size: clamp(3rem, 4.5vw, 5.5rem);
     line-height: 0.9;
   }
 
   .name,
   .role {
-    padding-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
     padding-left: 8rem;
   }
 
-  .name { font-size: clamp(2rem, 3.4vw, 3.5rem); }
-  .role { margin-top: 0; font-size: clamp(1.3rem, 2.2vw, 2.2rem); }
+  .name { font-size: clamp(2rem, 2.8vw, 3rem); }
+  .role { margin-top: 0; font-size: clamp(1.15rem, 1.6vw, 1.75rem); }
 
   .statement {
   width: 100%;
   max-width: none;
-  margin: clamp(30px, 4.4vh, 46px) 0;
-  padding: 3rem 4rem;
+  margin: clamp(24px, 3.5vh, 36px) 0;
+  padding: 1.25rem 2rem;
   box-sizing: border-box;
 
-  font-size: clamp(2rem, 4vw, 4.8rem);
-  line-height: 1.08;
+  font-size: clamp(2rem, 3vw, 3.25rem);
+  line-height: 1;
   text-align: start;
 
   span {
@@ -352,17 +352,17 @@
 }
 
   .details {
-    grid-template-columns: clamp(124px, 14vw, 190px) minmax(0, 1fr);
-    gap: clamp(26px, 4vw, 54px);
+    grid-template-columns: clamp(110px, 10vw, 150px) minmax(0, 1fr);
+    gap: clamp(20px, 2.5vw, 36px);
     padding-left: 8rem;
   }
 
-  .tabs { display: flex; flex-direction: column; gap: 26px; }
-  .tab { min-height: 65px; padding: 1.2rem 2rem; font-size: clamp(2.2rem, 1.6vw, 3rem); }
+  .tabs { display: flex; flex-direction: column; gap: clamp(12px, 1.5vh, 16px); }
+  .tab { min-height: clamp(44px, 5.5vh, 52px); padding: 0.75rem 1.15rem; font-size: clamp(1.25rem, 1.45vw, 1.75rem); }
   .tab:hover, .tab:focus-visible { transform: translateX(5px); }
-  .detailCopy { display: flex; min-height: 130px; flex-direction: column; padding-top: 4px; }
-  .detailCopy strong { font-size: clamp(3rem, 3.5vw, 5rem); }
-  .description { margin-top: 0; font-size: clamp(1.35rem, 2.1vw, 2.2rem); line-height: 1.05; }
+  .detailCopy { display: flex; min-height: 110px; flex-direction: column; padding-top: 4px; }
+  .detailCopy strong { font-size: clamp(2.25rem, 3vw, 3.25rem); }
+  .description { margin-top: 0.25rem; font-size: clamp(1.05rem, 1.45vw, 1.5rem); line-height: 1.08; }
 }
 
 @media (max-width: 900px) {

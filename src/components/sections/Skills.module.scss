@@ -1,6 +1,6 @@
 .section {
   /* 튜브 배치 조절값 */
-  --tube-width: clamp(300px, 22vw, 400px);
+  --tube-width: clamp(260px, 18vw, 340px);
   --tube-list-left: clamp(52px, 7vw, 130px);
   --tube-list-top: clamp(300px, 34svh, 390px);
   --tube-gap: clamp(10px, 1.6vh, 25px);
@@ -124,7 +124,7 @@
   display: flex;
   width: calc(92% - 8vw);
   flex-direction: column;
-  gap: 4rem;
+  gap: clamp(1.5rem, 2.5vh, 2.5rem);
   // border: 1px solid rgb(0, 255, 200);
 }
 

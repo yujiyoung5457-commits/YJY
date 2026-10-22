@@ -416,6 +416,25 @@
   }
 }
 
+@media (min-width: 1025px) {
+  .canvasPanel {
+    --canvas-panel-height: max(100svh, 650px);
+  }
+
+  .canvasHeading {
+    width: clamp(280px, 34%, 480px);
+    font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  }
+
+  .artwork {
+    height: min(58svh, 560px);
+  }
+
+  .code {
+    font-size: clamp(6rem, 7vw, 9rem);
+  }
+}
+
 @media (max-width: 900px) {
   .title {
     min-height: 88px;
