@@ -179,7 +179,9 @@ export function AnotherProject() {
           <strong className={styles.projectDescriptionTitle}>
             {selectedDetails.title}
           </strong>
-          <p className={styles.projectSummary}>{selectedDetails.summary}</p>
+          <p className={styles.projectSummary}>
+            {selectedDetails.summary} {selectedDetails.task}
+          </p>
           <div className={styles.techStack} aria-label="활용 기술 목록">
             {visibleTech.map((technology) => (
               <span className={styles.techBadge} key={technology}>
@@ -207,7 +209,9 @@ export function AnotherProject() {
           <strong className={styles.projectDescriptionTitle}>
             {projectDetails.flower.title}
           </strong>
-          <p className={styles.projectSummary}>{projectDetails.flower.summary}</p>
+          <p className={styles.projectSummary}>
+            {projectDetails.flower.summary} {projectDetails.flower.task}
+          </p>
           <div className={styles.techStack} aria-label="Flower Dance 활용 기술 목록">
             {projectDetails.flower.tech.slice(0, VISIBLE_TECH_COUNT).map((technology) => (
               <span className={styles.techBadge} key={technology}>
@@ -245,7 +249,9 @@ export function AnotherProject() {
             <strong className={styles.projectDescriptionTitle}>
               {projectDetails.hamster.title}
             </strong>
-            <p className={styles.projectSummary}>{projectDetails.hamster.summary}</p>
+            <p className={styles.projectSummary}>
+              {projectDetails.hamster.summary} {projectDetails.hamster.task}
+            </p>
             <div className={styles.techStack} aria-label="I love hamster 활용 기술 목록">
               {projectDetails.hamster.tech.slice(0, VISIBLE_TECH_COUNT).map((technology) => (
                 <span className={styles.techBadge} key={technology}>
