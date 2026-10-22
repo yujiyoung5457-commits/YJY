@@ -6,7 +6,7 @@
   background: var(--color-blue);
   color: var(--color-blue);
   isolation: isolate;
-  padding-bottom: 8rem;
+  padding-bottom: 7rem;
 }
 
 .waveCanvas {
@@ -26,7 +26,7 @@
   margin-inline: auto;
   padding: clamp(2.5rem, 3.4vw, 4rem) clamp(2rem, 3vw, 4rem)
     clamp(3rem, 4.5vw, 5rem);
-    border: 1px solid red;
+    // border: 1px solid red;
 }
 
 .heading {

@@ -3,7 +3,7 @@
   --circle-offset-y: 16rem;
   --flower-circle-top: clamp(280px, 11%, 430px);
   --flower-circle-left: clamp(-84px, -4vw, -20px);
-  --flower-circle-size: 80rem;
+  --flower-circle-size: 82rem;
   --description-circle-top: clamp(260px, 12%, 400px);
   --description-circle-right: 0%;
   --description-circle-size: min(38vw, 46rem);
@@ -429,13 +429,28 @@
   }
 
   .section {
+    /* PC 원 배치 조절 안내
+     * top: 값이 커지면 아래로 이동
+     * left: 값이 커지면 오른쪽으로 이동
+     * right: 값이 커지면 왼쪽으로 이동
+     * size: 값이 커지면 원이 커짐
+     */
     --circle-offset-y: 4rem;
+    /* 왼쪽 Shopping Mall 원 */
     --flower-circle-top: clamp(180px, 8%, 280px);
-    --flower-circle-left: clamp(-42px, -2vw, -10px);
-    --flower-circle-size: min(36vw, 42rem);
-    --description-circle-top: clamp(170px, 9%, 270px);
-    --description-circle-right: 4%;
-    --description-circle-size: min(22vw, 24rem);
+    --flower-circle-left: 8%;
+    --flower-circle-size: min(34vw, 38rem);
+
+    /* 오른쪽 Flower Dance 설명 원 */
+    --description-circle-top: clamp(180px, 8%, 280px);
+    --description-circle-left: 46%;
+    --description-circle-right: auto;
+    --description-circle-size: min(28vw, 30rem);
+
+    /* 케이크 장식: 설명 원의 left에서 오른쪽으로 더할 거리 */
+    --artwork-offset-x: min(9vw, 9rem);
+
+    /* 아래 Hamster 원: 이번 위쪽 배치와 별개 */
     --hamster-circle-top: clamp(900px, 38%, 1100px);
     --hamster-circle-right: 4%;
     --hamster-circle-size: min(24vw, 28rem);
@@ -447,7 +462,13 @@
   }
 
   .artwork {
+    right: auto;
+    left: calc(var(--description-circle-left) + var(--artwork-offset-x));
     width: clamp(9rem, 11vw, 12rem);
+  }
+
+  .projectDescription {
+    left: var(--description-circle-left);
   }
 
   .projectCard h3 {

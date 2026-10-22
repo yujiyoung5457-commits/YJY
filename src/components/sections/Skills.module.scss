@@ -173,9 +173,9 @@ min-height: max(calc(100svh - var(--header-height)), 650px);
 .palette {
   position: absolute;
   z-index: 1;
-  top:90%;
+  top:100%;
   right: var(--palette-right);
-  width: 22rem;
+  width: 19rem;
   height: auto;
   animation: shake-bottom 4s infinite;
 }
