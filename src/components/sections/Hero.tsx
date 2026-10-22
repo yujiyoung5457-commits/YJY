@@ -223,8 +223,7 @@ export function Hero() {
 
       <div className={styles.subtitle}>
         <p>
-          Frontend, visualized in form. Design, code, structure, and interaction in one
-          object.
+          Frontend Developer with a background in fine art and visual design
         </p>
       </div>
 
