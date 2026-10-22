@@ -296,6 +296,13 @@
   text-decoration: none;
 }
 
+@media (min-width: 1025px) {
+  .section {
+    /* PC WeatherAPI 아래 파란 여백: 값을 줄이면 Contact 원이 위로 가까워짐 */
+    --movie-section-height: max(270svh, 980px);
+  }
+}
+
 @media (max-width: 1439px) {
   .intro {
     height: clamp(260px, 34vw, 490px);

@@ -358,6 +358,13 @@
   text-align: center;
 }
 
+@media (min-width: 1025px) {
+  .section {
+    /* PC WeatherAPI 전체 위치: 값을 키우면 Movie에서 더 아래로 내려감 */
+    margin-top: clamp(4rem, 15svh, 10rem);
+  }
+}
+
 @media (min-width: 1440px) {
   .section {
     padding: clamp(1.5rem, 3vh, 2.5rem) 0;

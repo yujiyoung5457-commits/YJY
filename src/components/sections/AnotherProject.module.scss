@@ -43,11 +43,11 @@
   position: absolute;
   z-index: 2;
   top: clamp(34px, 6vh, 68px);
-  left: 10rem;
-  margin: 3rem 0;
+  left: 11rem;
+  margin: 2rem 0;
   color: var(--color-yellow);
   font-family: var(--font-anton), Impact, sans-serif;
-  font-size:9.3rem;
+  font-size:7.2rem;
   font-weight: 400;
   line-height: 0.9;
   text-transform: uppercase;
@@ -425,35 +425,54 @@
 
 @media (min-width: 1025px) {
   .hamsterDescriptionCircle {
+    /* PC에서는 래퍼 박스를 만들지 않으므로 실제 설명 원은 아래 변수로 조절 */
     display: contents;
+    border: 1px solid red;
   }
 
   .section {
+    /* PC 섹션 전체 높이: 두 줄의 원이 겹치지 않는 범위까지만 확보 */
+    --desktop-section-height: clamp(
+      2550px,
+      calc(290svh - var(--header-height)),
+      2900px
+    );
+
+    min-height: var(--desktop-section-height);
+
     /* PC 원 배치 조절 안내
      * top: 값이 커지면 아래로 이동
      * left: 값이 커지면 오른쪽으로 이동
      * right: 값이 커지면 왼쪽으로 이동
      * size: 값이 커지면 원이 커짐
      */
-    --circle-offset-y: 4rem;
+    /* 모든 원을 함께 이동: +값은 아래, -값은 위 */
+    --circle-offset-y: -2.5rem;
     /* 왼쪽 Shopping Mall 원 */
-    --flower-circle-top: clamp(180px, 8%, 280px);
-    --flower-circle-left: 8%;
-    --flower-circle-size: min(34vw, 38rem);
+    --flower-circle-top: clamp(220px, 9%, 300px);
+    --flower-circle-left: 11%;
+    --flower-circle-size: min(36vw, 42rem);
 
     /* 오른쪽 Flower Dance 설명 원 */
-    --description-circle-top: clamp(180px, 8%, 280px);
+    --description-circle-top: clamp(220px, 9%, 300px);
     --description-circle-left: 46%;
     --description-circle-right: auto;
-    --description-circle-size: min(28vw, 30rem);
+    --description-circle-size: min(28vw, 38rem);
 
-    /* 케이크 장식: 설명 원의 left에서 오른쪽으로 더할 거리 */
-    --artwork-offset-x: min(9vw, 9rem);
+    /* 케이크 위치 조절 */
+--flower-artwork-top: 24%;          // 작을수록 위로
+--flower-artwork-offset-x: 28vw;   // 클수록 오른쪽으로
+--flower-artwork-size: 15rem;      // 케이크 크기
 
-    /* 아래 Hamster 원: 이번 위쪽 배치와 별개 */
+    /* 아래 오른쪽 Hamster Care 프로젝트 원 */
     --hamster-circle-top: clamp(900px, 38%, 1100px);
-    --hamster-circle-right: 4%;
-    --hamster-circle-size: min(24vw, 28rem);
+    --hamster-circle-right:9%;
+    --hamster-circle-size: min(37vw, 53rem);
+
+    /* 아래 왼쪽 Hamster Care 설명 원 */
+    --hamster-description-circle-left: 22%;
+    --hamster-description-circle-top: 36%;
+    --hamster-description-circle-size: min(32vw, 38rem);
   }
 
   .title {
@@ -462,9 +481,10 @@
   }
 
   .artwork {
+    top: var(--flower-artwork-top);
     right: auto;
-    left: calc(var(--description-circle-left) + var(--artwork-offset-x));
-    width: clamp(9rem, 11vw, 12rem);
+    left: calc(var(--description-circle-left) + var(--flower-artwork-offset-x));
+    width: var(--flower-artwork-size);
   }
 
   .projectDescription {
@@ -521,10 +541,10 @@
   }
 
   .hamsterProjectDescription {
-    top: var(--hamster-circle-top);
+    top: var(--hamster-description-circle-top);
     right: auto;
-    left: 12%;
-    width: min(22vw, 22rem);
+    left: var(--hamster-description-circle-left);
+    width: var(--hamster-description-circle-size);
   }
 
   .projectCard02 h3 {
