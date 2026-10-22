@@ -441,6 +441,37 @@
   border: 0;
 }
 
+@media (min-width: 901px) {
+  .section {
+    --mixer-width: 29%;
+    --hamster-width: 16.5%;
+    --dust-width: 12.5%;
+    --filled-bag-width: 20%;
+    --filled-bag-height: 54%;
+    --replay-width: 11.5%;
+  }
+
+  .introBadge {
+    width: 13.5%;
+  }
+
+  .pipingBag {
+    width: 27%;
+  }
+
+  .move01 {
+    width: 18%;
+  }
+
+  .move02 {
+    width: 14.5%;
+  }
+
+  .resultHamster {
+    width: 15%;
+  }
+}
+
 @media (max-width: 700px) {
   .section {
     --mixer-top: 17%;

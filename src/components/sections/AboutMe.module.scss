@@ -55,7 +55,7 @@
   z-index: -2;
   top: 0;
   bottom: 0;
-  left: clamp(-10rem, -10vw, -8rem);
+  left: clamp(-12rem, -10vw, -16rem);
   width: clamp(13rem, 25vw, 27rem);
   height: 100%;
   max-width: none;
@@ -263,7 +263,7 @@
     z-index: -1;
     top: 0;
     bottom: auto;
-    left: -3rem;
+    left: -4.8rem;
     width: clamp(220px, 22.5vw, 433px);
   }
 

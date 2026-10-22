@@ -15,7 +15,7 @@
 .card {
   position: absolute;
   z-index: 2;
-  top: 17%;
+  top: 12%;
   width: min(14vw, 250px);
   aspect-ratio: 649.44 / 947.52;
   padding: 0;
@@ -74,7 +74,7 @@
   z-index: 2;
   top: -2%;
   left: 50%;
-  width: min(52vw, 950px);
+  width: min(52vw, 650px);
   aspect-ratio: 1768.56 / 373.44;
   transform: translateX(-50%);
 }
@@ -97,7 +97,7 @@
 .windows {
   position: absolute;
   z-index: 1;
-  top: 23%;
+  top: 13%;
   left: 50%;
   display: grid;
   width: min(58vw, 1050px);
@@ -158,7 +158,7 @@
 .result {
   position: absolute;
   z-index: 3;
-  bottom: 4%;
+  bottom: 10%;
   left: 50%;
   width: min(78vw, 1150px);
   aspect-ratio: 1456.68 / 464.64;
@@ -356,6 +356,91 @@
   font-family: var(--font-anton), Impact, sans-serif;
   font-size: clamp(0.72rem, 1vw, 1.1rem);
   text-align: center;
+}
+
+@media (min-width: 1440px) {
+  .section {
+    padding: clamp(1.5rem, 3vh, 2.5rem) 0;
+  }
+
+  .composition {
+    width: min(90vw, 1400px);
+    margin: 0 auto;
+  }
+
+  .card {
+    width: min(11vw, 190px);
+  }
+
+  .ribbon {
+    width: min(40vw, 560px);
+  }
+
+  .windows {
+    width: min(48vw, 850px);
+    gap: clamp(5px, 0.55vw, 10px);
+  }
+
+  .result {
+    width: min(62vw, 900px);
+  }
+
+  .resultContent {
+    gap: clamp(6px, 0.65vw, 12px) clamp(6px, 0.75vw, 14px);
+  }
+
+  .cityViewport {
+    --city-button-height: clamp(26px, 1.8vw, 34px);
+    --city-gap: clamp(4px, 0.4vw, 7px);
+  }
+
+  .cityButton {
+    min-width: clamp(70px, 5vw, 90px);
+    padding: 0 clamp(6px, 0.6vw, 10px);
+    font-size: clamp(0.7rem, 0.8vw, 1rem);
+  }
+
+  .weatherHeading p,
+  .weatherHeading h3,
+  .status,
+  .fortune,
+  .weatherDetails {
+    margin-left: 1rem;
+  }
+
+  .weatherHeading p {
+    font-size: clamp(0.7rem, 0.85vw, 1.1rem);
+  }
+
+  .weatherHeading h3 {
+    font-size: clamp(1.5rem, 2.15vw, 2.6rem);
+  }
+
+  .weatherDetails {
+    gap: clamp(6px, 0.75vw, 14px);
+  }
+
+  .weatherDetails dt {
+    font-size: clamp(0.85rem, 1.35vw, 1.7rem);
+  }
+
+  .weatherDetails dd {
+    margin-top: clamp(4px, 0.4vw, 7px);
+    font-size: clamp(0.75rem, 0.95vw, 1.1rem);
+  }
+
+  .fortune {
+    gap: clamp(4px, 0.45vw, 7px);
+    font-size: clamp(0.7rem, 0.9vw, 1.1rem);
+  }
+
+  .fortune strong {
+    font-size: clamp(1.1rem, 1.55vw, 1.8rem);
+  }
+
+  .status {
+    font-size: clamp(0.68rem, 0.8vw, 0.95rem);
+  }
 }
 
 @media (max-width: 1439px) {

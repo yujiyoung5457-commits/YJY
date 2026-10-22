@@ -526,6 +526,128 @@
 
 }
 
+@media (min-width: 901px) {
+  .shape1 {
+    width: 34%;
+    height: clamp(44rem, 42vw, 48rem);
+  }
+
+  .bookDescription {
+    gap: clamp(0.2rem, 0.8cqw, 0.5rem);
+  }
+
+  .bookDescription .bookEyebrow {
+    font-size: clamp(1rem, 1.5vw, 1.65rem);
+  }
+
+  .bookTitle {
+    font-size: clamp(2.75rem, 4vw, 4.25rem);
+  }
+
+  .bookDescription .bookSubtitle {
+    font-size: clamp(1.1rem, 1.75vw, 2rem);
+  }
+
+  .bookDescription .bookLead {
+    font-size: clamp(1rem, 1.15vw, 1.3rem);
+  }
+
+  .bookDescription .bookSummary {
+    font-size: clamp(1rem, 1.25vw, 1.4rem);
+  }
+
+  .bookTools {
+    gap: clamp(0.2rem, 0.8cqw, 0.45rem);
+    margin-top: clamp(0.2rem, 1cqw, 0.55rem);
+  }
+
+  .bookTools .projectTool {
+    padding: clamp(0.2rem, 0.8cqw, 0.4rem)
+      clamp(0.35rem, 1.4cqw, 0.75rem);
+    font-size: clamp(0.85rem, 1.1vw, 1.2rem);
+  }
+
+  .frame1 .frame1Frame {
+    width: clamp(440px, 42vw, 580px);
+  }
+
+  .shape2 {
+    width: 56%;
+    height: clamp(40rem, 32vw, 52rem);
+  }
+
+  .communityDescription {
+    gap: clamp(0.2rem, 0.8cqw, 0.5rem);
+  }
+
+  .communityDescription .communityEyebrow {
+    font-size: clamp(1rem, 1.5vw, 2rem);
+  }
+
+  .communityDescription .communityTitle {
+    font-size: clamp(2.35rem, 3.5vw, 4.5rem);
+  }
+
+  .communityDescription .communitySubtitle {
+    font-size: clamp(1.1rem, 1.75vw, 2rem);
+  }
+
+  .communityDescription .communityLead {
+    font-size: clamp(1rem, 1.15vw, 1.3rem);
+  }
+
+  .communityDescription .communitySummary {
+    font-size: clamp(1rem, 1.25vw, 1.4rem);
+  }
+
+  .communityTools {
+    gap: clamp(0.2rem, 0.8cqw, 0.45rem);
+    margin-top: clamp(0.2rem, 1cqw, 0.55rem);
+  }
+
+  .communityTools .projectTool {
+    padding: clamp(0.2rem, 0.8cqw, 0.4rem)
+      clamp(0.35rem, 1.4cqw, 0.75rem);
+    font-size: clamp(0.85rem, 1.1vw, 1.2rem);
+  }
+
+  .shape4 {
+    width: 50%;
+    height: clamp(38rem, 34vw, 42rem);
+  }
+
+  .piyoDescription {
+    gap: clamp(0.2rem, 0.8cqw, 0.5rem);
+  }
+
+  .piyoDescription .piyoEyebrow {
+    font-size: clamp(1rem, 1.5vw, 1.65rem);
+  }
+
+  .piyoDescription .piyoTitle {
+    font-size: clamp(2.75rem, 4vw, 4.25rem);
+  }
+
+  .piyoDescription .piyoSubtitle {
+    font-size: clamp(1.1rem, 1.75vw, 2rem);
+  }
+
+  .piyoDescription .piyoSummary {
+    font-size: clamp(1rem, 1.25vw, 1.4rem);
+  }
+
+  .piyoTools {
+    gap: clamp(0.2rem, 0.8cqw, 0.45rem);
+    margin-top: clamp(0.2rem, 1cqw, 0.55rem);
+  }
+
+  .piyoTools .projectTool {
+    padding: clamp(0.2rem, 0.8cqw, 0.4rem)
+      clamp(0.35rem, 1.4cqw, 0.75rem);
+    font-size: clamp(0.85rem, 1.1vw, 1.2rem);
+  }
+}
+
 .frameSlider {
   position: absolute;
   z-index: 1;
@@ -670,6 +792,12 @@
     --frame-image: url(/piyoPlush.webp);
     background-position: top;
     background-size: cover;
+  }
+}
+
+@media (min-width: 901px) {
+  .frame4 .frame4Frame {
+    width: clamp(440px, 28vw, 550px);
   }
 }
 

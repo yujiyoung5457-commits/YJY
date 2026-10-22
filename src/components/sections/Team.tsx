@@ -164,18 +164,18 @@ export function Team() {
       const headingBottom = headingBounds.bottom - sectionBounds.top;
       const technologyTop = technologyBounds.top - sectionBounds.top;
       const responsiveTop = headingBottom + clamp(width * 0.035, 20, 36);
-      const topLeft = isTablet ? responsiveTop : height * 0.17;
-      const topMiddle = isTablet
-        ? headingBottom + clamp(width * 0.015, 10, 20)
-        : height * 0.05;
-      const topRight = isTablet
-        ? headingBottom + clamp(width * 0.045, 26, 42)
-        : height * 0.11;
+     const topLeft = isTablet ? responsiveTop : height * 0.25;
+const topMiddle = isTablet
+  ? headingBottom + clamp(width * 0.015, 10, 20)
+  : height * 0.13;
+const topRight = isTablet
+  ? headingBottom + clamp(width * 0.045, 26, 42)
+  : height * 0.19;
       const technologyClearance = isTablet
         ? clamp(width * 0.075, 44, 110)
         : clamp(width * 0.035, 56, 76) + rootFontSize * 2.3;
       const bottomMiddle = Math.max(
-        height * (isTablet ? 0.58 : 0.64),
+        height * (isTablet ? 0.58 : 0.55),
         technologyTop - technologyClearance,
       );
       const bottomCurveDepth = clamp(width * 0.065, 28, 92);

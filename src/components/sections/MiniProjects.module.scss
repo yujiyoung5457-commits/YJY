@@ -436,6 +436,104 @@
   opacity: 0.48;
 }
 
+@media (min-width: 901px) {
+  .section {
+    padding: clamp(3rem, 4vh, 4rem) clamp(1.25rem, 4vw, 5rem);
+  }
+
+  .layout {
+    width: min(100%, 1300px);
+    gap: clamp(1.5rem, 2.5vw, 3rem);
+  }
+
+  .projectMenus {
+    gap: clamp(1.25rem, 3vw, 3.5rem);
+    padding-inline: clamp(0.5rem, 2.5vw, 2.5rem);
+  }
+
+  .menuGroup {
+    gap: 0.5rem;
+  }
+
+  .menuGroup h3 {
+    margin-bottom: 0.15rem;
+    font-size: clamp(1.1rem, 1.4vw, 1.6rem);
+  }
+
+  .menuGroup button {
+    padding: 0.55rem 0.95rem;
+    font-size: clamp(0.78rem, 0.9vw, 1rem);
+  }
+
+  .layout h2 {
+    margin-bottom: clamp(0.35rem, 0.8vw, 0.8rem);
+    font-size: clamp(2.8rem, 5vw, 5.5rem);
+  }
+
+  .television {
+    max-width: 600px;
+  }
+
+  .windowBar {
+    height: clamp(1.35rem, 1.6vw, 1.8rem);
+    gap: clamp(0.25rem, 0.35vw, 0.4rem);
+    padding-inline: 0.5rem 2rem;
+  }
+
+  .windowBar span:not(.close) {
+    width: clamp(0.45rem, 0.55vw, 0.65rem);
+  }
+
+  .close {
+    font-size: clamp(1.35rem, 1.7vw, 1.8rem);
+  }
+
+  .windowBody {
+    min-height: clamp(230px, 22vw, 330px);
+    gap: clamp(1rem, 1.5vw, 1.5rem);
+    padding: clamp(1rem, 1.5vw, 1.5rem);
+  }
+
+  .projectOverview {
+    gap: clamp(0.35rem, 0.55vw, 0.55rem);
+  }
+
+  .windowBody .projectEyebrow {
+    font-size: clamp(0.8rem, 0.9vw, 1rem);
+  }
+
+  .windowBody .projectTitle {
+    font-size: clamp(1.8rem, 2.35vw, 2.6rem);
+  }
+
+  .windowBody .projectSubtitle,
+  .projectDescription p {
+    font-size: clamp(0.82rem, 0.9vw, 1rem);
+    line-height: 1.4;
+  }
+
+  .projectTags {
+    gap: 0.35rem;
+    margin-top: clamp(0.25rem, 0.5vw, 0.5rem);
+  }
+
+  .projectTags li {
+    padding: 0.4rem 0.75rem;
+    font-size: clamp(0.75rem, 0.8vw, 0.88rem);
+  }
+
+  .projectLinks {
+    gap: 0.65rem;
+  }
+
+  .projectLinks a,
+  .projectLinks span {
+    min-height: 2.25rem;
+    padding: 0.5rem 0.9rem;
+    font-size: clamp(0.8rem, 0.9vw, 0.95rem);
+  }
+}
+
 @media (max-width: 760px) {
   .section {
     // 제목을 노란 물결 아래의 파란 영역에서 시작시킵니다.

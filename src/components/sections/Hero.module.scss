@@ -313,7 +313,7 @@
   top: 14%;
   left: 50%;
   display: grid;
-  height: min(66svh, 620px);
+  height: min(62svh, 600px);
   place-items: center;
   perspective: 1000px;
   transform: translateX(-50%);
@@ -365,13 +365,13 @@
 @keyframes artwork-glow {
   0%,
   100% {
-    opacity: 0.62;
-    transform: scale(1.62);
+     opacity: 0.62;
+    transform: scale(1.35);
   }
 
   50% {
     opacity: 1;
-    transform: scale(1.88);
+    transform: scale(1.55);
   }
 }
 
@@ -427,7 +427,7 @@
   }
 
   .artwork {
-    height: min(58svh, 560px);
+    height: min(45svh, 420px);
   }
 
   .code {

@@ -174,7 +174,7 @@ export function AnotherProject() {
           sizes="(max-width: 520px) 78vw, (max-width: 800px) 48vw, 34rem"
         />
 
-        <div className={styles.projectDescriptionCopy}>
+        <div className={`${styles.projectDescriptionCopy} ${styles.mobileDescriptionCopy}`}>
           <span className={styles.projectEyebrow}>{selectedDetails.eyebrow}</span>
           <strong className={styles.projectDescriptionTitle}>
             {selectedDetails.title}
@@ -201,7 +201,71 @@ export function AnotherProject() {
             LIVE SITE
           </a>
         </div>
+
+        <div className={`${styles.projectDescriptionCopy} ${styles.desktopDescriptionCopy}`}>
+          <span className={styles.projectEyebrow}>{projectDetails.flower.eyebrow}</span>
+          <strong className={styles.projectDescriptionTitle}>
+            {projectDetails.flower.title}
+          </strong>
+          <p className={styles.projectSummary}>{projectDetails.flower.summary}</p>
+          <div className={styles.techStack} aria-label="Flower Dance 활용 기술 목록">
+            {projectDetails.flower.tech.slice(0, VISIBLE_TECH_COUNT).map((technology) => (
+              <span className={styles.techBadge} key={technology}>
+                {technology}
+              </span>
+            ))}
+            <span className={styles.moreTech} aria-label="외 4개 기술">
+              +{projectDetails.flower.tech.length - VISIBLE_TECH_COUNT}
+            </span>
+          </div>
+          <a
+            className={styles.liveSite}
+            href={projectDetails.flower.liveUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            LIVE SITE
+          </a>
+        </div>
       </article>
+      </ScaledCircle>
+
+      <ScaledCircle className={styles.hamsterDescriptionCircle} designSize={560}>
+        <article className={`${styles.projectDescription} ${styles.hamsterProjectDescription}`}>
+          <Image
+            className={styles.projectDescriptionBackground}
+            src="/AnotherCircle.svg"
+            alt=""
+            fill
+            sizes="22rem"
+          />
+
+          <div className={styles.projectDescriptionCopy}>
+            <span className={styles.projectEyebrow}>{projectDetails.hamster.eyebrow}</span>
+            <strong className={styles.projectDescriptionTitle}>
+              {projectDetails.hamster.title}
+            </strong>
+            <p className={styles.projectSummary}>{projectDetails.hamster.summary}</p>
+            <div className={styles.techStack} aria-label="I love hamster 활용 기술 목록">
+              {projectDetails.hamster.tech.slice(0, VISIBLE_TECH_COUNT).map((technology) => (
+                <span className={styles.techBadge} key={technology}>
+                  {technology}
+                </span>
+              ))}
+              <span className={styles.moreTech} aria-label="외 3개 기술">
+                +{projectDetails.hamster.tech.length - VISIBLE_TECH_COUNT}
+              </span>
+            </div>
+            <a
+              className={styles.liveSite}
+              href={projectDetails.hamster.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              LIVE SITE
+            </a>
+          </div>
+        </article>
       </ScaledCircle>
 
       <ScaledCircle className={styles.hamsterCircle} designSize={680}>

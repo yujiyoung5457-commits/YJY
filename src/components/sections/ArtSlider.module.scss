@@ -28,13 +28,13 @@
 }
 
 .heading > span {
-  font-size: clamp(15rem, 15vw, 20rem);
+  font-size: clamp(8rem, 8vw, 10rem);
   line-height: 1;
 }
 
 .heading h2 {
   margin: 0;
-  font-size: clamp(2.6rem, 5vw, 8rem);
+  font-size: clamp(2.6rem, 3vw, 5rem);
   font-weight: 400;
   line-height: 1.02;
 }
@@ -48,9 +48,9 @@
 
 .cards {
   position: absolute;
-  top: 48%;
+  top: 42%;
   left: 50%;
-  width: min(34.5vw, 660px);
+  width: min(34.5vw, 610px);
   aspect-ratio: 3 / 2;
   margin: 0;
   padding: 0;
@@ -85,7 +85,7 @@
 .actions {
   position: absolute;
   z-index: 110;
-  bottom: 30px;
+  bottom: 80px;
   left: 50%;
   display: flex;
   gap: 1rem;

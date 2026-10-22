@@ -415,6 +415,102 @@
   display: contents;
 }
 
+.desktopDescriptionCopy {
+  display: none;
+}
+
+.hamsterDescriptionCircle {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  .hamsterDescriptionCircle {
+    display: contents;
+  }
+
+  .section {
+    --circle-offset-y: 4rem;
+    --flower-circle-top: clamp(180px, 8%, 280px);
+    --flower-circle-left: clamp(-42px, -2vw, -10px);
+    --flower-circle-size: min(36vw, 42rem);
+    --description-circle-top: clamp(170px, 9%, 270px);
+    --description-circle-right: 4%;
+    --description-circle-size: min(22vw, 24rem);
+    --hamster-circle-top: clamp(900px, 38%, 1100px);
+    --hamster-circle-right: 4%;
+    --hamster-circle-size: min(24vw, 28rem);
+  }
+
+  .title {
+    margin: 2rem 0;
+    font-size: clamp(4rem, 5vw, 6rem);
+  }
+
+  .artwork {
+    width: clamp(9rem, 11vw, 12rem);
+  }
+
+  .projectCard h3 {
+    font-size: clamp(2.25rem, 3vw, 3.5rem);
+  }
+
+  .mobileDescriptionCopy {
+    display: none;
+  }
+
+  .desktopDescriptionCopy {
+    display: block;
+  }
+
+  .projectDescriptionCopy {
+    width: 76%;
+  }
+
+  .projectEyebrow {
+    font-size: clamp(0.7rem, 0.8vw, 1rem);
+  }
+
+  .projectDescriptionTitle {
+    font-size: clamp(1.8rem, 2.7vw, 3rem);
+  }
+
+  .projectSummary {
+    margin-top: 0.5rem;
+    font-size: clamp(0.72rem, 0.85vw, 1rem);
+  }
+
+  .techStack {
+    gap: 0.35rem;
+    margin-top: 0.6rem;
+  }
+
+  .techBadge {
+    padding: 0.4rem 0.65rem;
+    font-size: clamp(0.72rem, 0.8vw, 0.9rem);
+  }
+
+  .moreTech {
+    font-size: clamp(1.4rem, 1.8vw, 2rem);
+  }
+
+  .liveSite {
+    margin-top: 0.5rem;
+    padding: 0.45rem 0.75rem;
+    font-size: clamp(0.75rem, 0.8vw, 0.9rem);
+  }
+
+  .hamsterProjectDescription {
+    top: var(--hamster-circle-top);
+    right: auto;
+    left: 12%;
+    width: min(22vw, 22rem);
+  }
+
+  .projectCard02 h3 {
+    font-size: clamp(2.25rem, 2.8vw, 3.25rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .projectCardBackground,
   .projectDescriptionBackground,
@@ -478,6 +574,7 @@
   .flowerCircle { width: min(78vw, 40rem); }
   .descriptionCircle { width: min(66vw, 35rem); }
   .hamsterCircle { width: min(72vw, 38rem); }
+  .hamsterDescriptionCircle { display: none; }
 
   .projectCard,
   .projectDescription,
