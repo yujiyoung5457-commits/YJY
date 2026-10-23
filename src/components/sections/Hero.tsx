@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { DM_Serif_Display } from "next/font/google";
 import { useLayoutEffect, useRef } from "react";
+import { First } from "./First";
 import { createHeroVortex } from "./heroVortex";
 import styles from "./Hero.module.scss";
 
@@ -226,6 +227,8 @@ export function Hero() {
           Frontend Developer with a background in fine art and visual design
         </p>
       </div>
+
+      <First />
 
       <div className={`${styles.panel} ${styles.canvasPanel}`}>
         <Image

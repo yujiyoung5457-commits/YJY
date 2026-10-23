@@ -449,6 +449,9 @@
   .projectMenus {
     gap: clamp(1.25rem, 3vw, 3.5rem);
     padding-inline: clamp(0.5rem, 2.5vw, 2.5rem);
+      transform:
+      translateY(clamp(3.5rem, 6.5vw, 10rem))
+      translateX(clamp(30rem, 44vw, 47rem));
   }
 
   .menuGroup {

@@ -15,12 +15,18 @@ const MOVIE_SLIDES = [
     logoAlt: "Simu Simu Hae",
     logoWidth: 1466,
     logoHeight: 760,
+    logoClassName: styles.simuLogo,
     character: "/honya.png",
     characterAlt: "Simu Simu Hae characters",
     characterWidth: 1448,
     characterHeight: 1086,
     characterClassName: styles.simuCharacter,
     video: "https://www.youtube.com/embed/ZYUeJoK_saQ?feature=oembed",
+    summary:
+      "Clip Studio Paint로 2D 애니메이션을 직접 제작하고, Paint 3D에서 캐릭터를 모델링했습니다.",
+    description:
+      "기존 무료 3D 배경 에셋을 재구성하고 Adobe Premiere Pro에서 영상 합성 및 사운드 편집을 진행한 약 3분 분량의 작품입니다.",
+    tools: ["Clip Studio Paint", "Premiere Pro", "Microsoft Paint 3D"],
   },
   {
     name: "ULSD",
@@ -28,12 +34,18 @@ const MOVIE_SLIDES = [
     logoAlt: "ULSD",
     logoWidth: 1905,
     logoHeight: 825,
+    logoClassName: styles.ulsdLogo,
     character: "/ulsd-human.png",
     characterAlt: "ULSD character",
     characterWidth: 1024,
     characterHeight: 1110,
     characterClassName: styles.ulsdCharacter,
     video: "https://www.youtube.com/embed/PEjg0JYX6GM?feature=oembed",
+    summary:
+      "Clip Studio Paint를 활용해 약 11분 분량의 2D 애니메이션을 단독 제작했습니다.",
+    description:
+      "Adobe Premiere Pro로 장면을 구성하고 최종 영상을 편집했습니다.",
+    tools: ["Clip Studio Paint", "Premiere Pro"],
   },
   {
     name: "BIRTHDAY",
@@ -41,12 +53,18 @@ const MOVIE_SLIDES = [
     logoAlt: "Birthday",
     logoWidth: 1774,
     logoHeight: 887,
+    logoClassName: styles.birthdayLogo,
     character: "/birthday.png",
     characterAlt: "Birthday character",
     characterWidth: 1086,
     characterHeight: 1448,
     characterClassName: styles.birthdayCharacter,
     video: "https://www.youtube.com/embed/Cjx-TYS8KYY?feature=oembed",
+    summary:
+      "스톱모션 기법과 콜라주, 디지털 2D 애니메이션을 결합한 혼합매체 영상 작품입니다.",
+    description:
+      "Clip Studio Paint에서 디지털 애니메이션을 제작하고 Adobe Premiere Pro에서 영상 요소들을 합성·편집했습니다.",
+    tools: ["Clip Studio Paint", "Premiere Pro"],
   },
 ] as const;
 
@@ -165,57 +183,81 @@ export function Movie() {
 
   return (
     <section className={styles.section} id="contact" aria-label="Movie and contact">
-      <div className={styles.intro}>
-        <svg
-          className={styles.squiggle}
-          viewBox="0 0 1440 170"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            ref={squigglePathRef}
-            d="M-30 95 C55 8 118 8 104 88 S218 154 258 82 S350 30 340 101 S438 132 493 87 S596 55 611 119 S710 151 742 77 S842 8 854 73 S953 129 1003 70 S1110 14 1123 82 S1222 141 1272 72 S1380 22 1470 89"
+      <div className={styles.showcase}>
+        <div className={styles.mediaColumn}>
+          <div className={styles.intro}>
+            <svg
+              className={styles.squiggle}
+              viewBox="0 0 1440 170"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                ref={squigglePathRef}
+                d="M-30 95 C55 8 118 8 104 88 S218 154 258 82 S350 30 340 101 S438 132 493 87 S596 55 611 119 S710 151 742 77 S842 8 854 73 S953 129 1003 70 S1110 14 1123 82 S1222 141 1272 72 S1380 22 1470 89"
+              />
+            </svg>
+
+            <Image
+              key={activeSlide.logo}
+              className={`${styles.logo} ${activeSlide.logoClassName}`}
+              src={activeSlide.logo}
+              alt={activeSlide.logoAlt}
+              width={activeSlide.logoWidth}
+              height={activeSlide.logoHeight}
+            />
+            <Image
+              key={activeSlide.character}
+              className={`${styles.heroCats} ${activeSlide.characterClassName}`}
+              src={activeSlide.character}
+              alt={activeSlide.characterAlt}
+              width={activeSlide.characterWidth}
+              height={activeSlide.characterHeight}
+            />
+
+            <button
+              className={styles.nextSlide}
+              type="button"
+              onClick={showNextSlide}
+              aria-label="다음 영상 보기"
+            >
+              <span aria-hidden="true">›</span>
+            </button>
+          </div>
+
+          <div className={styles.movieFrame} aria-label="Movie preview">
+            <iframe
+              key={activeSlide.video}
+              className={styles.movie}
+              src={activeSlide.video}
+              title={activeSlide.name}
+              aria-label={`${activeSlide.name} YouTube video`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </div>
+
+        <aside className={styles.details} aria-live="polite">
+          <Image
+            className={styles.detailsCircle}
+            src="/AnotherCircle.svg"
+            alt=""
+            fill
+            sizes="(min-width: 769px) min(32vw, 520px), 0px"
           />
-        </svg>
-
-        <Image
-          key={activeSlide.logo}
-          className={styles.logo}
-          src={activeSlide.logo}
-          alt={activeSlide.logoAlt}
-          width={activeSlide.logoWidth}
-          height={activeSlide.logoHeight}
-        />
-        <Image
-          key={activeSlide.character}
-          className={`${styles.heroCats} ${activeSlide.characterClassName}`}
-          src={activeSlide.character}
-          alt={activeSlide.characterAlt}
-          width={activeSlide.characterWidth}
-          height={activeSlide.characterHeight}
-        />
-
-        <button
-          className={styles.nextSlide}
-          type="button"
-          onClick={showNextSlide}
-          aria-label="다음 영상 보기"
-        >
-          <span aria-hidden="true">›</span>
-        </button>
-      </div>
-
-      <div className={styles.movieFrame} aria-label="Movie preview">
-        <iframe
-          key={activeSlide.video}
-          className={styles.movie}
-          src={activeSlide.video}
-          title={activeSlide.name}
-          aria-label={`${activeSlide.name} YouTube video`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
+          <div className={styles.detailsContent}>
+            <h2>{activeSlide.name}</h2>
+            <p>{activeSlide.summary}</p>
+            <p>{activeSlide.description}</p>
+            <ul aria-label={`${activeSlide.name} 기술 스택`}>
+              {activeSlide.tools.map((tool) => (
+                <li key={tool}>{tool}</li>
+              ))}
+            </ul>
+          </div>
+        </aside>
       </div>
 
       <WeatherAPI />
