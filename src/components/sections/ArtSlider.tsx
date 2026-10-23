@@ -141,7 +141,7 @@ export function ArtSlider() {
           const properties = {
             ...position,
             x: 0,
-            autoAlpha: isVisible ? 1 : 0,
+            autoAlpha: index === activeIndex ? 1 : isVisible ? 0.45 : 0,
             duration: animate ? 0.55 : 0,
             ease: "power3.out",
             overwrite: true,
