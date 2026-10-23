@@ -476,7 +476,7 @@
   .section {
     min-height: 0;
     padding-bottom: calc(
-      min(91.18vw, 1261px) + var(--contact-disc-bottom) + clamp(60px, 6vw, 110px)
+      min(91.18vw, 1261px) + var(--contact-disc-bottom) + clamp(80px, 16vw, 190px)
     );
   }
 
